@@ -75,7 +75,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.172089, -0.175899, 50],
+			Vec3 Translation = [-4.32065, -3.72283, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -95,7 +95,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.172089, -0.175899, -8.79951e-010],
+			Vec3 LookTarget = [-4.32065, -3.72283, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -234,15 +234,15 @@ Level =
 			string LeftBullet = "552148a6a034bddc:LeftBullet",
 			string RightBullet = "552148955fc2192f:RightBullet",
 		},
-		PlayerMovement = 
-		{
-		},
 		Orientation = 
 		{
 			Vec3 GlobalUp = [0, 1, 0],
 			Vec3 UpVector = [1, 0, 5.96046e-008],
 			Vec3 ForwardVector = [0, 1, 0],
 			OrientationBases DefaultBases = Custom,
+		},
+		VectoriaMovement = 
+		{
 		},
 	},
 	Cog = 

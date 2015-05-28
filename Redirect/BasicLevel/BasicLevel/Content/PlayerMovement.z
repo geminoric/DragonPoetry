@@ -50,5 +50,14 @@ class PlayerMovement : ZilchComponent
         // We apply the actions to the object
         this.Owner.Transform.Translation += movement * event.Dt * speed;
         this.Owner.Transform.RotateAnglesWorld(rotationAngles * event.Dt);
+        if(Zero.Keyboard.KeyIsDown(Keys.L))
+        {
+            for(var i : Integer = 0;i < 999999;++i)
+            {
+                i + 1;
+                i - 1;
+            }
+        }
+        Console.WriteLine(event.Dt);
     }
 }

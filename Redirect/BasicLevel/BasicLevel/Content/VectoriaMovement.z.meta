@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "VectoriaMovement",
+		uint64 ResourceId = 5540c3f1e0da918a,
+	},
+},
