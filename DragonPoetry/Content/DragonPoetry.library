@@ -1,7 +1,0 @@
-ContentLibrary = 
-{
-	string Name = "DragonPoetry",
-	uint64 LibraryId = 5566a54035cbe47d,
-	string SourceControlType = "",
-	bool ReadOnly = false,
-},
