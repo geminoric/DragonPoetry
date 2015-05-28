@@ -1,0 +1,61 @@
+class THC : ZilchComponent
+{
+    // Property to change which Archetype we are going to fire:
+    [Property]
+    var LeftBullet: Archetype = null;
+    [Property]
+    var RightBullet: Archetype = null;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.LevelSettings, Events.LeftMouseDown, this.OnLeftMouseDown);
+        Zero.Connect(this.LevelSettings, Events.RightMouseDown, this.OnRightMouseDown);
+    }
+    function OnRightMouseDown(event : ViewportMouseEvent)
+    {
+        // Position of the mouse
+        var mousePosition = event.ToWorldZPlane(0);
+    
+        // Get this objects current position
+        var spawnPosition = this.Owner.Transform.Translation;
+
+        // Determine the direction of our target using our formula:
+        //          d       =       m       -       p
+        var targetDirection = mousePosition - spawnPosition;
+
+        // Spawn projectile there
+        var createdProjectile = this.Space.CreateAtPosition(this.RightBullet, spawnPosition);
+
+
+        // Normalize the velocity converting it to a direction
+        targetDirection = Math.Normalize(targetDirection);
+
+        var fireSpeed = 20.0;
+        var fireVelocity = targetDirection * fireSpeed;
+        
+        createdProjectile.RigidBody.Velocity = fireVelocity;
+    }
+    function OnLeftMouseDown(event : ViewportMouseEvent)
+    {
+        // Position of the mouse
+        var mousePosition = event.ToWorldZPlane(0);
+    
+        // Get this objects current position
+        var spawnPosition = this.Owner.Transform.Translation;
+
+        // Determine the direction of our target using our formula:
+        //          d       =       m       -       p
+        var targetDirection = mousePosition - spawnPosition;
+
+        // Spawn projectile there
+        var createdProjectile = this.Space.CreateAtPosition(this.LeftBullet, spawnPosition);
+
+
+        // Normalize the velocity converting it to a direction
+        targetDirection = Math.Normalize(targetDirection);
+
+        var fireSpeed = 20.0;
+        var fireVelocity = targetDirection * fireSpeed;
+
+        createdProjectile.RigidBody.Velocity = fireVelocity;
+    }
+}

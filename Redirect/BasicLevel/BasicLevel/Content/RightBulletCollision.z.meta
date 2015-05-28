@@ -1,0 +1,15 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "RightBulletCollision",
+		uint64 ResourceId = 552148caa8f9c592,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Package",
+		],
+	},
+},

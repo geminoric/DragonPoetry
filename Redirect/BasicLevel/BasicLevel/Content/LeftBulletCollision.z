@@ -1,0 +1,25 @@
+class LeftBulletCollision : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        // Connect to CollisionStarted event
+        //           When I      get a CollisionStarted event call my OnCollisionStarted function
+        Zero.Connect(this.Owner, Events.CollisionStarted,   this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        var otherObject = event.OtherObject;
+        if(otherObject.Name == "RightBullet" || otherObject.Name == "Player")
+        {
+            
+        }
+        else
+        {
+            this.Owner.Destroy();
+        }
+    }
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}
