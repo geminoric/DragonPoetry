@@ -12,7 +12,7 @@ Level =
 		},
 		GravityEffect = 
 		{
-			bool Active = false,
+			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
 			float Strength = 10,
@@ -62,6 +62,9 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		TextBoxManager = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -75,7 +78,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, -0.5, 50],
+			Vec3 Translation = [0.5, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -87,7 +90,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.1034,
+			float Size = 22.3131,
 		},
 		EditorCameraController = 
 		{
@@ -95,7 +98,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, -0.5, 0],
+			Vec3 LookTarget = [0.5, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -131,46 +134,29 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 15,
+			float Size = 20,
 		},
 		Microphone = 
 		{
 			bool Active = true,
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5540cdcb58f5cdc0:Player",
 		LinkId = 
 		{
 			uint Id = 4,
 		},
-		Named = 
-		{
-			string Name = "TileMap",
-		},
 		Transform = 
 		{
-			Vec3 Translation = [0, -1, 0],
+			Vec3 Translation = [0, 0, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		MultiSprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "55296bf1b9784b68:Level_TileMap00",
-			string PaletteName = "",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.2,
+			string Name = "Player",
 		},
 	},
 	Cog = 
@@ -181,87 +167,19 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Player",
+			string Name = "Character",
+		},
+		Archetyped = 
+		{
+			string Name = "55424cb29f3f5de3:Character",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.32065, -3.72283, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, -0.425027, 0.905181],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55296a39ec2afafe:Normal",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = false,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		THC = 
-		{
-			string LeftBullet = "552148a6a034bddc:LeftBullet",
-			string RightBullet = "552148955fc2192f:RightBullet",
-		},
-		PlayerMovement = 
-		{
-		},
-		Orientation = 
-		{
-			Vec3 GlobalUp = [0, 1, 0],
-			Vec3 UpVector = [1, 0, 5.96046e-008],
-			Vec3 ForwardVector = [0, 1, 0],
-			OrientationBases DefaultBases = Custom,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 6,
-		},
-		Named = 
-		{
-			string Name = "Door",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 6.5, 0],
+			Vec3 Translation = [-4.37092, 0, 5],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		SpriteText = 
 		{
 			bool Visible = true,
 			bool VisibilityCulling = true,
@@ -271,13 +189,15 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55296d1fd0bc7887:Door Closed",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
+			string FontName = "4e7bac697bec55c5:Verdana",
+			uint FontSize = 30,
+			string Text = "Q",
+			TextAlign Align = Center,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+		TextEffects = 
+		{
 		},
 	},
 },

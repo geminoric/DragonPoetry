@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "TextBoxManager",
+		uint64 ResourceId = 55425bf0423b487e,
+	},
+},

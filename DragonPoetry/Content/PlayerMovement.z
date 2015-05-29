@@ -1,0 +1,67 @@
+class PlayerMovement : ZilchComponent
+{
+    var IsWalking : Boolean = false;
+    var Vel : Real2 = Real2(0.0, 0.0);
+    var MovementSpeed : Real = 2.0 / 20.0;
+    var MovementTimer : Integer = 20;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.CheckMovement();
+        this.Move();
+    }
+    
+    function CheckMovement()
+    {
+        if ( !this.IsWalking )
+        {
+            if ( Zero.Keyboard.KeyIsDown( Keys.W ) || Zero.Keyboard.KeyIsDown( Keys.Up ) )
+            {
+                this.IsWalking = true;
+                this.Vel = Real2(0.0, 1.0);
+            }
+            else if ( Zero.Keyboard.KeyIsDown( Keys.D ) || Zero.Keyboard.KeyIsDown( Keys.Right ) )
+            {
+                this.IsWalking = true;
+                this.Vel = Real2(1.0, 0.0);
+            }
+            else if ( Zero.Keyboard.KeyIsDown( Keys.S ) || Zero.Keyboard.KeyIsDown( Keys.Down ) )
+            {
+                this.IsWalking = true;
+                this.Vel = Real2(0.0, -1.0);
+            }
+            else if ( Zero.Keyboard.KeyIsDown( Keys.A ) || Zero.Keyboard.KeyIsDown( Keys.Left ) )
+            {
+                this.IsWalking = true;
+                this.Vel = Real2(-1.0, 0.0);
+            }
+        }
+    }
+    
+    function CheckCollision()
+    {
+    }
+    
+    function Move()
+    {
+        if ( this.IsWalking )
+        {
+            this.Owner.Transform.Translation += Real3( this.Vel.X * this.MovementSpeed, this.Vel.Y * this.MovementSpeed, 0 );
+            --this.MovementTimer;
+            Console.WriteLine(this.Owner.Transform.Translation);
+            Console.WriteLine(this.Vel);
+            
+            if ( this.MovementTimer <= 0 )
+            {
+                this.IsWalking = false;
+                Console.WriteLine("STOPPED");
+                this.MovementTimer = 10;
+            }
+        }
+    }
+}
