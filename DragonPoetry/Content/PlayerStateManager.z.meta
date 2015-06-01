@@ -1,0 +1,15 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "PlayerStateManager",
+		uint64 ResourceId = 5540ccfc88af9155,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Level4",
+		],
+	},
+},

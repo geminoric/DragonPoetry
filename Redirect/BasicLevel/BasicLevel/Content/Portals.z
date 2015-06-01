@@ -1,0 +1,29 @@
+class Portals : ZilchComponent
+{
+    var PortalType : Real = 0; // 0 for left portal, 1 for right portal
+    var PortalDirection : Real = 0; // 0 = left-facing portal, 1 = down-facing, 2 = right-facing, 3 = top-facing
+    
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function Init(portalType : Real, portalDirection : Real)
+    {
+        this.PortalType = portalType;
+        this.PortalDirection = portalDirection;
+        
+        if ( portalType == 0 )
+        {
+            this.Owner.Sprite.Color = Real4(1.0, 1.0, 0.0, 1.0);
+        }
+        else
+        {
+            this.Owner.Sprite.Color = Real4(0.33, 0.23, 0.35, 1.0);
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

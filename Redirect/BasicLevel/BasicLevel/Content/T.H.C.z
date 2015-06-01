@@ -23,8 +23,10 @@ class THC : ZilchComponent
         var targetDirection = mousePosition - spawnPosition;
 
         // Spawn projectile there
-        var createdProjectile = this.Space.CreateAtPosition(this.RightBullet, spawnPosition);
-
+        var createdProjectile = this.Space.CreateAtPosition(Archetype.Find("DankBullet"), spawnPosition);
+        
+        // Initiate as left portal bullet
+        createdProjectile.PortalBullet.Init(0);
 
         // Normalize the velocity converting it to a direction
         targetDirection = Math.Normalize(targetDirection);
@@ -47,9 +49,11 @@ class THC : ZilchComponent
         var targetDirection = mousePosition - spawnPosition;
 
         // Spawn projectile there
-        var createdProjectile = this.Space.CreateAtPosition(this.LeftBullet, spawnPosition);
+        var createdProjectile = this.Space.CreateAtPosition(Archetype.Find("DankBullet"), spawnPosition);
 
-
+        // Initiate as right portal bullet
+        createdProjectile.PortalBullet.Init(1);
+        
         // Normalize the velocity converting it to a direction
         targetDirection = Math.Normalize(targetDirection);
 

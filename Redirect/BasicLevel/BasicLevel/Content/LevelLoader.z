@@ -1,0 +1,98 @@
+class LevelLayout
+{
+    // Levels are 30x30
+
+    // Floors and Walls:
+    //  00 = Blank
+    //  01 = Floor Tile
+    //  02 = Fall Space
+    //  03 = LeftFacing Portable Wall
+    //  04 = DownFacing Portable Wall
+    //  05 = RightFacing Portable Wall
+    //  06 = UpFacing Portable Wall
+    //  07 = Player ( Starts on Floor Tile )
+    //////////////////////////////////////////////////
+    var FloorsAndWalls : Array[Integer];
+    
+    //
+    var OtherArray : Array[Integer];
+    
+    //
+    var OtherArray2 : Array[Integer];
+}
+
+class LevelLoader : ZilchComponent
+{
+    var CurrentLevel : LevelLayout;
+    
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    // Functions for accessing array elements:
+    
+    
+    
+    
+    // Load Level:
+    /////////////////////////////////
+    function LoadLevel(level : LevelLayout)
+    {
+        this.CurrentLevel = level;
+        var tileCounter : Integer = 0;
+        
+        // Load Floors and Walls:
+        foreach ( var int in this.CurrentLevel.FloorsAndWalls )
+        {
+            var tilePosition : Real3 = Real3(-15.5 + ( tileCounter % 30 ), 15.5 - ( tileCounter / 30 ), 0);
+            
+            if ( int == 0 )
+            {
+            }
+            else if ( int == 1 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Floor"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Basic Tile");
+            }
+            else if ( int == 2 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Floor"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space");
+            }
+            else if ( int == 3 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Left");
+            }
+            else if ( int == 4 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Down");
+            }
+            else if ( int == 5 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Right");
+            }
+            else if ( int == 6 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Up");
+            }
+            else if ( int == 7 )
+            {
+            }
+            else if ( int == 8 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Down");
+            }
+            
+            ++tileCounter;
+        }
+    }
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

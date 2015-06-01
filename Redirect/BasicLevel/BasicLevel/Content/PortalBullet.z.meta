@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "PortalBullet",
+		uint64 ResourceId = 55667c1261c863d7,
+	},
+},
