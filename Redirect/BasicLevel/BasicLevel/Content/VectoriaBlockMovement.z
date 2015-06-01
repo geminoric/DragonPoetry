@@ -39,6 +39,7 @@ class VectoriaBlockMovement : ZilchComponent
             var mousePos = this.Owner.VectoriaMovement.MPos - this.Owner.Transform.Translation;
             var tarX = (this.Owner.Transform.Translation.X + 0.5) as Integer;
             var tarY = (this.Owner.Transform.Translation.Y + 0.5) as Integer;
+            
             var angle = Math.ATan2(mousePos.Y, mousePos.X);
             if(angle > -Math.Pi / 4 && angle < Math.Pi / 4)
             {
@@ -85,6 +86,8 @@ class VectoriaBlockMovement : ZilchComponent
                     this.Attached = true;
                     this.GrabUnPressed = false;
                     this.ConBlock = blocks.Current;
+                    //Make block glow
+                    this.ConBlock.Sprite.Color = Real4(0.8, 0.8, 1.0, 1.0);
                     //Move player to be attached
                     this.Owner.Transform.Translation = attachPos;
                     this.Owner.Transform.Rotation = Math.ToQuaternion(Real3(0,0,1), attachAng);
@@ -106,6 +109,11 @@ class VectoriaBlockMovement : ZilchComponent
         if(Zero.Keyboard.KeyIsPressed(this.AttachHotkey) && this.GrabUnPressed)
         {
             this.Attached = false;
+            if(this.ConBlock != null)
+            {
+                //Remove block glow
+                this.ConBlock.Sprite.Color = Real4(1.0, 1.0, 1.0, 1.0);
+            }
         }
     }
     
@@ -121,10 +129,17 @@ class VectoriaBlockMovement : ZilchComponent
             var plX : Integer = (this.Owner.Transform.Translation.X + 0.5) as Integer;
             var plY : Integer = (this.Owner.Transform.Translation.Y + 0.5) as Integer;
             
+            var blType = this.ConBlock.BlockClass.BlockType;
+            
             //Check collision with each to see if possible to push block there
             if(Zero.Keyboard.KeyIsDown(Keys.W) && this.LevelSettings.LevelLoader.IsTileFree(blockX, blockY + 1) && 
                 (this.BlockDir == 0 || this.LevelSettings.LevelLoader.IsTileFree(plX, plY + 1)))
             {
+                //Check for directional block
+                if(blType >= 2 && blType <= 4)
+                {
+                    return;
+                }
                 this.PushKey = Keys.W;
             }
             else
@@ -132,18 +147,31 @@ class VectoriaBlockMovement : ZilchComponent
                 (this.BlockDir == 1 || this.LevelSettings.LevelLoader.IsTileFree(plX, plY - 1)))
             {
                 this.PushKey = Keys.S;
+                //Check for directional block
+                if(blType == 1 || (blType >= 3 && blType <= 4))
+                {
+                    return;
+                }
             }
             else
             if(Zero.Keyboard.KeyIsDown(Keys.A) && this.LevelSettings.LevelLoader.IsTileFree(blockX - 1, blockY) && 
                 (this.BlockDir == 2 || this.LevelSettings.LevelLoader.IsTileFree(plX - 1, plY)))
             {
                 this.PushKey = Keys.A;
+                if(blType == 4 || (blType >= 1 && blType <= 2))
+                {
+                    return;
+                }
             }
             else
             if(Zero.Keyboard.KeyIsDown(Keys.D) && this.LevelSettings.LevelLoader.IsTileFree(blockX + 1, blockY) && 
                 (this.BlockDir == 3 || this.LevelSettings.LevelLoader.IsTileFree(plX + 1, plY)))
             {
                 this.PushKey = Keys.D;
+                if(blType >= 1 && blType <= 3)
+                {
+                    return;
+                }
             }
             else
             {

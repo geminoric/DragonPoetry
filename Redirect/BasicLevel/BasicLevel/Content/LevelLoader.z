@@ -20,7 +20,11 @@ class LevelLoader : ZilchComponent
     //  01 = player
     //
     //Blocks
-    //  01 = Normal Block
+    //  01 = Up Block
+    //  02 = Down Block
+    //  03 = Left Block
+    //  04 = Right Block
+    //  05 = Any Block
     //
     
     var Background : Array[Integer];
@@ -59,6 +63,10 @@ class LevelLoader : ZilchComponent
         
         //Test blocks
         this.SetPos(8, 9, 1, blocks);
+        this.SetPos(12, 2, 2, blocks);
+        this.SetPos(2, 12, 3, blocks);
+        this.SetPos(3, 1, 4, blocks);
+        this.SetPos(11, 5, 5, blocks);
         
         //Player position
         this.SetPos(2, 5, 1, extra);
@@ -191,7 +199,35 @@ class LevelLoader : ZilchComponent
             if(blocks.Get(i) == 1)
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Block"), tilePosition);
-                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space");
+                tile.Sprite.SpriteSource = SpriteSource.Find("UpDirBlock");
+                tile.BlockClass.SetBlock(tilePosition.X as Integer, tilePosition.Y as Integer, blocks.Get(i));
+            }
+            else
+            if(blocks.Get(i) == 2)
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Block"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("DownDirBlock");
+                tile.BlockClass.SetBlock(tilePosition.X as Integer, tilePosition.Y as Integer, blocks.Get(i));
+            }
+            else
+            if(blocks.Get(i) == 3)
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Block"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("LeftDirBlock");
+                tile.BlockClass.SetBlock(tilePosition.X as Integer, tilePosition.Y as Integer, blocks.Get(i));
+            }
+            else
+            if(blocks.Get(i) == 4)
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Block"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("RightDirBlock");
+                tile.BlockClass.SetBlock(tilePosition.X as Integer, tilePosition.Y as Integer, blocks.Get(i));
+            }
+            else
+            if(blocks.Get(i) == 5)
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Block"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("AllDirBlock");
                 tile.BlockClass.SetBlock(tilePosition.X as Integer, tilePosition.Y as Integer, blocks.Get(i));
             }
         }
