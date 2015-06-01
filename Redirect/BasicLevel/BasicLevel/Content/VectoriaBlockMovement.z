@@ -1,0 +1,217 @@
+class VectoriaBlockMovement : ZilchComponent
+{
+    var AttachHotkey : Keys = Keys.E;
+    
+    //Is the player attached to a block
+    var Attached : Boolean = false;
+    //The block they are attatched to
+    var ConBlock : Cog = null;
+    
+    //Is the player moving with the block currently
+    var Moving : Boolean = false;
+    //Key for pushing the block
+    var PushKey : Keys = Keys.W;
+    //The block movement speed per frame
+    var PushSpeed : Real = 0.1;
+    var DistPushed : Real = 0.0;
+    
+    //Has the grab key been unpressed since it was last pressed
+    var GrabUnPressed : Boolean = false;
+    
+    //0-Up, 1-Down, 2-Left, 3-Right
+    var BlockDir : Integer = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function CheckAttachTo()
+    {
+        if(Zero.Keyboard.KeyIsPressed(this.AttachHotkey))
+        {
+            //Position to attach player if block is found
+            var attachPos : Real3 = Real3(0,0,0);
+            //Angle to rotate player if block is found
+            var attachAng : Real = 0.0;
+            
+            //Position of where to pick up the block
+            var mousePos = this.Owner.VectoriaMovement.MPos - this.Owner.Transform.Translation;
+            var tarX = (this.Owner.Transform.Translation.X + 0.5) as Integer;
+            var tarY = (this.Owner.Transform.Translation.Y + 0.5) as Integer;
+            var angle = Math.ATan2(mousePos.Y, mousePos.X);
+            if(angle > -Math.Pi / 4 && angle < Math.Pi / 4)
+            {
+                ++tarX;
+                this.BlockDir = 3;
+                //Move player to attach to block
+                attachPos = Real3(tarX - 0.7, tarY, 2.0);
+                attachAng = -Math.Pi / 2;
+            }
+            else
+            if(angle > Math.Pi - Math.Pi / 4 && angle < Math.Pi + Math.Pi / 4)
+            {
+                --tarX;
+                this.BlockDir = 2;
+                //Move player to attach to block
+                attachPos = Real3(tarX + 0.7, tarY, 2.0);
+                attachAng = Math.Pi / 2;
+            }
+            else
+            if(angle > Math.Pi / 2 - Math.Pi / 4 && angle < Math.Pi / 2 + Math.Pi / 4)
+            {
+                ++tarY;
+                this.BlockDir = 0;
+                //Move player to attach to block
+                attachPos = Real3(tarX, tarY - 0.7, 2.0);
+                attachAng = 0;
+            }
+            else
+            if(angle > -Math.Pi / 2 - Math.Pi / 4 && angle < -Math.Pi / 2 + Math.Pi / 4)
+            {
+                --tarY;
+                this.BlockDir = 1;
+                //Move player to attach to block
+                attachPos = Real3(tarX, tarY + 0.7, 2.0);
+                attachAng = Math.Pi;
+            }
+            
+            //Find block to grab
+            var blocks = this.Space.FindAllObjectsByName("Block");
+            while(blocks.IsNotEmpty)
+            {
+                if(tarX == blocks.Current.BlockClass.BlockX && tarY == blocks.Current.BlockClass.BlockY)
+                {
+                    this.Attached = true;
+                    this.GrabUnPressed = false;
+                    this.ConBlock = blocks.Current;
+                    //Move player to be attached
+                    this.Owner.Transform.Translation = attachPos;
+                    this.Owner.Transform.Rotation = Math.ToQuaternion(Real3(0,0,1), attachAng);
+                }
+                
+                blocks.MoveNext();
+            }
+            
+            
+        }
+    }
+    
+    function CheckDisattach()
+    {
+        if(!Zero.Keyboard.KeyIsDown(this.AttachHotkey))
+        {
+            this.GrabUnPressed = true;
+        }
+        if(Zero.Keyboard.KeyIsPressed(this.AttachHotkey) && this.GrabUnPressed)
+        {
+            this.Attached = false;
+        }
+    }
+    
+    function RunBlockMovement()
+    {
+        //If not being pushed, check for a new push direction
+        if(!this.Moving)
+        {
+            //Block position
+            var blockX : Integer = this.ConBlock.BlockClass.BlockX;
+            var blockY : Integer = this.ConBlock.BlockClass.BlockY;
+            //Player position
+            var plX : Integer = (this.Owner.Transform.Translation.X + 0.5) as Integer;
+            var plY : Integer = (this.Owner.Transform.Translation.Y + 0.5) as Integer;
+            
+            //Check collision with each to see if possible to push block there
+            if(Zero.Keyboard.KeyIsDown(Keys.W) && this.LevelSettings.LevelLoader.IsTileFree(blockX, blockY + 1) && 
+                (this.BlockDir == 0 || this.LevelSettings.LevelLoader.IsTileFree(plX, plY + 1)))
+            {
+                this.PushKey = Keys.W;
+            }
+            else
+            if(Zero.Keyboard.KeyIsDown(Keys.S) && this.LevelSettings.LevelLoader.IsTileFree(blockX, blockY - 1) && 
+                (this.BlockDir == 1 || this.LevelSettings.LevelLoader.IsTileFree(plX, plY - 1)))
+            {
+                this.PushKey = Keys.S;
+            }
+            else
+            if(Zero.Keyboard.KeyIsDown(Keys.A) && this.LevelSettings.LevelLoader.IsTileFree(blockX - 1, blockY) && 
+                (this.BlockDir == 2 || this.LevelSettings.LevelLoader.IsTileFree(plX - 1, plY)))
+            {
+                this.PushKey = Keys.A;
+            }
+            else
+            if(Zero.Keyboard.KeyIsDown(Keys.D) && this.LevelSettings.LevelLoader.IsTileFree(blockX + 1, blockY) && 
+                (this.BlockDir == 3 || this.LevelSettings.LevelLoader.IsTileFree(plX + 1, plY)))
+            {
+                this.PushKey = Keys.D;
+            }
+            else
+            {
+                return;
+            }
+        }
+        
+        //Check to push the block
+        if(this.Moving || Zero.Keyboard.KeyIsDown(this.PushKey))
+        {
+            //The new block position
+            var newX : Integer = this.ConBlock.BlockClass.BlockX;
+            var newY : Integer = this.ConBlock.BlockClass.BlockY;
+            
+            this.Moving = true;
+            var delta = Real3(0,0,0);
+            if(this.PushKey == Keys.W)
+            {
+                delta = Real3(0, this.PushSpeed, 0);
+                ++newY;
+            }
+            if(this.PushKey == Keys.S)
+            {
+                delta = Real3(0, -this.PushSpeed, 0);
+                --newY;
+            }
+            if(this.PushKey == Keys.A)
+            {
+                delta = Real3(-this.PushSpeed, 0, 0);
+                --newX;
+            }
+            if(this.PushKey == Keys.D)
+            {
+                delta = Real3(this.PushSpeed, 0, 0);
+                ++newX;
+            }
+            
+            //Move block and player
+            this.Owner.Transform.Translation += delta;
+            this.ConBlock.Transform.Translation += delta;
+            this.DistPushed += this.PushSpeed;
+            //Check if done pushing
+            if(this.DistPushed >= 1.0)
+            {
+                this.Moving = false;
+                //Modify block array
+                this.LevelSettings.LevelLoader.SetPos(this.ConBlock.BlockClass.BlockX, this.ConBlock.BlockClass.BlockY, 0, this.LevelSettings.LevelLoader.Blocks);
+                this.LevelSettings.LevelLoader.SetPos(newX, newY, this.ConBlock.BlockClass.BlockType, this.LevelSettings.LevelLoader.Blocks);
+                this.ConBlock.BlockClass.SetBlock(newX, newY, this.ConBlock.BlockClass.BlockType);
+                this.DistPushed = 0;
+            }
+        }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(!this.Attached)
+        {
+            this.CheckAttachTo();
+        }
+        
+        if(this.Attached)
+        {
+            this.RunBlockMovement();
+        }
+        if(!this.Moving)
+        {
+            this.CheckDisattach();
+        }
+    }
+}

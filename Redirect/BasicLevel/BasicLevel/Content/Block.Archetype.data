@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Wall",
+		string Name = "Block",
 	},
 	Archetyped = 
 	{
-		string Name = "55679907b85709e7:Wall",
+		string Name = "554a369d56a03b97:Block",
 	},
 	Transform = 
 	{
@@ -57,5 +57,8 @@ Cog =
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
+	},
+	BlockClass = 
+	{
 	},
 },

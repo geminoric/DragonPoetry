@@ -1,7 +1,11 @@
-class LevelLayout
+class LevelLoader : ZilchComponent
 {
     // Levels are 30x30
-
+    var WidthHeight : Integer = 30;
+    var LevelSize : Integer = 900;
+    //Tile size
+    var TileSize : Real = 1.0;
+    
     // Floors and Walls:
     //  00 = Blank
     //  01 = Floor Tile
@@ -10,86 +14,186 @@ class LevelLayout
     //  04 = DownFacing Portable Wall
     //  05 = RightFacing Portable Wall
     //  06 = UpFacing Portable Wall
-    //  07 = Player ( Starts on Floor Tile )
+    //  07-10 = Normal Wall Corner 5-8
     //////////////////////////////////////////////////
-    var FloorsAndWalls : Array[Integer];
+    //Extra
+    //  01 = player
+    //
+    //Blocks
+    //  01 = Normal Block
+    //
+    
+    var Background : Array[Integer];
     
     //
-    var OtherArray : Array[Integer];
+    var Extra : Array[Integer];
     
     //
-    var OtherArray2 : Array[Integer];
-}
-
-class LevelLoader : ZilchComponent
-{
-    var CurrentLevel : LevelLayout;
+    var Blocks : Array[Integer];
     
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        //Temporary start a test level
+        var background : Array[Integer] = new Array[Integer](this.LevelSize);
+        var extra : Array[Integer] = new Array[Integer](this.LevelSize);
+        var blocks : Array[Integer] = new Array[Integer](this.LevelSize);
+        
+        //Example of creating a level (before the level editor is made)
+        this.SetRect(0, 15, 0, 15, 1, background);
+        //Walls
+        this.SetRect(14, 15, 1, 14, 3, background);
+        this.SetRect(0, 1, 1, 14, 5, background);
+        this.SetRect(1, 14, 0, 1, 6, background);
+        this.SetRect(1, 14, 14, 15, 4, background);
+        
+        //Corners
+        this.SetPos(0, 0, 10, background);
+        this.SetPos(0, 14, 7, background);
+        this.SetPos(14, 0, 9, background);
+        this.SetPos(14, 14, 8, background);
+        
+        this.SetRect(5, 9, 5, 6, 6, background);
+        this.SetRect(5, 9, 7, 8, 4, background);
+        
+        
+        //Test blocks
+        this.SetPos(8, 9, 1, blocks);
+        
+        //Player position
+        this.SetPos(2, 5, 1, extra);
+        
+        this.LoadLevel(background, extra, blocks);
+        //Move camera according to tile size
+        this.SetCamSize(15);
+    }
+    
+    function SetCamSize(widthHeight : Integer)
+    {
+        var cam = this.Space.FindObjectByName("Camera");
+        cam.Transform.Translation = Real3(widthHeight / 2.0, widthHeight / 2.0, 40);
+        cam.Camera.Size = widthHeight * 1.1;
     }
     
     // Functions for accessing array elements:
+    function SetPos(x : Integer, y : Integer, val : Integer, arr : Array[Integer])
+    {
+        if(x >= this.WidthHeight || y >= this.WidthHeight || x < 0 || y < 0)
+        {
+            throw new Exception("FIREWORKS");
+        }
+        
+        arr.Set(y * this.WidthHeight + x, val);
+    }
     
     
+    //Sets a rectangle of the array to a certain block
+    function SetRect(x1 : Integer, x2 : Integer, y1 : Integer, y2 : Integer, blocktype : Integer, arr : Array[Integer])
+    {
+        if(x1 < 0 || x2 < 0 || y1 < 0 || y2 < 0 || x1 > this.WidthHeight || x2 > this.WidthHeight || y1 > this.WidthHeight || y2 > this.WidthHeight)
+        {
+            throw new Exception("FIREWORKS");
+        }
+        //Set the rectangle to the block
+        for(var i : Integer = x1; i < x2;++i)
+        {
+            for(var j : Integer = y1;j < y2;++j)
+            {
+                this.SetPos(i, j, blocktype, arr);
+            }
+        }
+    }
     
+    function GetPos(x : Integer, y : Integer, arr : Array[Integer]) : Integer
+    {
+        return arr.Get(y * this.WidthHeight + x);
+    }
+    
+    //Checks if tile is free of colidables/blocks
+    function IsTileFree(x : Integer, y : Integer) : Boolean
+    {
+        //Check block array
+        if(this.GetPos(x, y, this.Blocks) != 0)
+        {
+            return false;
+        }
+        //Check background array
+        if(this.GetPos(x, y, this.Background) >= 2 && this.GetPos(x, y, this.Background) <= 10)
+        {
+            return false;
+        }
+        
+        return true;
+    }
     
     // Load Level:
     /////////////////////////////////
-    function LoadLevel(level : LevelLayout)
+    function LoadLevel(background : Array[Integer], extra : Array[Integer], blocks : Array[Integer])
     {
-        this.CurrentLevel = level;
-        var tileCounter : Integer = 0;
+        //Save map
+        this.Background = background;
+        this.Extra = extra;
+        this.Blocks = blocks;
         
-        // Load Floors and Walls:
-        foreach ( var int in this.CurrentLevel.FloorsAndWalls )
+        for(var i : Integer = 0;i < this.LevelSize;++i)
         {
-            var tilePosition : Real3 = Real3(-15.5 + ( tileCounter % 30 ), 15.5 - ( tileCounter / 30 ), 0);
-            
-            if ( int == 0 )
+            var tilePosition = Real3(this.TileSize * (i % this.WidthHeight), this.TileSize * (i / this.WidthHeight), 0.0);
+            //Load background
+            //Feel free to add more else ifs for adding more block types
+            if (background.Get(i) == 0 )
             {
+                //Do nothing
             }
-            else if ( int == 1 )
+            else if (background.Get(i) == 1 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Floor"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Basic Tile");
             }
-            else if ( int == 2 )
+            else if (background.Get(i) == 2 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Floor"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space");
             }
-            else if ( int == 3 )
+            else if (background.Get(i) == 3 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Left");
             }
-            else if ( int == 4 )
+            else if (background.Get(i) == 4 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Down");
             }
-            else if ( int == 5 )
+            else if (background.Get(i) == 5 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Right");
             }
-            else if ( int == 6 )
+            else if (background.Get(i) == 6 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
-                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Up");
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Top");
             }
-            else if ( int == 7 )
-            {
-            }
-            else if ( int == 8 )
+            else if (background.Get(i) >= 7 && background.Get(i) <= 10)
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
-                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Down");
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Corner`background.Get(i) - 2`");
+            }
+            tilePosition.Z += 2.0;
+            //Extra
+            if(extra.Get(i) == 1)
+            {
+                this.Space.FindObjectByName("Player").Transform.Translation = tilePosition;
             }
             
-            ++tileCounter;
+            tilePosition.Z += 2.0;
+            //Blocks
+            if(blocks.Get(i) == 1)
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Block"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space");
+                tile.BlockClass.SetBlock(tilePosition.X as Integer, tilePosition.Y as Integer, blocks.Get(i));
+            }
         }
     }
     function OnLogicUpdate(event : UpdateEvent)

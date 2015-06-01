@@ -1,0 +1,22 @@
+class BlockClass : ZilchComponent
+{
+    var BlockX : Integer = 0;
+    var BlockY : Integer = 0;
+    var BlockType : Integer = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function SetBlock(x : Integer, y : Integer, btype : Integer)
+    {
+        this.BlockX = x;
+        this.BlockY = y;
+        this.BlockType = btype;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

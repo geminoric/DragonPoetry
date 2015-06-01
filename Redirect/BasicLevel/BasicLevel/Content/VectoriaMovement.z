@@ -31,15 +31,6 @@ class VectoriaMovement : ZilchComponent
         this.Owner.Transform.Rotation = Math.ToQuaternion(Real3(0,0,1), angle);
     }
     
-    //Check collision and set vel to 0 if needed
-    function CheckCollision()
-    {
-        //Future position of the player
-        var futureX : Real = this.Owner.Transform.Translation.X + this.Vel.X;
-        var futureY : Real = this.Owner.Transform.Translation.Y + this.Vel.Y;
-        
-    }
-    
     //Directional based movement
     function NotAsteroidsMovement()
     {
@@ -66,9 +57,6 @@ class VectoriaMovement : ZilchComponent
             moved = true;
             this.Vel.Y -= this.Accel;
         }
-        
-        //This will set the component velocity to zero accordingly if needed
-        this.CheckCollision();
         
         //Apply static drag if player has moved
         if(moved)
@@ -114,6 +102,10 @@ class VectoriaMovement : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.NotAsteroidsMovement();
+        //If the player is not attatched to a block
+        if(! this.Owner.VectoriaBlockMovement.Attached)
+        {
+            this.NotAsteroidsMovement();
+        }
     }
 }
