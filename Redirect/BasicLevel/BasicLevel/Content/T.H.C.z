@@ -13,11 +13,11 @@ class THC : ZilchComponent
     function OnRightMouseDown(event : ViewportMouseEvent)
     {
         // Position of the mouse
-        var mousePosition = event.ToWorldZPlane(0);
+        var mousePosition = event.ToWorldZPlane(2);
     
         // Get this objects current position
         var spawnPosition = this.Owner.Transform.Translation;
-
+        
         // Determine the direction of our target using our formula:
         //          d       =       m       -       p
         var targetDirection = mousePosition - spawnPosition;
@@ -39,7 +39,7 @@ class THC : ZilchComponent
     function OnLeftMouseDown(event : ViewportMouseEvent)
     {
         // Position of the mouse
-        var mousePosition = event.ToWorldZPlane(0);
+        var mousePosition = event.ToWorldZPlane(2);
     
         // Get this objects current position
         var spawnPosition = this.Owner.Transform.Translation;

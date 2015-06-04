@@ -18,7 +18,10 @@ class LevelLoader : ZilchComponent
     //////////////////////////////////////////////////
     //Extra
     //  01 = player
-    //
+    //  02 = Up laser
+    //  03 = Down laser
+    //  04 = Left laser
+    //  05 = Right laser
     //Blocks
     //  01 = Up Block
     //  02 = Down Block
@@ -64,12 +67,15 @@ class LevelLoader : ZilchComponent
         //Test blocks
         this.SetPos(8, 9, 1, blocks);
         this.SetPos(12, 2, 2, blocks);
-        this.SetPos(2, 12, 3, blocks);
-        this.SetPos(3, 1, 4, blocks);
+        this.SetPos(5, 12, 3, blocks);
+        this.SetPos(5, 1, 4, blocks);
         this.SetPos(11, 5, 5, blocks);
         
         //Player position
         this.SetPos(2, 5, 1, extra);
+        
+        //laser position
+        this.SetPos(10,11, 3, extra);
         
         this.LoadLevel(background, extra, blocks);
         //Move camera according to tile size
@@ -192,6 +198,34 @@ class LevelLoader : ZilchComponent
             if(extra.Get(i) == 1)
             {
                 this.Space.FindObjectByName("Player").Transform.Translation = tilePosition;
+            }
+            else
+            if(extra.Get(i)== 2)
+            {
+                
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Laser"), tilePosition);
+                tile.Laser.SetLaser(tilePosition.X as Integer, tilePosition.Y as Integer, extra.Get(i));
+            }
+            else
+            if(extra.Get(i)== 3)
+            {
+                
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Laser"), tilePosition);
+                tile.Laser.SetLaser(tilePosition.X as Integer, tilePosition.Y as Integer, extra.Get(i));
+            }
+            else
+            if(extra.Get(i)== 4)
+            {
+                
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Laser"), tilePosition);
+                tile.Laser.SetLaser(tilePosition.X as Integer, tilePosition.Y as Integer, extra.Get(i));
+            }
+            else
+            if(extra.Get(i)== 5)
+            {
+                
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Laser"), tilePosition);
+                tile.Laser.SetLaser(tilePosition.X as Integer, tilePosition.Y as Integer, extra.Get(i));
             }
             
             tilePosition.Z += 2.0;
