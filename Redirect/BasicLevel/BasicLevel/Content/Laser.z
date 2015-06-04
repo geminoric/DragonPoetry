@@ -1,0 +1,138 @@
+class Laser : ZilchComponent
+{
+    var LaserX : Integer = 0;
+    var LaserY : Integer = 0;
+    var Laserdir : Integer = 0;
+    var Initialpos : Real3 = Real3(0, 0, 0);
+    //2: Up
+    //3: Down
+    //4: Left
+    //5: Right
+    
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    //sets the variables
+    function SetLaser(x : Integer, y : Integer, dir : Integer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.LaserX = x;
+        this.LaserY = y;
+        this.Laserdir = dir;
+        this.Initialpos = this.Owner.Transform.Translation;
+        
+    }
+    
+    function RotateLaser()
+    {
+        if(this.Laserdir== 2)
+        {
+            this.Owner.Transform.Rotation = Math.ToQuaternion(0, 0 , 1.5707);
+        }
+        if(this.Laserdir== 3)
+        {
+            this.Owner.Transform.Rotation = Math.ToQuaternion(0, 0 , 1.5707 * 3);
+        }
+        if(this.Laserdir== 4)
+        {
+            this.Owner.Transform.Rotation = Math.ToQuaternion(0, 0 , 1.5707 * 2);
+        }
+    }
+    //scales the laser sprite to where it collides
+    function ScaleSprite(scale : Integer)
+    {
+        var temp : Real3 = this.Initialpos;
+        this.Owner.Transform.Scale = Real3(scale, 1, 1);
+        
+
+        if(this.Laserdir== 2)
+        {
+            temp += Real3(0,(scale - 1) * 0.5,0);
+        }
+        if(this.Laserdir== 3)
+        {
+            temp -= Real3(0,(scale - 1) * 0.5,0);
+        }
+        if(this.Laserdir== 4)
+        {
+            temp -= Real3((scale - 1) * 0.5 ,0,0);
+        }
+        if(this.Laserdir==5)
+        {
+            temp += Real3((scale - 1) * 0.5 ,0,0);
+        }
+        this.Owner.Transform.Translation = temp;
+        this.RotateLaser();
+    }
+    
+    //checks the integer map for collision
+    function CheckCollision()
+    {
+        var height : Integer = this.LevelSettings.LevelLoader.WidthHeight;
+        var width : Integer = this.LevelSettings.LevelLoader.WidthHeight;
+        var x : Integer = this.LaserX;
+        var y : Integer = this.LaserY;
+
+        //check if the laser is going up
+        if(this.Laserdir == 2)
+        {
+           while(y < height)
+           {
+               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               {
+                   this.ScaleSprite(y - this.LaserY);
+                   break;
+               }
+               ++y;
+           }
+        }
+        if(this.Laserdir == 3)
+        {
+            while(y >= 0)
+           {
+               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               {
+                   this.ScaleSprite(this.LaserY - y);
+                   break;
+               }
+               --y;
+           }
+        }
+        if(this.Laserdir == 4)
+        {
+            
+            while(x >= 0)
+           {
+
+               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               {
+                   this.ScaleSprite(this.LaserX - x);
+                   break;
+               }
+               --x;
+           }
+        }
+        if(this.Laserdir == 5)
+        {
+             while(x < width)
+           {
+               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               {
+                   this.ScaleSprite(x - this.LaserX);
+                   break;
+               }
+               ++x;
+           }
+        }
+        
+    }
+    
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.CheckCollision();
+    }
+}

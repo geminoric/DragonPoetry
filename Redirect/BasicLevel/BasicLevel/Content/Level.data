@@ -20,7 +20,7 @@ Level =
 		},
 		DragEffect = 
 		{
-			bool Active = true,
+			bool Active = false,
 			bool WakeUpOnChange = false,
 			float Drag = 0.7,
 		},
@@ -40,7 +40,7 @@ Level =
 		},
 		ForwardRenderer = 
 		{
-			Vec4 ClearColor = [0.155, 0.155, 0.155, 1],
+			Vec4 ClearColor = [0.0980392, 0.0980392, 0.0980392, 1],
 			bool DrawNonVisible = false,
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
@@ -62,6 +62,9 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		LevelLoader = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -75,7 +78,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, -0.5, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -87,7 +90,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.1034,
+			float Size = 13.3718,
 		},
 		EditorCameraController = 
 		{
@@ -95,7 +98,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, -0.5, 0],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -131,7 +134,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 15,
+			float Size = 25,
 		},
 		Microphone = 
 		{
@@ -143,41 +146,6 @@ Level =
 		LinkId = 
 		{
 			uint Id = 4,
-		},
-		Named = 
-		{
-			string Name = "TileMap",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, -1, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		MultiSprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		},
-		TileMap = 
-		{
-			string SourceName = "55296bf1b9784b68:Level_TileMap00",
-			string PaletteName = "",
-			float UnitsPerTile = 1,
-			float MeshThickness = 1.2,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 5,
 		},
 		Named = 
 		{
@@ -219,23 +187,10 @@ Level =
 			Vec3 Velocity = [0, 0, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
 		THC = 
 		{
 			string LeftBullet = "552148a6a034bddc:LeftBullet",
 			string RightBullet = "552148955fc2192f:RightBullet",
-		},
-		PlayerMovement = 
-		{
 		},
 		Orientation = 
 		{
@@ -244,20 +199,40 @@ Level =
 			Vec3 ForwardVector = [0, 1, 0],
 			OrientationBases DefaultBases = Custom,
 		},
+		VectoriaMovement = 
+		{
+		},
+		SphereCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			float Radius = 0.4,
+		},
+		VectoriaBlockMovement = 
+		{
+		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 6,
+			uint Id = 5,
 		},
 		Named = 
 		{
-			string Name = "Door",
+			string Name = "laser",
+		},
+		Archetyped = 
+		{
+			string Name = "55e63e62ca930b3b:Laser",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 6.5, 0],
+			Vec3 Translation = [2, 0, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -271,13 +246,16 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55296d1fd0bc7887:Door Closed",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
+		},
+		Laser = 
+		{
 		},
 	},
 },

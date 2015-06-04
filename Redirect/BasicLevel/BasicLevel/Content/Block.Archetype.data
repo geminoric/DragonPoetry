@@ -6,16 +6,16 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "LeftBullet",
+		string Name = "Block",
 	},
 	Archetyped = 
 	{
-		string Name = "552148a6a034bddc:LeftBullet",
+		string Name = "554a369d56a03b97:Block",
 	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
-		Vec3 Scale = [0.5, 0.5, 1],
+		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,11 +24,11 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.695507, 0.73, 0.04015, 1],
+		Vec4 Color = [1, 1, 1, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5274db4c2e7c11f9:Circle",
+		string SpriteSource = "5275aa4d802dd6dc:Square",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -36,22 +36,19 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
-	SphereCollider = 
+	BoxCollider = 
 	{
-		bool Ghost = true,
+		bool Ghost = false,
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		float Radius = 0.25,
-	},
-	LeftBulletCollision = 
-	{
+		Vec3 Size = [0.5, 0.5, 10],
 	},
 	RigidBody = 
 	{
-		bool Static = false,
+		bool Static = true,
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = false,
@@ -60,5 +57,8 @@ Cog =
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
+	},
+	BlockClass = 
+	{
 	},
 },

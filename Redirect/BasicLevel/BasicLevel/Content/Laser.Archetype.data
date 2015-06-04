@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Wall",
+		string Name = "laser",
 	},
 	Archetyped = 
 	{
-		string Name = "55679907b85709e7:Wall",
+		string Name = "55e63e62ca930b3b:Laser",
 	},
 	Transform = 
 	{
@@ -36,26 +36,7 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
-	BoxCollider = 
+	Laser = 
 	{
-		bool Ghost = false,
-		bool SendsMessages = true,
-		bool Seamless = true,
-		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-		Vec3 Offset = [0, 0, 0],
-		Vec3 Size = [0.5, 0.5, 10],
-	},
-	RigidBody = 
-	{
-		bool Static = true,
-		bool Asleep = false,
-		bool Kinematic = false,
-		bool RotationLocked = false,
-		bool Mode2D = false,
-		bool AllowSleep = true,
-		bool Inherit2DMode = true,
-		Vec3 Velocity = [0, 0, 0],
-		Vec3 AngularVelocity = [0, 0, 0],
 	},
 },
