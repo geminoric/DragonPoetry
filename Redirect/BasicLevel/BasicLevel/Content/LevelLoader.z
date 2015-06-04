@@ -21,7 +21,8 @@ class LevelLoader : ZilchComponent
     //////////////////////////////////////////////////
     //Extra
     //  01 = player
-    //
+    //  02 = LeftPortal (Portal 0)
+    //  03 = RightPortal (Portal 1)
     //Blocks
     //  01 = Up Block
     //  02 = Down Block

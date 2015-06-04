@@ -1,24 +1,150 @@
 class VectoriaPortaling : ZilchComponent
 {
     var Portaling : Boolean = false;
+    var CollidingPortal : Integer = 0;
+    var PortalingTimer : Integer = 0;
     
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        Zero.Connect(this.Owner, Events.CollisionStarted,   this.OnCollisionStarted);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
     
-    function OnCollisionStarted(event : CollisionEvent)
+    function CheckPortalCollision()
     {
-        Console.WriteLine("Colliding with:  `event.OtherObject.Name`");
-        if ( event.OtherObject.Name == "Portal" && this.Portaling == false )
+        var plX : Integer = (this.Owner.Transform.Translation.X + 0.5) as Integer;
+        var plY : Integer = (this.Owner.Transform.Translation.Y + 0.5) as Integer;
+        this.CollidingPortal = 0;
+        
+        if ( Zero.Keyboard.KeyIsDown(Keys.W) )
         {
-            this.Portaling == true;
-            Console.WriteLine("Portaling");
+            this.CollidingPortal = this.LevelSettings.LevelLoader.GetPos(plX, plY + 1, this.LevelSettings.LevelLoader.Extra);
+        }
+        else if ( Zero.Keyboard.KeyIsDown(Keys.A) )
+        {
+            this.CollidingPortal = this.LevelSettings.LevelLoader.GetPos(plX - 1, plY, this.LevelSettings.LevelLoader.Extra);
+        }
+        else if ( Zero.Keyboard.KeyIsDown(Keys.S) )
+        {
+            this.CollidingPortal = this.LevelSettings.LevelLoader.GetPos(plX, plY - 1, this.LevelSettings.LevelLoader.Extra);
+        }
+        else if ( Zero.Keyboard.KeyIsDown(Keys.D) )
+        {
+            this.CollidingPortal = this.LevelSettings.LevelLoader.GetPos(plX + 1, plY, this.LevelSettings.LevelLoader.Extra);
+        }
+        
+        
+        if ( this.CollidingPortal >= 2 && this.Portaling == false )
+        {
+            this.Portaling = true;
+            this.Owner.SphereCollider.Ghost = true;
+            this.PortalingTimer = 20;
+        }
+    }
+    
+    // Sorry for nested if statements and shitty code
+    // I can fix later if needed
+    function PortalVectoria()
+    {
+        var vel = Real3(0.0, 0.0, 0.0);
+        
+        if ( this.CollidingPortal == 2 )
+        {
+            if ( this.PortalingTimer > 10 )
+            {
+                var portalPos = this.LevelSettings.LevelLoader.PortalLeft.Transform.Translation;
+                var movDir = portalPos - this.Owner.Transform.Translation;
+                vel = Math.Normalize(movDir);
+            }
+            else if ( this.PortalingTimer == 10 )
+            {
+                this.Owner.Transform.Translation = Real3(this.LevelSettings.LevelLoader.PortalRight.Transform.Translation.X, 
+                                                           this.LevelSettings.LevelLoader.PortalRight.Transform.Translation.Y, 1);
+                Console.WriteLine("CollidingPortal: `this.CollidingPortal`");
+            }
+            else
+            {
+                var portalDir = this.LevelSettings.LevelLoader.PortalRight.Portals.PortalDirection;
+                
+                if ( portalDir == 0 )
+                {
+                    vel = Real3(-1.0, 0.0, 0.0);
+                }
+                else if ( portalDir == 1 )
+                {
+                    vel = Real3(0.0, -1.0, 0.0);
+                }
+                else if ( portalDir == 2 )
+                {
+                    vel = Real3(1.0, 0.0, 0.0);
+                }
+                else if ( portalDir == 3 )
+                {
+                    vel = Real3(0.0, 1.0, 0.0);
+                }
+            }
+        }
+        else if ( this.CollidingPortal == 3 )
+        {
+            if ( this.PortalingTimer > 10 )
+            {
+                var portalPos = this.LevelSettings.LevelLoader.PortalRight.Transform.Translation;
+                var movDir = portalPos - this.Owner.Transform.Translation;
+                vel = Math.Normalize(movDir);
+            }
+            else if ( this.PortalingTimer == 10 )
+            {
+                this.Owner.Transform.Translation = Real3(this.LevelSettings.LevelLoader.PortalLeft.Transform.Translation.X, 
+                                                           this.LevelSettings.LevelLoader.PortalLeft.Transform.Translation.Y, 1);
+                Console.WriteLine("CollidingPortal: `this.CollidingPortal`");
+            }
+            else
+            {
+                var portalDir = this.LevelSettings.LevelLoader.PortalLeft.Portals.PortalDirection;
+                
+                if ( portalDir == 0 )
+                {
+                    vel = Real3(-1.0, 0.0, 0.0);
+                }
+                else if ( portalDir == 1 )
+                {
+                    vel = Real3(0.0, -1.0, 0.0);
+                }
+                else if ( portalDir == 2 )
+                {
+                    vel = Real3(1.0, 0.0, 0.0);
+                }
+                else if ( portalDir == 3 )
+                {
+                    vel = Real3(0.0, 1.0, 0.0);
+                }
+            }
+        }
+        
+        vel = Real3(vel.X * 0.15, vel.Y * 0.15, 0);
+        this.Owner.Transform.Translation += vel;
+        this.PortalingTimer -= 1;
+        
+        if ( this.PortalingTimer <= 0 )
+        {
+            this.PortalingTimer = 0;
+            this.Portaling = false;
+            this.Owner.SphereCollider.Ghost = false;
         }
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if (this.LevelSettings.LevelLoader.PortalLeft == null || this.LevelSettings.LevelLoader.PortalRight == null )
+        {
+            return;
+        }
+        if ( this.Portaling == false )
+        {
+            this.CheckPortalCollision();
+        }
+        else
+        {
+            this.PortalVectoria();
+        }
     }
 }
