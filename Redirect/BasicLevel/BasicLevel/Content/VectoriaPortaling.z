@@ -1,0 +1,24 @@
+class VectoriaPortaling : ZilchComponent
+{
+    var Portaling : Boolean = false;
+    
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted,   this.OnCollisionStarted);
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        Console.WriteLine("Colliding with:  `event.OtherObject.Name`");
+        if ( event.OtherObject.Name == "Portal" && this.Portaling == false )
+        {
+            this.Portaling == true;
+            Console.WriteLine("Portaling");
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

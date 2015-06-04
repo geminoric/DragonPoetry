@@ -6,6 +6,9 @@ class LevelLoader : ZilchComponent
     //Tile size
     var TileSize : Real = 1.0;
     
+    // ActivePortals
+    var PortalLeft : Cog = null;
+    var PortalRight : Cog = null;
     // Floors and Walls:
     //  00 = Blank
     //  01 = Floor Tile
