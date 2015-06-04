@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "TextEffects",
-		uint64 ResourceId = 55424949ebbcb139,
-	},
-},

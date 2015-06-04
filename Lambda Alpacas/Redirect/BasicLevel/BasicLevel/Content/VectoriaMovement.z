@@ -1,0 +1,111 @@
+class VectoriaMovement : ZilchComponent
+{
+    var Vel : Real3 = Real3(0,0,0);
+    //Max speed of vectoria
+    var Speed : Real = 0.1;
+    var Accel : Real = 0.025;
+    //Percentage per frame
+    //Drag when player is not moving
+    var StaticDrag : Real = 0.25;
+    //Drag when player is moving
+    var MoveDrag : Real = 0.15;
+    //Minimum player movement speed
+    var MinSpeedSq : Real = 0.00001;
+    
+    //Mouse position
+    var MPos : Real3 = Real3(0,0,0);
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.MouseMove, this.UpdateMousePos);
+    }
+    
+    function RotateTowardsMouse()
+    {
+        //Get relative (to player) mouse position
+        var mousePos = this.MPos - this.Owner.Transform.Translation;
+        //Angle to rotate towards
+        var angle = Math.ATan2(mousePos.Y, mousePos.X) - Math.Pi/2;
+        
+        this.Owner.Transform.Rotation = Math.ToQuaternion(Real3(0,0,1), angle);
+    }
+    
+    //Directional based movement
+    function NotAsteroidsMovement()
+    {
+        //Has the player moved this frame
+        var moved : Boolean = false;
+        //Update velocity based on speed
+        if(Zero.Keyboard.KeyIsDown(Keys.A))
+        {
+            moved = true;
+            this.Vel.X -= this.Accel;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.D))
+        {
+            moved = true;
+            this.Vel.X += this.Accel;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.W))
+        {
+            moved = true;
+            this.Vel.Y += this.Accel;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.S))
+        {
+            moved = true;
+            this.Vel.Y -= this.Accel;
+        }
+        
+        //Apply static drag if player has moved
+        if(moved)
+        {
+            this.Vel.X *= 1.0 - this.MoveDrag;
+            this.Vel.Y *= 1.0 - this.MoveDrag;
+        }
+        else
+        {
+            this.Vel.X *= 1.0 - this.StaticDrag;
+            this.Vel.Y *= 1.0 - this.StaticDrag;
+        }
+        
+        //Limit speed if needed
+        //Squared player speed
+        var plspeedsq = this.Vel.X * this.Vel.X + this.Vel.Y * this.Vel.Y;
+        //Stop player if slow enough
+        if(!moved && plspeedsq < this.MinSpeedSq)
+        {
+            this.Vel.X = 0;
+            this.Vel.Y = 0;
+        }
+        
+        //Limit player speed if it's too high
+        if(plspeedsq > (this.Speed * this.Speed))
+        {
+            var newVel = Math.Normalize(this.Vel);
+            newVel.X *= this.Speed;
+            newVel.Y *= this.Speed;
+            this.Vel = newVel;
+        }
+        //Update player's position
+        this.Owner.Transform.Translation += this.Vel;
+        
+        //Rotate the player towards the mouse
+        this.RotateTowardsMouse();
+    }
+    
+    function UpdateMousePos(event : ViewportMouseEvent)
+    {
+        this.MPos = event.ToWorldZPlane(0);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //If the player is not attatched to a block
+        if(! this.Owner.VectoriaBlockMovement.Attached)
+        {
+            this.NotAsteroidsMovement();
+        }
+    }
+}

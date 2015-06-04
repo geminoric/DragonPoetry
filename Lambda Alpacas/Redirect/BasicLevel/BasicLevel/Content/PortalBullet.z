@@ -1,0 +1,63 @@
+class PortalBullet : ZilchComponent
+{
+    var BulletType : Real = 0; // 0 for Left Portal bullet, 1 for Right Portal bullet
+
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted,   this.Collide);
+    }
+    
+    function Init(bulletType : Real)
+    {
+        this.BulletType = bulletType;
+        
+        // Change sprite to match corresponding bullet
+        if ( bulletType == 0 )
+        {
+            this.Owner.Sprite.Color = Real4(1.0, 1.0, 0.0, 1.0);
+        }
+        else
+        {
+            this.Owner.Sprite.Color = Real4(0.33, 0.23, 0.35, 1.0);
+        }
+        
+    }
+    
+    function Collide(event : CollisionEvent)
+    {
+        // 0 = left-facing portal, 1 = down-facing, 2 = right-facing, 3 = top-facing
+        
+        if ( event.OtherObject.Name == "Normal Wall Left" )
+        {
+            this.CreatePortal(0, event.OtherObject);
+        }
+        else if ( event.OtherObject.Name == "Normal Wall Down" )
+        {
+            this.CreatePortal(1, event.OtherObject);
+        }
+        else if ( event.OtherObject.Name == "Normal Wall Top" )
+        {
+            this.CreatePortal(2, event.OtherObject);
+        }
+        else if ( event.OtherObject.Name == "Normal Wall Right" )
+        {
+            this.CreatePortal(3, event.OtherObject);
+        }
+        
+        if ( event.OtherObject.Name != "DankBullet" && event.OtherObject.Name != "Player" )
+        {
+            this.Owner.Destroy();
+        }
+    }
+    
+    function CreatePortal(portalDirection : Real, collisionWall : Cog)
+    {
+        var portal = this.Space.CreateAtPosition(Archetype.Find("Portal"), collisionWall.Transform.Translation);
+        portal.Portals.Init(this.BulletType, portalDirection);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    } 
+}
