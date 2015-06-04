@@ -215,6 +215,9 @@ Level =
 		VectoriaBlockMovement = 
 		{
 		},
+		VectoriaPortaling = 
+		{
+		},
 	},
 	Cog = 
 	{

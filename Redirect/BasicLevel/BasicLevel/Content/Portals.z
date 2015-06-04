@@ -2,6 +2,8 @@ class Portals : ZilchComponent
 {
     var PortalType : Real = 0; // 0 for left portal, 1 for right portal
     var PortalDirection : Real = 0; // 0 = left-facing portal, 1 = down-facing, 2 = right-facing, 3 = top-facing
+    var PortalPosX : Integer = 0;
+    var PortalPosY : Integer = 0;
     
     function Initialize(init : CogInitializer)
     {
@@ -12,6 +14,8 @@ class Portals : ZilchComponent
     {
         this.PortalType = portalType;
         this.PortalDirection = portalDirection;
+        this.PortalPosX = (this.Owner.Transform.Translation.X + 0.5) as Integer;
+        this.PortalPosY = (this.Owner.Transform.Translation.Y + 0.5) as Integer;
         
         if ( portalType == 0 )
         {

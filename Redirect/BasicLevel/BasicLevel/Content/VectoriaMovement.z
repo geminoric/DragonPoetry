@@ -103,7 +103,7 @@ class VectoriaMovement : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         //If the player is not attatched to a block
-        if(! this.Owner.VectoriaBlockMovement.Attached)
+        if(! this.Owner.VectoriaBlockMovement.Attached && !this.Owner.VectoriaPortaling.Portaling)
         {
             this.NotAsteroidsMovement();
         }

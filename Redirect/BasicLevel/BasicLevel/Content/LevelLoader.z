@@ -6,6 +6,9 @@ class LevelLoader : ZilchComponent
     //Tile size
     var TileSize : Real = 1.0;
     
+    // ActivePortals
+    var PortalLeft : Cog = null;
+    var PortalRight : Cog = null;
     // Floors and Walls:
     //  00 = Blank
     //  01 = Floor Tile
@@ -18,10 +21,15 @@ class LevelLoader : ZilchComponent
     //////////////////////////////////////////////////
     //Extra
     //  01 = player
+<<<<<<< HEAD
     //  02 = Up laser
     //  03 = Down laser
     //  04 = Left laser
     //  05 = Right laser
+=======
+    //  02 = LeftPortal (Portal 0)
+    //  03 = RightPortal (Portal 1)
+>>>>>>> origin/Portals
     //Blocks
     //  01 = Up Block
     //  02 = Down Block
