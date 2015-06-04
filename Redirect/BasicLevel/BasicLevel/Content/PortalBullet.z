@@ -76,6 +76,9 @@ class PortalBullet : ZilchComponent
         {
             if ( this.LevelSettings.LevelLoader.PortalLeft != null )
             {
+                this.LevelSettings.LevelLoader.SetPos(this.LevelSettings.LevelLoader.PortalLeft.Portals.PortalPosX,
+                                                      this.LevelSettings.LevelLoader.PortalLeft.Portals.PortalPosY,
+                                                      0, this.LevelSettings.LevelLoader.Extra);
                 this.LevelSettings.LevelLoader.PortalLeft.Destroy();
             }
             this.LevelSettings.LevelLoader.PortalLeft = portal;
@@ -85,6 +88,9 @@ class PortalBullet : ZilchComponent
         {
             if ( this.LevelSettings.LevelLoader.PortalRight != null )
             {
+                this.LevelSettings.LevelLoader.SetPos(this.LevelSettings.LevelLoader.PortalRight.Portals.PortalPosX,
+                                                      this.LevelSettings.LevelLoader.PortalRight.Portals.PortalPosY,
+                                                      0, this.LevelSettings.LevelLoader.Extra);
                 this.LevelSettings.LevelLoader.PortalRight.Destroy();
             }
             this.LevelSettings.LevelLoader.PortalRight = portal;

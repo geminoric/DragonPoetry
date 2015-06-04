@@ -33,7 +33,7 @@ class VectoriaPortaling : ZilchComponent
         }
         
         
-        if ( this.CollidingPortal >= 2 && this.Portaling == false )
+        if ( this.CollidingPortal >= 2 && this.CollidingPortal <= 3 && this.Portaling == false )
         {
             this.Portaling = true;
             this.Owner.SphereCollider.Ghost = true;
@@ -134,7 +134,9 @@ class VectoriaPortaling : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if (this.LevelSettings.LevelLoader.PortalLeft == null || this.LevelSettings.LevelLoader.PortalRight == null )
+        if (this.LevelSettings.LevelLoader.PortalLeft == null || 
+            this.LevelSettings.LevelLoader.PortalRight == null ||
+            this.Owner.VectoriaBlockMovement.Attached)
         {
             return;
         }
@@ -142,7 +144,7 @@ class VectoriaPortaling : ZilchComponent
         {
             this.CheckPortalCollision();
         }
-        else
+        else if ( this.Portaling == true )
         {
             this.PortalVectoria();
         }
