@@ -44,7 +44,7 @@ class PortalBullet : ZilchComponent
             this.CreatePortal(3, event.OtherObject);
         }
         
-        if ( event.OtherObject.Name != "DankBullet" && event.OtherObject.Name != "Player" )
+        if ( event.OtherObject.Name != "DankBullet" && event.OtherObject.Name != "Player" && event.OtherObject.Name != "WallNoCollide")
         {
             this.Owner.Destroy();
         }

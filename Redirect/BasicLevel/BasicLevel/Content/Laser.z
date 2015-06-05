@@ -81,7 +81,7 @@ class Laser : ZilchComponent
         {
            while(y < height)
            {
-               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               if(!this.LevelSettings.LevelLoader.IsTileFreeLineOfSight( x, y))
                {
                    this.ScaleSprite(y - this.LaserY);
                    break;
@@ -93,7 +93,7 @@ class Laser : ZilchComponent
         {
             while(y >= 0)
            {
-               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               if(!this.LevelSettings.LevelLoader.IsTileFreeLineOfSight( x, y))
                {
                    this.ScaleSprite(this.LaserY - y);
                    break;
@@ -107,7 +107,7 @@ class Laser : ZilchComponent
             while(x >= 0)
            {
 
-               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               if(!this.LevelSettings.LevelLoader.IsTileFreeLineOfSight( x, y))
                {
                    this.ScaleSprite(this.LaserX - x);
                    break;
@@ -119,7 +119,7 @@ class Laser : ZilchComponent
         {
              while(x < width)
            {
-               if(!this.LevelSettings.LevelLoader.IsTileFree( x, y))
+               if(!this.LevelSettings.LevelLoader.IsTileFreeLineOfSight( x, y))
                {
                    this.ScaleSprite(x - this.LaserX);
                    break;

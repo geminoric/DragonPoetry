@@ -222,6 +222,23 @@ class LevelLoader : ZilchComponent
         return true;
     }
     
+    //Checks if portals, lasers, etc. can pass through
+    function IsTileFreeLineOfSight(x : Integer, y : Integer) : Boolean
+    {
+        //Check block array
+        if(this.GetPos(x, y, this.Blocks) != 0)
+        {
+            return false;
+        }
+        //Check background array
+        if(this.GetPos(x, y, this.Background) >= 2 && this.GetPos(x, y, this.Background) <= 14)
+        {
+            return false;
+        }
+        
+        return true;
+    }
+    
     // Load Level:
     /////////////////////////////////
     function LoadLevel(background : Array[Integer], extra : Array[Integer], blocks : Array[Integer])
@@ -279,26 +296,31 @@ class LevelLoader : ZilchComponent
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Bottom");
+                tile.Name = "WallNoCollide";
             }
             else if (background.Get(i) == 16 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Top");
+                tile.Name = "WallNoCollide";
             }
             else if (background.Get(i) == 17 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Right");
+                tile.Name = "WallNoCollide";
             }
             else if (background.Get(i) == 18 )
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Left");
+                tile.Name = "WallNoCollide";
             }
             else if (background.Get(i) >= 19 && background.Get(i) <= 26)
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Corner`background.Get(i) - 18`");
+                tile.Name = "WallNoCollide";
             }
             tilePosition.Z += 2.0;
             //Extra
