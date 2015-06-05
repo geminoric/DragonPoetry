@@ -18,18 +18,23 @@ class LevelLoader : ZilchComponent
     //  05 = RightFacing Portable Wall
     //  06 = UpFacing Portable Wall
     //  07-10 = Normal Wall Corner 5-8
+    //  11 = Fall Space Bottom
+    //  12 = Fall Space Top
+    //  13 = Fall Space Right
+    //  14 = Fall Space Left
+    //  15-23 = Fall Space Corner 1-8
     //////////////////////////////////////////////////
     //Extra
     //  01 = player
-<<<<<<< HEAD
+//<<<<<<< HEAD
     //  02 = Up laser
     //  03 = Down laser
     //  04 = Left laser
     //  05 = Right laser
-=======
+//=======
     //  02 = LeftPortal (Portal 0)
     //  03 = RightPortal (Portal 1)
->>>>>>> origin/Portals
+//>>>>>>> origin/Portals
     //Blocks
     //  01 = Up Block
     //  02 = Down Block
@@ -54,6 +59,7 @@ class LevelLoader : ZilchComponent
         var extra : Array[Integer] = new Array[Integer](this.LevelSize);
         var blocks : Array[Integer] = new Array[Integer](this.LevelSize);
         
+        /*
         //Example of creating a level (before the level editor is made)
         this.SetRect(0, 15, 0, 15, 1, background);
         //Walls
@@ -85,9 +91,72 @@ class LevelLoader : ZilchComponent
         //laser position
         this.SetPos(10,11, 3, extra);
         
+        */
+        
+            //  00 = Blank
+        //  01 = Floor Tile
+        //  02 = Fall Space
+        //  03 = LeftFacing Portable Wall
+        //  04 = DownFacing Portable Wall
+        //  05 = RightFacing Portable Wall
+        //  06 = UpFacing Portable Wall
+        //  07-14 = Normal Wall Corner 1-8
+        //  15 = Fall Space Bottom
+        //  16 = Fall Space Top
+        //  17 = Fall Space Right
+        //  18 = Fall Space Left
+        //  19-26 = Fall Space Corner 1-8
+        
+        //Tiles
+        this.SetRect(1, 15, 1, 5, 1, background);
+        this.SetRect(4, 12, 8, 12, 1, background);
+        
+        //Fall Spaces
+        this.SetRect(5, 11, 6, 7, 2, background);
+        this.SetRect(2, 14, 5, 6, 15, background);
+        this.SetRect(5, 11, 7, 8, 16, background);
+        this.SetRect(2, 4, 6, 7, 16, background);
+        this.SetRect(12, 14, 6, 7, 16, background);
+        this.SetRect(1, 2, 6, 7, 19, background);
+        this.SetRect(4, 5, 7, 8, 19, background);
+        this.SetRect(14, 15, 6, 7, 20, background);
+        this.SetRect(11, 12, 7, 8, 20, background);
+        this.SetRect(14, 15, 5, 6, 21, background);
+        this.SetRect(1, 2, 5, 6, 22, background);
+        this.SetRect(4, 5, 6, 7, 24, background);
+        this.SetRect(11, 12, 6, 7, 25, background);
+        
+        //Walls
+        this.SetRect(0, 1, 1, 7, 5, background);
+        this.SetRect(15, 16, 1, 7, 3, background);
+        this.SetRect(3, 4, 8, 12, 5, background);
+        this.SetRect(1, 3, 7, 8, 4, background);
+        this.SetRect(13, 15, 7, 8, 4, background);
+        this.SetRect(3, 3, 9, 12, 4, background);
+        this.SetRect(12, 13, 8, 12, 3, background);
+        this.SetRect(1, 15, 0, 1, 6, background);
+        this.SetRect(4, 12, 12, 13, 4, background);
+        
+        //Corners
+        this.SetPos(3, 7, 7, background);
+        this.SetPos(12, 7, 8, background);
+        this.SetPos(0, 0, 14, background);
+        this.SetPos(0, 7, 11, background);
+        this.SetPos(15, 0, 13, background);
+        this.SetPos(15, 7, 12, background);
+        this.SetPos(3, 12, 11, background);
+        this.SetPos(12, 12, 12, background);
+        
+        //Blocks
+        this.SetPos(10, 2, 5, blocks);
+        
+        //Player position
+        this.SetPos(2, 3, 1, extra);
+        
+        
         this.LoadLevel(background, extra, blocks);
         //Move camera according to tile size
-        this.SetCamSize(15);
+        this.SetCamSize(12);
     }
     
     function SetCamSize(widthHeight : Integer)
@@ -140,7 +209,12 @@ class LevelLoader : ZilchComponent
             return false;
         }
         //Check background array
-        if(this.GetPos(x, y, this.Background) >= 2 && this.GetPos(x, y, this.Background) <= 10)
+        if(this.GetPos(x, y, this.Background) >= 2 && this.GetPos(x, y, this.Background) <= 14)
+        {
+            return false;
+        }
+        //Check Fall Spaces
+        if(this.GetPos(x, y, this.Background) >= 15 && this.GetPos(x, y, this.Background) <= 26)
         {
             return false;
         }
@@ -196,10 +270,35 @@ class LevelLoader : ZilchComponent
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
                 tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Top");
             }
-            else if (background.Get(i) >= 7 && background.Get(i) <= 10)
+            else if (background.Get(i) >= 7 && background.Get(i) <= 14)
             {
                 var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
-                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Corner`background.Get(i) - 2`");
+                tile.Sprite.SpriteSource = SpriteSource.Find("Normal Wall Corner`background.Get(i) - 6`");
+            }
+            else if (background.Get(i) == 15 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Bottom");
+            }
+            else if (background.Get(i) == 16 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Top");
+            }
+            else if (background.Get(i) == 17 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Right");
+            }
+            else if (background.Get(i) == 18 )
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Left");
+            }
+            else if (background.Get(i) >= 19 && background.Get(i) <= 26)
+            {
+                var tile = this.Space.CreateAtPosition(Archetype.Find("Wall"), tilePosition);
+                tile.Sprite.SpriteSource = SpriteSource.Find("Fall Space Corner`background.Get(i) - 18`");
             }
             tilePosition.Z += 2.0;
             //Extra
