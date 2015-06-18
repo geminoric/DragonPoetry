@@ -1,0 +1,46 @@
+Summary:Unhandled Exception
+Description:
+When I run the project it say that there is an unhandled exception.
+This happens when the program tries to read the array for the first time.
+
+Type: defect
+Severity: High. This causes the program to not work at all
+Version:1
+CC: James Hammond
+
+Fixed by passing the array into sort
+
+Ticked closed
+
+----------------------------------
+
+Summary:Buffer Overflow
+Description:
+The second print of the array shows that the bubble sort does not work
+It loses the "1000" value and instead has a huge garbage negative value.
+
+Type: defect
+Severity: High
+Version:1
+CC: James Hammond
+
+Fixed by fixing the bubble sort algorithm
+
+Ticket closed
+
+----------------------------------
+
+Summary:Run-TIme Chck Failure
+Description:
+WHen I press enter to quit the program after it finishes the sort
+this error apears
+"Stack around the variable 'dataArray' was corrupted."
+
+Type: defect
+Severity: High
+Version:1
+CC: James Hammond
+
+Fixed by returning a 0
+
+Ticket closed
