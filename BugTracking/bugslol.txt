@@ -1,0 +1,5 @@
+no return
+printarray const
+arraysize for printarray and sortarray
+remove magic 10 number
+bubble sort algorithm wrong
