@@ -8,3 +8,7 @@ Type: defect
 Severity: High
 Version:1
 CC: James Hammond
+
+Fixed by returning a 0
+
+Ticket closed

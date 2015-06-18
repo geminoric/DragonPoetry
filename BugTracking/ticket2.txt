@@ -7,3 +7,7 @@ Type: defect
 Severity: High
 Version:1
 CC: James Hammond
+
+Fixed by fixing the bubble sort algorithm
+
+Ticket closed

@@ -7,3 +7,7 @@ Type: defect
 Severity: High. This causes the program to not work at all
 Version:1
 CC: James Hammond
+
+Fixed by passing the array into sort
+
+Ticked closed

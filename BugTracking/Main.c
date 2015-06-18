@@ -20,7 +20,6 @@
  */
 /******************************************************************************/
 
-#define DATASIZE 10
 
 #include <stdio.h>
 #include <Windows.h>
@@ -30,15 +29,15 @@ static void sortArray(int * dataArray, int arraySize);
 
 int main(void)
 {
-	int dataArray[DATASIZE] = { 1000, 1, 10, 100, 500, 30, 22, 8, 50 };
+	int dataArray[] = { 1000, 1, 10, 100, 500, 30, 22, 8, 50, 0 };
 
 	SetConsoleTitle("GAM150Debug");
 
-	printArray(dataArray, DATASIZE);
+	printArray(dataArray, sizeof(dataArray)/sizeof(int));
 
-	sortArray(dataArray, DATASIZE);
+	sortArray(dataArray, sizeof(dataArray)/sizeof(int));
 
-	printArray(dataArray, DATASIZE);
+	printArray(dataArray, sizeof(dataArray)/sizeof(int));
 
 	printf("Press 'enter' to quit.");
 	getchar();
