@@ -1,0 +1,9 @@
+Summary:Buffer Overflow
+Description:
+The second print of the array shows that the bubble sort does not work
+It loses the "1000" value and instead has a huge garbage negative value.
+
+Type: defect
+Severity: High
+Version:1
+CC: James Hammond

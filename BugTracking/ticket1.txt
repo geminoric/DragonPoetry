@@ -1,0 +1,9 @@
+Summary:Unhandled Exception
+Description:
+When I run the project it say that there is an unhandled exception.
+This happens when the program tries to read the array for the first time.
+
+Type: defect
+Severity: High. This causes the program to not work at all
+Version:1
+CC: James Hammond

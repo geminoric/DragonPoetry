@@ -1,0 +1,10 @@
+Summary:Run-TIme Chck Failure
+Description:
+WHen I press enter to quit the program after it finishes the sort
+this error apears
+"Stack around the variable 'dataArray' was corrupted."
+
+Type: defect
+Severity: High
+Version:1
+CC: James Hammond
