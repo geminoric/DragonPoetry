@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "PlatfromRush",
+	uint64 LibraryId = 55007e8a5bf474ad,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},
