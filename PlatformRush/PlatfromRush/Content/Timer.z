@@ -1,0 +1,21 @@
+class Timer : ZilchComponent
+{
+    var IsOn : Boolean = true;
+    var Time : Real = 0.0;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.IsOn = true;
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(this.IsOn == true)
+        {
+          this.Time += this.Space.TimeSpace.Dt;
+          var milisecs = (this.Time -  (this.Time) as Integer) * 100;
+          this.Owner.SpriteText.Text = String.FormatC("%.2i : %.2i : %02i", this.Time/60, this.Time% 60, milisecs );
+        }
+    }
+}
+
