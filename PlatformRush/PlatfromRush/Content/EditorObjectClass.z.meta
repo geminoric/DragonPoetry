@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "EditorObjectClass",
+		uint64 ResourceId = 55acaea56c357a43,
+	},
+},

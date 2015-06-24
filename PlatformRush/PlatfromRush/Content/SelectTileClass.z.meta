@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "SelectTileClass",
+		uint64 ResourceId = 55ac4c52db05abf8,
+	},
+},

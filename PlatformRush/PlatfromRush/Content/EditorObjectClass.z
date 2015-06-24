@@ -1,0 +1,13 @@
+class EditorObjectClass : ZilchComponent
+{
+    var TileID : Integer = -1;
+    function Init(tile : Integer)
+    {
+        this.TileID = tile;
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

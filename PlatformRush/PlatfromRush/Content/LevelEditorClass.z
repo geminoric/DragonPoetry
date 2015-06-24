@@ -4,27 +4,17 @@ class LevelEditorClass : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
-        //Create all the buttons
         //Main buttons
         var but0 = this.Space.Create(Archetype.Find("Button"));
-        but0.ButtonClass.Init(Real3(-19,9,0), Real3(1.5,1.5,1), this.New, "new", 30);
+        but0.ButtonClass.Init(Real3(-19,8.3,0), Real3(1.5,1.5,1), this.New, "new", 30);
         var but1 = this.Space.Create(Archetype.Find("Button"));
-        but1.ButtonClass.Init(Real3(-16.5,9,0), Real3(1.5,1.5,1), this.Save, "save", 30);
+        but1.ButtonClass.Init(Real3(-16.7,8.3,0), Real3(1.5,1.5,1), this.Save, "save", 30);
         var but2 = this.Space.Create(Archetype.Find("Button"));
-        but2.ButtonClass.Init(Real3(-14,9,0), Real3(1.5,1.5,1), this.Delete, "delete", 30);
+        but2.ButtonClass.Init(Real3(-14.4,8.3,0), Real3(1.5,1.5,1), this.Delete, "delete", 30);
         var but3 = this.Space.Create(Archetype.Find("Button"));
-        but3.ButtonClass.Init(Real3(-11.5,9,0), Real3(1.5,1.5,1), this.Test, "test", 30);
+        but3.ButtonClass.Init(Real3(-12.1,8.3,0), Real3(1.5,1.5,1), this.Test, "test", 30);
         var but4 = this.Space.Create(Archetype.Find("Button"));
-        but4.ButtonClass.Init(Real3(-9,9,0), Real3(1.5,1.5,1), this.Rename, "rename", 30);
-        //Tile select buttons
-        var but5 = this.Space.Create(Archetype.Find("Button"));
-        but5.ButtonClass.Init(Real3(9,9,0), Real3(1.5,1.5,1), this.BG, "bg", 30);
-        var but6 = this.Space.Create(Archetype.Find("Button"));
-        but6.ButtonClass.Init(Real3(11.5,9,0), Real3(1.5,1.5,1), this.Platforms, "platforms", 30);
-        var but7 = this.Space.Create(Archetype.Find("Button"));
-        but7.ButtonClass.Init(Real3(14,9,0), Real3(1.5,1.5,1), this.Hazards, "hazards", 30);
-        var but8 = this.Space.Create(Archetype.Find("Button"));
-        but8.ButtonClass.Init(Real3(16.5,9,0), Real3(1.5,1.5,1), this.Enemies, "enemies", 30);
+        but4.ButtonClass.Init(Real3(-9.8,8.3,0), Real3(1.5,1.5,1), this.Rename, "rename", 30);
     }
     
     //Callback functions for buttons
@@ -47,22 +37,6 @@ class LevelEditorClass : ZilchComponent
     function Rename()
     {
         Console.WriteLine("Rename");
-    }
-    function BG()
-    {
-        Console.WriteLine("BG");
-    }
-    function Platforms()
-    {
-        Console.WriteLine("Platforms");
-    }
-    function Hazards()
-    {
-        Console.WriteLine("Hazards");
-    }
-    function Enemies()
-    {
-        Console.WriteLine("Enemies");
     }
     
     

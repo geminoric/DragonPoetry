@@ -1,0 +1,86 @@
+class EditorDisplay : ZilchComponent
+{
+    var MousePos : Real3 = Real3(0,0,0);
+    //Is the mouse button down
+    var MDown : Boolean = false;
+    var XMin : Real = -100.0;
+    var XMax : Real = 100.0;
+    var YMin : Real = 400.0;
+    var YMax : Real = 600;
+    var CamMoveSpeed : Real = 0.25;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.MouseUpdate, this.MousePress);
+    }
+    
+    //Checks what happens when mouse pressed
+    function MousePress(event : MouseEvent)
+    {
+        //Check if mouse button is triggered
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Left))
+        {
+            this.MDown = true;
+        }
+        else
+        if(this.MDown)
+        {
+            //If mouse is inside window
+            if(this.MousePos.Y > 100 && this.LevelSettings.EditorTileSelect.SelID != -1)
+            {
+                //Create object at mouse
+                var obj = this.Space.CreateAtPosition(Archetype.Find("EmptySprite"), this.MousePos);
+                obj.AddComponentByName("EditorObjectClass");
+                obj.EditorObjectClass.Init(this.LevelSettings.EditorTileSelect.SelID);
+                obj.Name = "EditorObject";
+                obj.Sprite.SpriteSource = this.LevelSettings.EditorSprite.GetSprite(this.LevelSettings.EditorTileSelect.SelID);
+                Console.WriteLine("Created `obj`");
+            }
+            this.MDown = false;
+        }
+    }
+    
+    function MoveCamera()
+    {
+        var nPos = this.Space.FindObjectByName("Camera2").Transform.Translation;
+        //Camera moving with WASD
+        if(Zero.Keyboard.KeyIsDown(Keys.W))
+        {
+            nPos.Y += this.CamMoveSpeed;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.S))
+        {
+            nPos.Y -= this.CamMoveSpeed;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.D))
+        {
+            nPos.X += this.CamMoveSpeed;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.A))
+        {
+            nPos.X -= this.CamMoveSpeed;
+        }
+        //Bind camera
+        nPos.X = Math.Clamp(nPos.X, this.XMin, this.XMax);
+        nPos.Y = Math.Clamp(nPos.Y, this.YMin, this.YMax);
+        
+        this.Space.FindObjectByName("Camera2").Transform.Translation = nPos;
+    }
+    
+    function UpdateMPos()
+    {
+        this.MousePos = this.LevelSettings.EditorTileSelect.MousePos;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.MoveCamera();
+        this.UpdateMPos();
+        if(this.MousePos.Y > 100)
+        {
+            //Inside of display
+            
+        }
+    }
+}

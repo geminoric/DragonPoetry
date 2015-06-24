@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "EditorDisplay",
+		uint64 ResourceId = 55aca182f410a9ad,
+	},
+},

@@ -1,0 +1,417 @@
+class EditorTileSelect : ZilchComponent
+{
+    var MousePos : Real3 = Real3(0,0,0);
+    var Pos : Real3 = Real3(0,0,0);
+    var OrigScrollWheelPos : Real3 = Real3(17.3539,-5.22063,1);
+    //The size of the scroll sprite
+    var Scale : Real3 = Real3(0.2, 0.7, 1.0);
+    //Is the button selected
+    var Selected : Boolean = false;
+    var Hover : Boolean = false;
+    //The target color to fade into
+    var TargCol : Real4 = Real4(0,0,0,0);
+    //The scroll wheel object
+    var ScrollWheel : Cog = null;
+    //The current amount scrolled (range from 0 to 1)
+    var Scroll : Real = 1.0;
+    //Total scroll height
+    var ScrollHeight : Real = 12.1;
+    
+    var ColFadeRate : Real = 0.25;
+    //When to round color and change it to targ
+    var ColEpsilon : Real = 0.01;
+    //Categories in tile selector
+    var BackgroundTiles : Array[Integer] = new Array[Integer](0);
+    var PlatformTiles : Array[Integer] = new Array[Integer](0);
+    var HazardTiles : Array[Integer] = new Array[Integer](0);
+    var EnemyTiles : Array[Integer] = new Array[Integer](0);
+    //Which selection mode
+    //0 : BG 1 : Platform 2 : Hazard 3 : Enemy
+    var SelectMode : Integer = 0;
+    //Amount of y tiles that fit in the grid
+    var MouseYNum : Real = 4.7;
+    //Size of each tile
+    var TileSize : Real = 2.98;
+    //Amount each tile should move based on current scroll
+    var ScrollMove : Real3 = Real3(0,0,0);
+    //Which tile is selected
+    var SelID : Integer = -1;
+    //Was mouse button just down
+    var MDown : Boolean = false;
+    
+    //Constants of tile selector size
+    var X1 : Real = 8.0;
+    var X2 : Real = 16.91;
+    var Y1 : Real = -6.09;
+    var Y2 : Real = 7.62;
+    var YNum : Real = 4.8;
+    
+    //IDs of tiles
+    //0-99    : background
+    //100-199 : platforms
+    //200-299 : hazards
+    //300-399 : enemies
+    //
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        //Tile select buttons
+        var but5 = this.Space.Create(Archetype.Find("Button"));
+        but5.ButtonClass.Init(Real3(9,8.3,0), Real3(1.5,1.5,1), this.BG, "background", 18);
+        var but6 = this.Space.Create(Archetype.Find("Button"));
+        but6.ButtonClass.Init(Real3(11.3,8.3,0), Real3(1.5,1.5,1), this.Platforms, "platforms", 18);
+        var but7 = this.Space.Create(Archetype.Find("Button"));
+        but7.ButtonClass.Init(Real3(13.6,8.3,0), Real3(1.5,1.5,1), this.Hazards, "hazards", 18);
+        var but8 = this.Space.Create(Archetype.Find("Button"));
+        but8.ButtonClass.Init(Real3(15.9,8.3,0), Real3(1.5,1.5,1), this.Enemies, "enemies", 18);
+        
+        //Init events
+        Zero.Connect(this.Space, Events.MouseUpdate, this.UpdateMousePos);
+        Zero.Connect(this.Space, Events.LeftMouseDown, this.CheckButtonPress);
+        Zero.Connect(this.Space, Events.LeftMouseUp, this.CheckButtonPress);
+        Zero.Connect(this.Space, Events.MouseScroll, this.CheckMouseScroll);
+        Zero.Connect(this.Space, Events.MouseUpdate, this.CheckTileSelect);
+        //Link cogs to objects
+        this.ScrollWheel = this.Space.FindObjectByName("TileScroll");
+        
+        
+        //TEMP Create tiles in the tile selector
+        for(var i : Integer = 0;i < 17;++i)
+        {
+            this.MakeTile(i);
+        }
+        for(var i : Integer = 100;i < 124;++i)
+        {
+            this.MakeTile(i);
+        }
+        for(var i : Integer = 200;i < 205;++i)
+        {
+            this.MakeTile(i);
+        }
+    }
+    
+    //Checks if the player has selected a tile to make active
+    function CheckTileSelect(event : MouseEvent)
+    {
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Left))
+        {
+            this.MDown = true;
+        }
+        else
+        if(this.MDown)
+        {
+            //Mouse has been pressed
+            //Select tile
+            var tile = this.GetTileID(this.GetMouseTile());
+            if(tile != -1)
+            {
+                this.SelID = tile;
+            }
+            this.MDown = false;
+        }
+    }
+    
+    //Gets what id of tile is in a certain index
+    function GetTileID(index : Integer) : Integer
+    {
+        if(index < 0)
+        {
+            return -1;
+        }
+        if(this.SelectMode == 0)
+        {
+            return this.BackgroundTiles.Get(index);
+        }
+        if(this.SelectMode == 1)
+        {
+            return this.PlatformTiles.Get(index);
+        }
+        if(this.SelectMode == 2)
+        {
+            return this.HazardTiles.Get(index);
+        }
+        if(this.SelectMode == 3)
+        {
+            return this.EnemyTiles.Get(index);
+        }
+        return -1;
+    }
+    
+    //Checks for mouse scroll wheel being used
+    function CheckMouseScroll(event : MouseEvent)
+    {
+        //If mouse is outside box
+        if(this.MousePos.X < this.X1 || this.MousePos.X > this.X2 ||
+            this.MousePos.Y < this.Y1 || this.MousePos.Y > this.Y2)
+        {
+            return;
+        }
+        var pos : Real3 = this.OrigScrollWheelPos;
+        var scroll = this.Scroll + 0.2 * event.Scroll.Y;
+        scroll = Math.Clamp(scroll, 0.0, 1.0);
+        this.Scroll = scroll;
+        
+        //Update amount to move each tile
+        var rows : Integer = (this.GetTotalTiles() / 3) as Integer + 1;
+        var moveSize = rows * this.TileSize;
+        this.ScrollMove = Real3(0, -(1.0 - this.Scroll) * (moveSize - (this.Y2 - this.Y1)), 0);
+    }
+    
+    //Check if a the drag thing is selected
+    function CheckButtonPress(event : MouseEvent)
+    {
+        //Check if the button is pressed
+        if(event.Mouse.IsButtonDown(MouseButtons.Left))
+        {
+            //Make button selected if inside button
+            if(this.MouseInsideButton())
+            {
+                this.Selected = true;
+            }
+        }
+        else
+        if(this.Selected && ! event.Mouse.IsButtonDown(MouseButtons.Left))
+        {
+            this.Selected = false;
+        }
+    }
+    
+    function ScrollMouseWheel()
+    {
+        var pos : Real3 = this.OrigScrollWheelPos;
+        //Update scroll amount if mouse is down and scroll wheel selected
+        if(this.Selected && Zero.Mouse.IsButtonDown(MouseButtons.Left))
+        {
+            var scroll = this.MousePos.Y;
+            //Make mouse position between ~6 and ~-6
+            scroll -= 0.875;
+            //Normalize to between ~0 and ~1
+            scroll /= 12;
+            scroll += 0.5;
+            scroll = Math.Clamp(scroll, 0.0, 1.0);
+            this.Scroll = scroll;
+            
+            //Update amount to move each tile
+            var rows : Integer = (this.GetTotalTiles() / 3) as Integer + 1;
+            var moveSize = rows * this.TileSize;
+            this.ScrollMove = Real3(0, -(1.0 - this.Scroll) * (moveSize - (this.Y2 - this.Y1)), 0);
+        }
+        
+        //Update pos
+        pos.Y += this.ScrollHeight * this.Scroll;
+        
+        this.ScrollWheel.Transform.Translation = pos;
+    }
+    
+    //Returns the amount of objects in the selected tile array
+    function GetTotalTiles() : Integer
+    {
+        if(this.SelectMode == 0)
+        {
+            return this.BackgroundTiles.Count;
+        }
+        if(this.SelectMode == 1)
+        {
+            return this.PlatformTiles.Count;
+        }
+        if(this.SelectMode == 2)
+        {
+            return this.HazardTiles.Count;
+        }
+        if(this.SelectMode == 3)
+        {
+            return this.EnemyTiles.Count;
+        }
+        return -1;
+    }
+    
+    //Returns the index of the tile the mouse is on, taking into account current scroll amount
+    function GetMouseTile() : Integer
+    {
+        var mouseTile : Integer = 0;
+        //Return -1 if mouse out of range
+        if(this.MousePos.X < this.X1 || this.MousePos.X > this.X2 ||
+            this.MousePos.Y < this.Y1 || this.MousePos.Y > this.Y2)
+        {
+            return -1;
+        }
+        
+        //Factor in scroll
+        var tmpMouseY = this.MousePos.Y;
+        var rows : Integer = (this.GetTotalTiles() / 3) as Integer + 1;
+        //Only modify if there are more than 4 rows
+        if(rows > 4)
+        {
+            //Amount to move
+            var moveSize = rows * this.TileSize;
+            tmpMouseY -= (1.0 - this.Scroll) * (moveSize - (this.Y2 - this.Y1));
+        }
+        
+        //X component of tile
+        mouseTile = ((this.MousePos.X - this.X1) / ((this.X2 - this.X1)/3)) as Integer;
+        //Y component of tile
+        mouseTile += (((tmpMouseY - this.Y2) / ((this.Y1 - this.Y2)/this.YNum)) as Integer) * 3;
+        
+        return mouseTile;
+    }
+    
+    //Places a tile in the tile selector
+    function MakeTile(tileID : Integer)
+    {
+        var obj = 0;
+        //Put tile in correct array
+        if(tileID < 0 || tileID > 399)
+        {
+            return;
+        }
+        if(tileID < 100)
+        {
+            obj = this.BackgroundTiles.Count;
+            this.BackgroundTiles.Add(tileID);
+        }
+        else
+        if(tileID < 200)
+        {
+            obj = this.PlatformTiles.Count;
+            this.PlatformTiles.Add(tileID);
+        }
+        else
+        if(tileID < 300)
+        {
+            obj = this.HazardTiles.Count;
+            this.HazardTiles.Add(tileID);
+        }
+        else
+        if(tileID < 400)
+        {
+            obj = this.EnemyTiles.Count;
+            this.EnemyTiles.Add(tileID);
+        }
+        //Create the tile sprite
+        var tile = this.Space.CreateAtPosition(Archetype.Find("EmptySprite"), Real3(this.X1 + ((obj % 3) + 0.5) * this.TileSize, this.Y2 - ((obj / 3) + 0.5) * this.TileSize, -1));
+        tile.AddComponentByName("SelectTileClass");
+        tile.Sprite.SpriteSource = this.LevelSettings.EditorSprite.GetSprite(tileID);
+        tile.Transform.Scale = Real3(5,5,1);
+        tile.SelectTileClass.Init(tileID);
+        tile.Name = "EditorTile";
+    }
+    
+    //Check if the mouse is inside the button
+    function MouseInsideButton() : Boolean
+    {
+        if(this.Pos.X - this.Scale.X < this.MousePos.X && this.Pos.X + this.Scale.X > this.MousePos.X &&
+            this.Pos.Y - this.Scale.Y < this.MousePos.Y && this.Pos.Y + this.Scale.Y > this.MousePos.Y)
+            {
+                return true;
+            }
+        return false;
+    }
+    function UpdateButtonCol()
+    {
+        if(this.Selected)
+        {
+            this.TargCol = Real4(0.4, 0.4, 0.6, 1.0);
+        }
+        else
+        if(this.Hover)
+        {
+            this.TargCol = Real4(0.7, 0.7, 0.8, 1.0);
+        }
+        else
+        {
+            this.TargCol = Real4(1.0, 1.0, 1.0, 1.0);
+        }
+        this.FadeColor();
+    }
+    
+    //Fade the color of the interior to the target
+    function FadeColor()
+    {
+        var curCol : Real4 = this.ScrollWheel.Sprite.Color;
+        if(curCol == this.TargCol)
+        {
+            return;
+        }
+        //Check if close enough to epsilon
+        if(Math.Abs(curCol.X + curCol.Y + curCol.Z - (this.TargCol.X + this.TargCol.Y + this.TargCol.Z)) < this.ColEpsilon)
+        {
+            this.ScrollWheel.Sprite.Color = this.TargCol;
+            return;
+        }
+        //If still in function, fade color towards correct one
+        //If selected, double fade rate temporarily
+        if(this.Selected)
+        {
+            this.ColFadeRate *= 2;
+        }
+        curCol.X -= (curCol.X - this.TargCol.X) * this.ColFadeRate;
+        curCol.Y -= (curCol.Y - this.TargCol.Y) * this.ColFadeRate;
+        curCol.Z -= (curCol.Z - this.TargCol.Z) * this.ColFadeRate;
+        if(this.Selected)
+        {
+            this.ColFadeRate /= 2;
+        }
+        this.ScrollWheel.Sprite.Color = curCol;
+    }
+    
+    function UpdateMousePos(event : ViewportMouseEvent)
+    {
+        this.MousePos = event.ToWorldZPlane(0);
+        if(this.MouseInsideButton())
+        {
+            this.Hover = true;
+        }
+        else
+        {
+            this.Hover = false;
+        }
+    }
+    
+    function BG()
+    {
+        this.SwitchCategories(0);
+    }
+    function Platforms()
+    {
+        this.SwitchCategories(1);
+    }
+    function Hazards()
+    {
+        this.SwitchCategories(2);
+    }
+    function Enemies()
+    {
+        this.SwitchCategories(3);
+    }
+    function SwitchCategories(tarCat : Integer)
+    {
+        this.Scroll = 1.0;
+        //Make all things that aren't the right category invisible, all correct visible
+        var objs = this.Space.FindAllObjectsByName("EditorTile");
+        while(objs.IsNotEmpty)
+        {
+            if(objs.Current.SelectTileClass.Category == tarCat)
+            {
+                objs.Current.Sprite.Visible = true;
+            }
+            else
+            {
+                objs.Current.Sprite.Visible = false;
+            }
+            
+            objs.MoveNext();
+        }
+        
+        this.SelectMode = tarCat;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Pos = this.ScrollWheel.Transform.Translation;
+        //Scroll according to mouse
+        this.ScrollMouseWheel();
+        //Update color of scroll wheel
+        this.UpdateButtonCol();
+    }
+}

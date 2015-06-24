@@ -1,0 +1,20 @@
+class EditorSprite : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function GetSprite(tileID : Integer) : SpriteSource
+    {
+        if(tileID == 1)
+        {
+            return SpriteSource.Find("TestTile2");
+        }
+        return SpriteSource.Find("TestTile");
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}
