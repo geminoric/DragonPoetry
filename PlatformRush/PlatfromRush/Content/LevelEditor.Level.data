@@ -90,7 +90,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.9762,
+			float Size = 29.8365,
 		},
 		EditorCameraController = 
 		{
@@ -149,16 +149,12 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "button",
-		},
-		Archetyped = 
-		{
-			string Name = "55ac7407585225e5:Button",
+			string Name = "editorBorder",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Translation = [-7.63349, 0.774974, 0],
+			Vec3 Scale = [5, 5, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -171,88 +167,13 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55ac747a5ad0e5e4:ButtonBorder",
+			string SpriteSource = "55ac622181ff393f:EditorBorder",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
-		},
-		ButtonClass = 
-		{
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 5,
-				},
-				Named = 
-				{
-					string Name = "interior",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "55ac747a5ad64f70:ButtonInterior",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 6,
-				},
-				Named = 
-				{
-					string Name = "text",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [-0.5, 0.3, 1],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				SpriteText = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0, 0, 0, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "55ac6763ecfc7746:data-unifon",
-					uint FontSize = 30,
-					string Text = "test",
-					TextAlign Align = Left,
-					float PixelsPerUnit = 64,
-					bool Smoothing = true,
-				},
-			},
 		},
 	},
 },
