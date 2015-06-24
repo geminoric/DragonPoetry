@@ -9,6 +9,8 @@ class EditorDisplay : ZilchComponent
     var YMax : Real = 600;
     var CamMoveSpeed : Real = 0.25;
     
+    var InitDone : Boolean = false;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -35,7 +37,6 @@ class EditorDisplay : ZilchComponent
                 obj.EditorObjectClass.Init(this.LevelSettings.EditorTileSelect.SelID);
                 obj.Name = "EditorObject";
                 obj.Sprite.SpriteSource = this.LevelSettings.EditorSprite.GetSprite(this.LevelSettings.EditorTileSelect.SelID);
-                Console.WriteLine("Created `obj`");
             }
             this.MDown = false;
         }
@@ -73,8 +74,42 @@ class EditorDisplay : ZilchComponent
         this.MousePos = this.LevelSettings.EditorTileSelect.MousePos;
     }
     
+    function InitViewport()
+    {
+        //Move based on aspect ratio
+        var resX : Real = this.Space.FindObjectByName("Camera").CameraViewport.ViewportResolutionWithMargin.X;
+        var resY : Real = this.Space.FindObjectByName("Camera").CameraViewport.ViewportResolutionWithMargin.Y;
+        var aspect : Real = resX / resY;
+        //Move depending on aspect ratio
+        if(aspect > 1.8216 && aspect < 1.8217)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.566,0.574);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.054,0.122);
+        }
+        if(aspect > 1.776 && aspect < 1.778)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.576,0.572);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.046,0.124);
+        }
+        if(aspect > 1.599 && aspect < 1.6001)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.576,0.514);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.046,0.161);
+        }
+        if(aspect > 1.599 && aspect < 1.6001)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.576,0.514);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.046,0.161);
+        }
+    }
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if(!this.InitDone)
+        {
+            this.InitViewport();
+            this.InitDone = true;
+        }
         this.MoveCamera();
         this.UpdateMPos();
         if(this.MousePos.Y > 100)

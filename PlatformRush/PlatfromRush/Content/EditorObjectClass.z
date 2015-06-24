@@ -1,10 +1,17 @@
 class EditorObjectClass : ZilchComponent
 {
     var TileID : Integer = -1;
+    var Pos : Real3 = Real3(0,0,0);
+    //Optional, may have these if portal or moving platform
+    var Pos1 : Real3 = Real3(-31415,0,0);
+    var Pos2 : Real3 = Real3(-31415,0,0);
+    var ConPortalPos : Real3 = Real3(-31415,0,0);
+    
     function Init(tile : Integer)
     {
         this.TileID = tile;
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Pos = this.Owner.Transform.Translation;
     }
 
     function OnLogicUpdate(event : UpdateEvent)

@@ -64,7 +64,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [19.6349, 7.64828, 50],
+			Vec3 Translation = [10.2778, 8.07437, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -76,7 +76,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 13.5335,
 		},
 		EditorCameraController = 
 		{
@@ -84,7 +84,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [19.6349, 7.64828, 8.58269e-007],
+			Vec3 LookTarget = [10.2778, 8.07437, 4.49256e-007],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -134,7 +134,7 @@ Level =
 			int Layer = 0,
 			bool Active = true,
 			bool Blocking = true,
-			uint Renderer = 4294967293,
+			uint Renderer = 3,
 			uint Camera = 3,
 			ViewportScaling Scaling = Letterbox,
 			Vec2 Resolution = [1280, 720],
@@ -358,25 +358,50 @@ Level =
 		CameraViewport = 
 		{
 			bool Background = true,
-			Vec2 Offset = [0.05, 0.17],
-			Vec2 Size = [0.55, 0.5],
+			Vec2 Offset = [0.12, 0.135],
+			Vec2 Size = [0.48, 0.55],
 			int Layer = 1,
 			bool Active = true,
 			bool Blocking = true,
-			uint Renderer = 4294967293,
+			uint Renderer = 9,
 			uint Camera = 9,
 			ViewportScaling Scaling = Fill,
-			Vec2 Resolution = [945, 530],
+			Vec2 Resolution = [1280, 720],
 			Vec4 MarginColor = [0, 0, 0, 1],
 		},
 		ForwardRenderer = 
 		{
-			Vec4 ClearColor = [0.045, 0.045, 0.045, 1],
+			Vec4 ClearColor = [0.685, 0.685, 0.685, 1],
 			bool DrawNonVisible = false,
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
 			bool EditorIconDepth = true,
 			bool Wireframe = false,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Named = 
+		{
+			string Name = "saver",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		LevelSaveClass = 
+		{
+			string IDstring = "",
+			string Posstring = "",
+			string Pos1string = "",
+			string Pos2string = "",
+			string ConPortPosstring = "",
 		},
 	},
 },
