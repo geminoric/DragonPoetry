@@ -119,19 +119,19 @@ class EditorTileSelect : ZilchComponent
         {
             return -1;
         }
-        if(this.SelectMode == 0)
+        if(this.SelectMode == 0 && this.BackgroundTiles.Count > index)
         {
             return this.BackgroundTiles.Get(index);
         }
-        if(this.SelectMode == 1)
+        if(this.SelectMode == 1 && this.PlatformTiles.Count > index)
         {
             return this.PlatformTiles.Get(index);
         }
-        if(this.SelectMode == 2)
+        if(this.SelectMode == 2 && this.HazardTiles.Count > index)
         {
             return this.HazardTiles.Get(index);
         }
-        if(this.SelectMode == 3)
+        if(this.SelectMode == 3 && this.EnemyTiles.Count > index)
         {
             return this.EnemyTiles.Get(index);
         }
