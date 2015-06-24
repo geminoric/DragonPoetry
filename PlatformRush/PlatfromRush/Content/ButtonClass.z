@@ -1,0 +1,142 @@
+class ButtonClass : ZilchComponent
+{
+    var Callback : delegate() = null;
+    var Pos : Real3 = Real3(0,0,0);
+    var Scale : Real3 = Real3(0,0,0);
+    var MousePos : Real3 = Real3(0,0,0);
+    //The interior sprite of the button
+    var Interior : Cog = null;
+    //Is the button selected but not confirmed (mouse not yet released)
+    var Selected : Boolean = false;
+    //Is the mouse hovering
+    var Hover : Boolean = false;
+    //Target color for fading
+    var TargCol : Real4 = Real4(0,0,0,0);
+    var ColFadeRate : Real = 0.25;
+    //When to round color and change it to targ
+    var ColEpsilon : Real = 0.01;
+    
+    //Call to initialize the button, also connects loop
+    function Init(pos : Real3, scale : Real3, callback : delegate(), words : String)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.MouseUpdate, this.UpdateMousePos);
+        Zero.Connect(this.Space, Events.LeftMouseDown, this.CheckButtonPress);
+        Zero.Connect(this.Space, Events.LeftMouseUp, this.CheckButtonPress);
+        //Move and scale to correct places
+        this.Owner.Transform.Translation = pos;
+        this.Owner.Transform.Scale = scale;
+        this.Callback = callback;
+        this.Pos = pos;
+        this.Scale = scale;
+        //Modify scale because button isn't square
+        this.Scale.X /= 1.3;
+        this.Scale.Y /= 2.6;
+        this.Interior = this.Owner.FindChildByName("interior");
+        this.Owner.FindChildByName("text").SpriteText.Text = words;
+    }
+    
+    //Check if a button is pressed when the mouse is clicked
+    function CheckButtonPress(event : MouseEvent)
+    {
+        //Check if the button is held down
+        if(this.MouseInsideButton())
+        {
+            //If mouse is not currently pressed, set selected, otherwise call callback and reset button
+            if(!this.Selected)
+            {
+                this.Selected = true;
+            }
+            else
+            {
+                this.Selected = false;
+                if(this.Callback != null)
+                {
+                    this.Callback();
+                }
+            }
+        }
+    }
+    
+    //Check if the mouse is inside the button
+    function MouseInsideButton() : Boolean
+    {
+        if(this.Pos.X - this.Scale.X < this.MousePos.X && this.Pos.X + this.Scale.X > this.MousePos.X &&
+            this.Pos.Y - this.Scale.Y < this.MousePos.Y && this.Pos.Y + this.Scale.Y > this.MousePos.Y)
+            {
+                return true;
+            }
+        return false;
+    }
+    
+    function UpdateButtonCol()
+    {
+        if(this.Selected)
+        {
+            this.TargCol = Real4(0.4, 0.4, 0.4, 1.0);
+        }
+        else
+        if(this.Hover)
+        {
+            this.TargCol = Real4(0.7, 0.7, 0.7, 1.0);
+        }
+        else
+        {
+            this.TargCol = Real4(1.0, 1.0, 1.0, 1.0);
+        }
+        this.FadeColor();
+    }
+    
+    //Fade the color of the interior to the target
+    function FadeColor()
+    {
+        var curCol : Real4 = this.Interior.Sprite.Color;
+        if(curCol == this.TargCol)
+        {
+            return;
+        }
+        //Check if close enough to epsilon
+        if(Math.Abs(curCol.X + curCol.Y + curCol.Z - (this.TargCol.X + this.TargCol.Y + this.TargCol.Z)) < this.ColEpsilon)
+        {
+            this.Interior.Sprite.Color = this.TargCol;
+            return;
+        }
+        //If still in function, fade color towards correct one
+        //If selected, double fade rate temporarily
+        if(this.Selected)
+        {
+            this.ColFadeRate *= 2;
+        }
+        curCol.X -= (curCol.X - this.TargCol.X) * this.ColFadeRate;
+        curCol.Y -= (curCol.Y - this.TargCol.Y) * this.ColFadeRate;
+        curCol.Z -= (curCol.Z - this.TargCol.Z) * this.ColFadeRate;
+        if(this.Selected)
+        {
+            this.ColFadeRate /= 2;
+        }
+        this.Interior.Sprite.Color = curCol;
+    }
+    
+    function UpdateMousePos(event : ViewportMouseEvent)
+    {
+        this.MousePos = event.ToWorldZPlane(0);
+        if(this.MouseInsideButton())
+        {
+            this.Hover = true;
+        }
+        else
+        {
+            this.Hover = false;
+            //If button is selected, check if mouse goes outside button
+            if(this.Selected)
+            {
+                this.Selected = false;
+            }
+        }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.UpdateButtonCol();
+    }
+}
