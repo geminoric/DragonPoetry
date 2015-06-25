@@ -1,0 +1,54 @@
+class PauseMenuInit : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        var but0 = this.Space.Create(Archetype.Find("Button"));
+        but0.ButtonClass.Init(Real3(0,4,0), Real3(3,1.5,1), this.Continue , "continue", 20);
+        
+        var but1 = this.Space.Create(Archetype.Find("Button"));
+        but1.ButtonClass.Init(Real3(0,2,0), Real3(3,1.5,1), this.Restart , "restart", 20);
+        
+        var but2 = this.Space.Create(Archetype.Find("Button"));
+        but2.ButtonClass.Init(Real3(0,0,0), Real3(3,1.5,1), this.Options , "options", 20);
+        
+        var but3 = this.Space.Create(Archetype.Find("Button"));
+        but3.ButtonClass.Init(Real3(0,-2,0), Real3(3,1.5,1), this.Controls , "controles", 20);
+        
+        var but5 = this.Space.Create(Archetype.Find("Button"));
+        but5.ButtonClass.Init(Real3(0,-4,0), Real3(3,1.5,1), this.Quit , "quit", 20);
+    }
+    
+    function Continue()
+    {
+        
+    }
+    
+    function Restart()
+    {
+        
+    }
+    
+    function Options()
+    {
+        var level = Level.Find("Options");
+        this.Space.LoadLevel(level);
+    }
+
+    function Controls()
+    {
+        var level = Level.Find("Controls");
+        this.Space.LoadLevel(level);
+    }
+    
+    
+    function Quit()
+    {
+        var level = Level.Find("MainMenu");
+        this.Space.LoadLevel(level);
+    }
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

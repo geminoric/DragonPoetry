@@ -51,6 +51,13 @@ Level =
 		EditorSprite = 
 		{
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
+		ReturnToMenu = 
+		{
+		},
 	},
 	Cog = 
 	{
