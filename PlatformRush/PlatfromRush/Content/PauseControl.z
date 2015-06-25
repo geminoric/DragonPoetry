@@ -1,0 +1,43 @@
+class PauseControl : ZilchComponent
+{
+    var IsPawsed : Boolean = false;
+
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    }
+     
+    function OnKeyDown(event : KeyboardEvent)
+    {
+        if(event.Keyboard.KeyIsPressed(Keys.Escape))
+        {
+            if(this.IsPawsed == false)
+            {
+                 this.Paws();
+            }
+            else
+            {
+                this.UnPaws();
+            }
+        }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+        
+    //unpauses the game
+    function UnPaws()
+    {
+            this.IsPawsed = false;
+            this.Space.TimeSpace.TogglePause();
+    } 
+    //pauses the game
+    function Paws()
+    {
+            this.IsPawsed = true;
+            var gameSpace = this.GameSession.CreateSpace(Archetype.Find("PauseMenu"));
+            gameSpace.LoadLevel(Level.Find("Pause"));
+            this.Space.TimeSpace.TogglePause();
+    }
+}

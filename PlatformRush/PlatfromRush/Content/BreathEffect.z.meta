@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "BreathEffect",
+		uint64 ResourceId = 55fc07bf27f244d3,
+	},
+},

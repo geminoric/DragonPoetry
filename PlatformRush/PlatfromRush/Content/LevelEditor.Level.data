@@ -51,7 +51,15 @@ Level =
 		EditorSprite = 
 		{
 		},
+<<<<<<< HEAD
 		StopEsc = 
+=======
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
+		ReturnToMenu = 
+>>>>>>> origin/master
 		{
 		},
 	},
