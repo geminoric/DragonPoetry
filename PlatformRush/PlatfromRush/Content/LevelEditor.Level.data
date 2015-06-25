@@ -52,6 +52,7 @@ Level =
 		{
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		StopEsc = 
 =======
 		QuitGameTest = 
@@ -62,6 +63,8 @@ Level =
 >>>>>>> origin/master
 		{
 		},
+=======
+>>>>>>> parent of 711001b... last minute
 	},
 	Cog = 
 	{
@@ -75,7 +78,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [10.2778, 8.07437, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -95,7 +98,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [10.2778, 8.07437, 4.49256e-007],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 

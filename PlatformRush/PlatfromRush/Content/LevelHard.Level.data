@@ -64,7 +64,7 @@ Level =
 		},
 		LevelData = 
 		{
-			int TotalPlatforms = 7,
+			int TotalPlatforms = 4,
 		},
 		HUD = 
 		{
@@ -103,10 +103,14 @@ Level =
 			float NearPlane = 0.5,
 			float FarPlane = 500,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			float Size = 73.3861,
 =======
 			float Size = 54.3657,
 >>>>>>> origin/master
+=======
+			float Size = 44.5109,
+>>>>>>> parent of 711001b... last minute
 		},
 		EditorCameraController = 
 		{
@@ -1001,6 +1005,7 @@ Level =
 		},
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ArchetypeInstance = 
 	{
 		string Name = "55026c5dfdaa70ad:Launcher",
@@ -1189,4 +1194,6 @@ Level =
 >>>>>>> origin/master
 		},
 	},
+=======
+>>>>>>> parent of 711001b... last minute
 },
