@@ -17,7 +17,7 @@ class PauseMenuInit : ZilchComponent
         but3.ButtonClass.Init(Real3(0,-2,0), Real3(3,1.5,1), this.Controls , "controles", 20);
         
         var but5 = this.Space.Create(Archetype.Find("Button"));
-        but5.ButtonClass.Init(Real3(0,-4,0), Real3(3,1.5,1), this.Quit , "quit", 20);
+        but5.ButtonClass.Init(Real3(0,-4,0), Real3(3,1.5,1), this.Quit , "menu", 20);
     }
     
     function Continue()
@@ -33,13 +33,13 @@ class PauseMenuInit : ZilchComponent
     function Options()
     {
         var level = Level.Find("Options");
-        this.Space.LoadLevel(level);
+        //this.Space.LoadLevel(level);
     }
 
     function Controls()
     {
         var level = Level.Find("Controls");
-        this.Space.LoadLevel(level);
+        //this.Space.LoadLevel(level);
     }
     
     

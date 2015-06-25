@@ -1,0 +1,18 @@
+class GroundCollision : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        //The object collided with
+        var otherObject = event.OtherObject;
+        
+        if(otherObject.Name == "Ground")
+        {
+            this.Space.ReloadLevel();
+        }
+    }
+}

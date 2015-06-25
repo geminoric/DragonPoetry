@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "GroundCollision",
+		uint64 ResourceId = 55fbe23c4b8ec238,
+	},
+},
