@@ -1,0 +1,46 @@
+class Hazard : ZilchComponent
+{
+    var Damage : Integer = 0;
+    var StunOn : Boolean = false;
+    var Active : Boolean = false;
+    var KnockBackSpeed : Integer = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+    
+    
+
+    function OnCollisionStarted(collisionEvent : CollisionEvent)
+    {
+      if(this.Active == true)
+      {
+        var otherObject = collisionEvent.OtherObject;
+        //replace with player controller
+        var player = otherObject.Dropper;
+        if(player != null )
+        {
+            if(this.StunOn == true)
+            {
+                //otherObject.PlayerController.Stun == true;
+            }
+            
+            if(this.KnockBackSpeed > 0)
+            {
+                var x : Real = -otherObject.RigidBody.Velocity.X;
+                var y : Real = -otherObject.RigidBody.Velocity.Y;
+                var direction: Real3 = Real3( x, y, 0);
+                Math.Normalize(direction);
+                direction *= this.KnockBackSpeed;
+                otherObject.RigidBody.Velocity = direction;
+            }
+            
+            if(this.Damage > 0)
+            {
+                otherObject.Health.DealDamage(this.Damage);
+            }
+        }
+      }
+    }
+}

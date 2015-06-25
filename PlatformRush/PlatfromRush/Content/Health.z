@@ -1,0 +1,20 @@
+class Health : ZilchComponent
+{
+    var Hp : Integer = 0;
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function DealDamage(damage: Integer)
+    {
+        this.Hp -= damage;
+        if(this.Hp < 0 )
+        {
+            this.Hp = 0;
+        }
+    }
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}
