@@ -1,0 +1,78 @@
+class SelectTileClass : ZilchComponent
+{
+    //IDs of tiles
+    //0-99    : background
+    //100-199 : platforms
+    //200-299 : hazards
+    //300-399 : enemies
+    var TileID : Integer = -1;
+    //0 : BG 1 : Platform 2 : Hazard 3 : Enemy
+    var Category : Integer = 0;
+    var OrigPos : Real3 = Real3(0,0,0);
+    
+    function Init(id : Integer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        //Get which category it is
+        if(id < 0 || id > 399)
+        {
+            
+        }
+        else
+        if(id < 100)
+        {
+            this.Category = 0;
+        }
+        else
+        if(id < 200)
+        {
+            this.Category = 1;
+        }
+        else
+        if(id < 300)
+        {
+            this.Category = 2;
+        }
+        else
+        if(id < 400)
+        {
+            this.Category = 3;
+        }
+        
+        //Check if tile should be visible (which category is selected)
+        if(this.Category != this.LevelSettings.EditorTileSelect.SelectMode)
+        {
+            this.Owner.Sprite.Visible = false;
+        }
+        
+        this.OrigPos = this.Owner.Transform.Translation;
+        this.TileID = id;
+    }
+    
+    function MoveToScroll()
+    {
+        this.Owner.Transform.Translation = this.OrigPos - this.LevelSettings.EditorTileSelect.ScrollMove;
+    }
+    
+    function UpdateCol()
+    {
+        //Make red if selected tile
+        if(this.LevelSettings.EditorTileSelect.SelID == this.TileID)
+        {
+            this.Owner.Sprite.Color = Real4(1.0, 0.4, 0.4, 1.0);
+        }
+        else
+        {
+            this.Owner.Sprite.Color = Real4(1.0, 1.0, 1.0, 1.0);
+        }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //Move according to scroll
+        this.MoveToScroll();
+        //Update color of tile
+        this.UpdateCol();
+    }
+}

@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "EditorTileSelect",
+		uint64 ResourceId = 55ac6c60daaa72ff,
+	},
+},

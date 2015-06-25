@@ -1,0 +1,139 @@
+class LevelSaveClass : ZilchComponent
+{
+    [Serialized]
+    var IDstring : String = "";
+    [Serialized]
+    var Posstring : String = "";
+    [Serialized]
+    var Pos1string : String = "";
+    [Serialized]
+    var Pos2string : String = "";
+    [Serialized]
+    var ConPortPosstring : String = "";
+    
+    //Storage of loaded data
+    var Data : Cog = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    //Adds an object to the class to be stored
+    function AddObject(obj : Cog)
+    {
+        this.IDstring = "`this.IDstring``obj.EditorObjectClass.TileID` ";
+        this.Posstring = "`this.Posstring``obj.EditorObjectClass.Pos`" ;
+        this.Pos1string = "`this.Pos1string``obj.EditorObjectClass.Pos1`" ;
+        this.Pos2string = "`this.Pos2string``obj.EditorObjectClass.Pos2`" ;
+        this.ConPortPosstring = "`this.ConPortPosstring``obj.EditorObjectClass.ConPortalPos`" ;
+    }
+    
+    //Saves the level
+    function SaveLevel()
+    {
+        //Clear current strings
+        this.IDstring = "";
+        this.Posstring = "";
+        this.Pos1string = "";
+        this.Pos2string = "";
+        this.ConPortPosstring = "";
+        
+        var objs = this.Space.FindAllObjectsByName("EditorObject");
+        while(objs.IsNotEmpty)
+        {
+            this.AddObject(objs.Current);
+            objs.MoveNext();
+        }
+        Zero.ObjectStore.Store(this.LevelSettings.LevelEditorClass.LevelName, this.Owner);
+    }
+    
+    //Loops through all the objects that are loaded, calling the function on each one
+    function LoopLoaded(callback : delegate(obj : Cog))
+    {
+        //Return early if nothing to load
+        if(this.IDstring == "")
+        {
+            return;
+        }
+        //Save the strings
+        var ids = this.IDstring;
+        var pos = this.Posstring;
+        var pos1 = this.Pos1string;
+        var pos2 = this.Pos2string;
+        var cpos = this.ConPortPosstring;
+        
+        var done : Boolean = false;
+        while(ids != " " && ids != "")
+        {
+            var i : Integer = 0;
+            var j : Integer = 0;
+            var id : Integer = 0;
+            //Loop until whitespace for id string
+            while(ids.SubString(i, 1) != " ")
+            {
+                ++i;
+            }
+            
+            id = Integer.Parse(ids.SubString(0, i));
+            ids = ids.SubString(i + 1, ids.Count - i - 1);
+            
+            //Get pos
+            var posX : Real = 0.0;
+            var posY : Real = 0.0;
+            var posZ : Real = 1.0;
+            
+            i = 0;
+            j = 0;
+            
+            //Look for comma location
+            while(pos.SubString(j, 1) != ",")
+            {
+                ++j;
+            }
+            posX = Real.Parse(pos.SubString(1, j - 1));
+            i = j + 2;
+            ++j;
+            //Look for next comma location
+            while(pos.SubString(j, 1) != ",")
+            {
+                ++j;
+            }
+            posY = Real.Parse(pos.SubString(i, j - i));
+            if(j + 5 < pos.Count)
+            {
+                pos = pos.SubString(j + 4, pos.Count - j - 4);
+            }
+            
+            var posL : Real3 = Real3(posX, posY, posZ);
+            
+            //Create object and run callback with it
+            //Create the tile sprite
+            var tile = this.Space.CreateAtPosition(Archetype.Find("EmptySprite"), posL);
+            tile.AddComponentByName("EditorObjectClass");
+            tile.EditorObjectClass.Init(id);
+            callback(tile);
+        }
+    }
+    
+    //Loads the level, deletes data in current level
+    function LoadLevel(levelName : String)
+    {
+        //To store the loaded level
+        var loaded = Zero.ObjectStore.Restore(levelName, this.Space);
+        if(loaded == null)
+        {
+            return;
+        }
+        //Update data
+        this.IDstring = loaded.LevelSaveClass.IDstring;
+        this.Posstring = loaded.LevelSaveClass.Posstring;
+        this.Pos1string = loaded.LevelSaveClass.Pos1string;
+        this.Pos2string = loaded.LevelSaveClass.Pos2string;
+        this.ConPortPosstring = loaded.LevelSaveClass.ConPortPosstring;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

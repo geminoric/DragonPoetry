@@ -1,0 +1,121 @@
+class EditorDisplay : ZilchComponent
+{
+    var MousePos : Real3 = Real3(0,0,0);
+    //Is the mouse button down
+    var MDown : Boolean = false;
+    var XMin : Real = -100.0;
+    var XMax : Real = 100.0;
+    var YMin : Real = 400.0;
+    var YMax : Real = 600;
+    var CamMoveSpeed : Real = 0.25;
+    
+    var InitDone : Boolean = false;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.MouseUpdate, this.MousePress);
+    }
+    
+    //Checks what happens when mouse pressed
+    function MousePress(event : MouseEvent)
+    {
+        //Check if mouse button is triggered
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Left))
+        {
+            this.MDown = true;
+        }
+        else
+        if(this.MDown)
+        {
+            //If mouse is inside window
+            if(this.MousePos.Y > 100 && this.LevelSettings.EditorTileSelect.SelID != -1)
+            {
+                //Create object at mouse
+                var obj = this.Space.CreateAtPosition(Archetype.Find("EmptySprite"), this.MousePos);
+                obj.AddComponentByName("EditorObjectClass");
+                obj.EditorObjectClass.Init(this.LevelSettings.EditorTileSelect.SelID);
+                obj.Name = "EditorObject";
+                obj.Sprite.SpriteSource = this.LevelSettings.EditorSprite.GetSprite(this.LevelSettings.EditorTileSelect.SelID);
+            }
+            this.MDown = false;
+        }
+    }
+    
+    function MoveCamera()
+    {
+        var nPos = this.Space.FindObjectByName("Camera2").Transform.Translation;
+        //Camera moving with WASD
+        if(Zero.Keyboard.KeyIsDown(Keys.W))
+        {
+            nPos.Y += this.CamMoveSpeed;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.S))
+        {
+            nPos.Y -= this.CamMoveSpeed;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.D))
+        {
+            nPos.X += this.CamMoveSpeed;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.A))
+        {
+            nPos.X -= this.CamMoveSpeed;
+        }
+        //Bind camera
+        nPos.X = Math.Clamp(nPos.X, this.XMin, this.XMax);
+        nPos.Y = Math.Clamp(nPos.Y, this.YMin, this.YMax);
+        
+        this.Space.FindObjectByName("Camera2").Transform.Translation = nPos;
+    }
+    
+    function UpdateMPos()
+    {
+        this.MousePos = this.LevelSettings.EditorTileSelect.MousePos;
+    }
+    
+    function InitViewport()
+    {
+        //Move based on aspect ratio
+        var resX : Real = this.Space.FindObjectByName("Camera").CameraViewport.ViewportResolutionWithMargin.X;
+        var resY : Real = this.Space.FindObjectByName("Camera").CameraViewport.ViewportResolutionWithMargin.Y;
+        var aspect : Real = resX / resY;
+        //Move depending on aspect ratio
+        if(aspect > 1.8216 && aspect < 1.8217)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.566,0.574);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.054,0.122);
+        }
+        if(aspect > 1.776 && aspect < 1.778)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.576,0.572);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.046,0.124);
+        }
+        if(aspect > 1.599 && aspect < 1.6001)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.576,0.514);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.046,0.161);
+        }
+        if(aspect > 1.599 && aspect < 1.6001)
+        {
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedSize = Real2(0.576,0.514);
+            this.Space.FindObjectByName("Camera2").CameraViewport.NormalizedOffset = Real2(0.046,0.161);
+        }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(!this.InitDone)
+        {
+            this.InitViewport();
+            this.InitDone = true;
+        }
+        this.MoveCamera();
+        this.UpdateMPos();
+        if(this.MousePos.Y > 100)
+        {
+            //Inside of display
+            
+        }
+    }
+}
