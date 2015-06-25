@@ -107,6 +107,8 @@ class LevelLoader : ZilchComponent
         //  18 = Fall Space Left
         //  19-26 = Fall Space Corner 1-8
         
+        /*
+        
         //Tiles
         this.SetRect(1, 15, 1, 5, 1, background);
         this.SetRect(4, 12, 8, 12, 1, background);
@@ -152,6 +154,8 @@ class LevelLoader : ZilchComponent
         
         //Player position
         this.SetPos(2, 3, 1, extra);
+        
+        */
         
         
         this.LoadLevel(background, extra, blocks);
