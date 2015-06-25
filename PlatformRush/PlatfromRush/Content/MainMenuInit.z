@@ -1,0 +1,60 @@
+class MainMenuInit : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        var but0 = this.Space.Create(Archetype.Find("Button"));
+        but0.ButtonClass.Init(Real3(-15,2,0), Real3(3,1.5,1), this.StartGame , "start", 30);
+        
+        var but1 = this.Space.Create(Archetype.Find("Button"));
+        but1.ButtonClass.Init(Real3(-15,0,0), Real3(3,1.5,1), this.StartGame , "editor", 30);
+        
+        var but2 = this.Space.Create(Archetype.Find("Button"));
+        but2.ButtonClass.Init(Real3(-15,-2,0), Real3(3,1.5,1), this.StartGame , "options", 30);
+        
+        var but3 = this.Space.Create(Archetype.Find("Button"));
+        but3.ButtonClass.Init(Real3(-15,-4,0), Real3(3,3,1), this.StartGame , "controles", 30);
+        
+        var but4 = this.Space.Create(Archetype.Find("Button"));
+        but4.ButtonClass.Init(Real3(-15,-6,0), Real3(1.5,1.5,1), this.StartGame , "credits", 30);
+        
+        var but5 = this.Space.Create(Archetype.Find("Button"));
+        but5.ButtonClass.Init(Real3(-15,-8,0), Real3(1.5,1.5,1), this.StartGame , "quit", 30);
+    }
+
+    function StartGame()
+    {
+        var level = Level.Find("LevelSelect");
+        this.Space.LoadLevel(level);
+    }
+    
+    function LevelEditor()
+    {
+        var level = Level.Find("LevelEditor");
+        this.Space.LoadLevel(level);
+    }
+    
+    function Options()
+    {
+        var level = Level.Find("Optins");
+        this.Space.LoadLevel(level);
+    }
+
+    function Controls()
+    {
+        var level = Level.Find("Controls");
+        this.Space.LoadLevel(level);
+    }
+    
+    function Credits()
+    {
+        var level = Level.Find("Credits");
+        this.Space.LoadLevel(level);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        
+    }
+}
