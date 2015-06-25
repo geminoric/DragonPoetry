@@ -1,0 +1,187 @@
+class PlayerController : ZilchComponent
+{
+    // Movement Variables
+    var VelX : Real = 0.0;
+    var VelY : Real = 0.0;
+    var Direction : Integer = 0; // 0 for left, 1 for right
+    //
+    var Speed : Real = 0.20;
+    var Gravity : Real = 0.05;
+    
+    
+    // Jump Variables
+    var InAir : Boolean = false;
+    var Jumps : Integer = 1;
+    //
+    var JumpHeight : Real = 1.5;
+    
+    // Input Timers
+    var DashTimer0 : Integer = 0; // Dashing left
+    var DashTimerMax0 : Integer = 15;
+    var DashTimer1 : Integer = 0; // Dashing right
+    var DashTimerMax1 : Integer = 15;
+    var DashCooldown : Integer = 0;
+    var DashCooldownMax : Integer = 60;
+    var DashDuration : Integer = 10;
+    
+    var GroundPoundTimer : Integer = 0;
+    var GroundPoundTimerMax : Integer = 15;
+    var GroundPoundingCurrently : Boolean = false;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionPersisted,     this.OnCollisionPersisted);
+    }
+    
+    // Input
+    //////////////////////////
+    function CheckInput()
+    {
+        // Movement
+        if ( Zero.Keyboard.KeyIsDown(Keys.A) )
+        {
+            this.Direction = 0;
+            this.VelX = -1.0;
+        }
+        else if ( Zero.Keyboard.KeyIsDown(Keys.D) )
+        {
+            this.Direction = 1;
+            this.VelX = 1.0;
+        }
+        else
+        {
+            this.VelX = 0.0;
+        }
+        
+        // Jumping
+        if ( Zero.Keyboard.KeyIsPressed(Keys.Space) && this.Jumps > 0 )
+        {
+            if ( this.InAir )
+            {
+                --this.Jumps;
+            }
+            
+            this.InAir = true;
+            this.VelY = this.JumpHeight;
+        }
+        
+        // Dashing
+        if ( Zero.Keyboard.KeyIsPressed(Keys.A) )
+        {            
+            if ( this.DashTimer0 > 0 && this.DashCooldown <= 0 )
+            {
+                this.DashCooldown = this.DashCooldownMax;
+            }
+            
+            this.DashTimer0 = this.DashTimerMax0;
+        }
+        if ( Zero.Keyboard.KeyIsPressed(Keys.D) )
+        {
+            if ( this.DashTimer1 > 0 && this.DashCooldown <= 0 )
+            {
+                this.DashCooldown = this.DashCooldownMax;
+            }
+            
+            this.DashTimer1 = this.DashTimerMax1;
+        }
+        
+        // GroundPounding
+        if ( Zero.Keyboard.KeyIsPressed(Keys.S) )
+        {
+            if ( this.GroundPoundTimer > 0 )
+            {
+                this.GroundPoundingCurrently = true;
+            }
+            
+            this.GroundPoundTimer = this.GroundPoundTimerMax;
+        }
+    }
+    
+    // Collision
+    /////////////////////////////
+    function OnCollisionPersisted(event : CollisionEvent)
+    {
+        var objPos = event.OtherObject.Transform.Translation;
+        
+        if ( objPos.Y < this.Owner.Transform.Translation.Y )
+        {
+            this.InAir = false;
+            this.Jumps = 1;
+        }
+        
+        Console.WriteLine("Colliding");
+    }
+    
+    // UpdateTimers
+    /////////////////////////////
+    function UpdateTimers()
+    {
+        if ( this.DashCooldown > 0 )
+        {
+            --this.DashCooldown;
+        }
+        if ( this.DashTimer0 > 0 )
+        {
+            --this.DashTimer0;
+        }
+        if ( this.DashTimer1 > 0 )
+        {
+            --this.DashTimer1;
+        }
+        if ( this.GroundPoundTimer > 0 )
+        {
+            --this.GroundPoundTimer;
+        }
+    }
+    
+    // Update Position
+    //////////////////////////////////
+    function UpdatePosition()
+    {
+        // Gravity
+        if ( this.InAir && this.VelY > -1.0)
+        {
+            this.VelY -= this.Gravity;
+        }
+        else if ( !this.InAir )
+        {
+            this.VelY = 0;
+        }
+        
+        // Are we dashing or not
+        if ( this.DashCooldown >= this.DashCooldownMax - this.DashDuration )
+        {
+            if ( this.DashTimer0 > 0)
+            {
+                this.VelX = -2.0;
+            }
+            if ( this.DashTimer1 > 0 )
+            {
+                this.VelX = 2.0;
+            }
+        }
+        
+        // Are we ground pounding
+        if ( this.GroundPoundingCurrently )
+        {
+            if ( !this.InAir )
+            {
+                this.GroundPoundingCurrently = false;
+            }
+            
+            this.VelY = -2.0;
+        }
+        
+        // Update Position
+        this.Owner.Transform.Translation += Real3(this.VelX * this.Speed, this.VelY * this.Speed, 0.0);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.CheckInput();
+        this.UpdateTimers();
+        this.UpdatePosition();
+        Console.WriteLine(this.VelY);
+    }
+}
