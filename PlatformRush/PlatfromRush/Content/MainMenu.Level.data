@@ -281,7 +281,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55020ef45ee0f9f2:platfrom_inactive",
+			string SpriteSource = "5502110ced0a955c:platfrom_inactive",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -311,7 +311,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.99138, -0.295056, 0],
+			Vec3 Translation = [-6.41111, -2.41518, 0],
 			Vec3 Scale = [5.77006, 5.77006, 5.77006],
 			Quat Rotation = [0, 0, 0, 1],
 		},

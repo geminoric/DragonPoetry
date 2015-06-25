@@ -69,10 +69,6 @@ Level =
 		LevelData = 
 		{
 			int TotalPlatforms = 12,
-			int PlatformsActivated = 0,
-		},
-		ReturnToMenu = 
-		{
 		},
 		QuitGameTest = 
 		{
@@ -106,7 +102,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 32.9744,
+			float Size = 10.9762,
 		},
 		EditorCameraController = 
 		{
@@ -219,6 +215,15 @@ Level =
 		Health = 
 		{
 			int Hp = 6,
+		},
+		SoundEmitter = 
+		{
+			bool StartPlaying = true,
+			int ExtraPriority = 0,
+			string CueName = "55fc1306f7594dd2:LevelOneSound",
+			float Volume = 1,
+			float Pitch = 1,
+			bool Positional = true,
 		},
 	},
 	Cog = 

@@ -70,6 +70,13 @@ Level =
 		{
 			string HudLevel = "550388c8279ac876:HUD",
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
+		PauseControl = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -219,6 +226,15 @@ Level =
 		},
 		CheatCodes = 
 		{
+		},
+		SoundEmitter = 
+		{
+			bool StartPlaying = true,
+			int ExtraPriority = 0,
+			string CueName = "55fc13c0e8ca1b3b:LevelThreeSound",
+			float Volume = 1,
+			float Pitch = 1,
+			bool Positional = true,
 		},
 	},
 	ArchetypeInstance = 
