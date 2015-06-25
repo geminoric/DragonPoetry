@@ -1,0 +1,20 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "Spring",
+		uint64 ResourceId = 550269909eff687f,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 86,
+		uint FrameSizeY = 86,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 43,
+		float OriginY = 43,
+		float PixelsPerUnit = 32,
+		bool Smoothing = false,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+		SpriteFill Fill = Stretch,
+	},
+},

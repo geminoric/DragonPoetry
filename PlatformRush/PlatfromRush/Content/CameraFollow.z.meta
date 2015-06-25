@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "CameraFollow",
+		uint64 ResourceId = 55027760bdd760fd,
+	},
+},

@@ -3,10 +3,24 @@ class Launcher : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
-
-    function OnLogicUpdate(event : UpdateEvent)
+    
+    function OnCollisionStarted(collisionEvent : CollisionEvent)
     {
+        var otherObject = collisionEvent.OtherObject;
+        if(otherObject != null)
+        {
+            var player = otherObject.PlayerController;
+            if(player != null)
+            {
+                player.VelY = 1.0;
+                if(player.GroundPoundingCurrently)
+                {
+                  player.VelY = 1.5;
+                  player.GroundPoundingCurrently = false;
+                }
+            }
+        }
     }
 }

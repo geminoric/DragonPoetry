@@ -6,15 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Spike",
-	},
-	Archetyped = 
-	{
-		string Name = "550264677f6b5fc9:Spike",
+		string Name = "Player",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [2.80955, -1.57214, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -28,13 +24,16 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5502d7ae65062388:spikes000",
+		string SpriteSource = "5502c88e6e940b8f:main_idle1000",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
 		bool AnimationActive = true,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
+	},
+	PlayerController = 
+	{
 	},
 	BoxCollider = 
 	{
@@ -43,14 +42,26 @@ Cog =
 		bool Seamless = true,
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-		Vec3 Offset = [0, -0.15, 0],
-		Vec3 Size = [0.375, 0.175, 0.5],
+		Vec3 Offset = [0, 0, 0],
+		Vec3 Size = [0.5, 0.5, 0.5],
 	},
-	Hazard = 
+	RigidBody = 
 	{
-		int Damage = 1,
-		bool StunOn = false,
-		bool Active = true,
-		int KnockBackSpeed = 1,
+		bool Static = false,
+		bool Asleep = false,
+		bool Kinematic = false,
+		bool RotationLocked = true,
+		bool Mode2D = true,
+		bool AllowSleep = true,
+		bool Inherit2DMode = false,
+		Vec3 Velocity = [0, 0, 0],
+		Vec3 AngularVelocity = [0, 0, 0],
+	},
+	Health = 
+	{
+		int Hp = 6,
+	},
+	CheatCodes = 
+	{
 	},
 },

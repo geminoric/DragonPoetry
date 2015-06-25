@@ -26,7 +26,8 @@ class Hazard : ZilchComponent
         var player = otherObject.PlayerController;
         if(player != null )
         {
-            
+            if(otherObject.Health.Vulnurable)
+            {
             if(this.StunOn == true)
             {
                 otherObject.PlayerController.ToggleStunned();
@@ -35,18 +36,22 @@ class Hazard : ZilchComponent
             
             if(this.KnockBackSpeed > 0)
             {
-                var x : Real = -otherObject.RigidBody.Velocity.X;
-                var y : Real = -otherObject.RigidBody.Velocity.Y;
+                var x : Real = (player.Direction -0.5);
+                var y : Real = -player.VelY;
                 var direction: Real3 = Real3( x, y, 0);
-                Math.Normalize(direction);
-                direction *= this.KnockBackSpeed;
-                otherObject.RigidBody.Velocity = direction;
+                direction = Math.Normalize(direction);
+
+                direction.X *= this.KnockBackSpeed;
+                direction.Y *= this.KnockBackSpeed;
+                player.VelX = direction.X;
+                player.VelY = direction.Y;
             }
             
             if(this.Damage > 0)
             {
                 otherObject.Health.DealDamage(this.Damage);
             }
+        }
         }
       }
     }

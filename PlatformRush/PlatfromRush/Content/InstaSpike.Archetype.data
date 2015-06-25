@@ -6,15 +6,15 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Spike",
+		string Name = "InstantDeaht",
 	},
 	Archetyped = 
 	{
-		string Name = "550264677f6b5fc9:Spike",
+		string Name = "5502705342590434:InstaSpike",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [2.80955, -1.57214, 0],
+		Vec3 Translation = [6.3502, 1.30778, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 1, 1, 1],
+		Vec4 Color = [1, 0, 0, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -48,7 +48,7 @@ Cog =
 	},
 	Hazard = 
 	{
-		int Damage = 1,
+		int Damage = 6,
 		bool StunOn = false,
 		bool Active = true,
 		int KnockBackSpeed = 1,
