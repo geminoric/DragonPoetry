@@ -1,0 +1,18 @@
+class ChangeLevel : ZilchComponent
+{
+    [Property]
+    var SetLevel : Level = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {        
+        if(Zero.Keyboard.KeyIsPressed(Keys.Right))
+        {
+            this.Space.LoadLevel(this.SetLevel);
+        }
+    }
+}

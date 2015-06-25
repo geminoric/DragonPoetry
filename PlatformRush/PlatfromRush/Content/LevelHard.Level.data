@@ -64,7 +64,7 @@ Level =
 		},
 		LevelData = 
 		{
-			int TotalPlatforms = 4,
+			int TotalPlatforms = 7,
 		},
 		HUD = 
 		{
@@ -95,7 +95,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 44.5109,
+			float Size = 81.1041,
 		},
 		EditorCameraController = 
 		{
@@ -969,6 +969,132 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-0.0972742, 5.94442, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 47,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [26.7735, 13.4336, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 48,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [19.8475, 19.0191, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 49,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [26.3095, 22.1301, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 50,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [19.9768, 26.6853, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 51,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [14.6528, 19.1467, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 52,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [31.4291, 22.3687, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 53,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [13.5418, 32.1456, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},

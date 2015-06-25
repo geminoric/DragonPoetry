@@ -1,0 +1,44 @@
+class BreathEffect : ZilchComponent
+{
+    [Property]
+    var StartSize : Real3 = Real3(1.0, 1.0, 1.0);
+    [Property]
+    var RateOfChange : Real = 15;
+    [Property]
+    var MaxSize : Real = 0;
+    
+    var Active : Real = 1;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var scale = this.Owner.Transform.Scale;
+        
+        if(this.Active == 0)
+        {
+            this.Owner.Transform.Scale = this.StartSize;
+        }
+        if(this.Active == 1)
+        {
+            this.Owner.Transform.Scale += scale * (this.RateOfChange) * event.Dt;
+            
+            if(this.Owner.Transform.Scale.X > this.MaxSize)
+            {
+                this.Active = 2;
+            }
+        }
+        if(this.Active == 2)
+        {
+            this.Owner.Transform.Scale -= scale * (this.RateOfChange) * event.Dt;
+            
+            if(this.Owner.Transform.Scale. X < this.StartSize.X)
+            {
+                this.Active = 1;
+            }
+        }
+    }
+}

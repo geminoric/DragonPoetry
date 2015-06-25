@@ -1,0 +1,33 @@
+class QuitGameTest : ZilchComponent
+{
+    [Property]
+    var AllowQuit : Boolean = false;
+    
+    constructor() : base()
+    {
+    }
+
+    function Initialize(init : CogInitializer)
+    {
+        //listen for the game engine requesting quit
+        Zero.Connect(this.GameSession, Events.GameRequestQuit, this.OnGameRequestQuit);
+    }
+    
+    function OnGameRequestQuit(gameEvent : GameEvent)
+    {
+        //If you handle this event the game will not exit
+        gameEvent.Handled = true;
+        //if we allow the request to quit to work, then quit the game
+        if(this.AllowQuit)
+        {
+            this.QuitGame();
+        }
+    }
+    
+    function QuitGame()
+    {
+        //In editor mode, this will quit to the editor.
+        //In an export this will quit the game.
+        this.GameSession.Quit();
+    }
+}
