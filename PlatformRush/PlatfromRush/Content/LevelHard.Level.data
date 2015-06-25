@@ -70,6 +70,13 @@ Level =
 		{
 			string HudLevel = "550388c8279ac876:HUD",
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
+		PauseControl = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -83,7 +90,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [18.3115, -5.68679, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -95,7 +102,19 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
+<<<<<<< HEAD
 			float Size = 81.1041,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+			float Size = 73.3861,
+=======
+			float Size = 54.3657,
+>>>>>>> origin/master
+=======
+			float Size = 44.5109,
+>>>>>>> parent of 711001b... last minute
+>>>>>>> origin/master
 		},
 		EditorCameraController = 
 		{
@@ -103,7 +122,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [18.3115, -5.68679, 8.0042e-007],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -218,6 +237,18 @@ Level =
 			int Hp = 6,
 		},
 		CheatCodes = 
+		{
+		},
+		SoundEmitter = 
+		{
+			bool StartPlaying = true,
+			int ExtraPriority = 0,
+			string CueName = "55fc13c0e8ca1b3b:LevelThreeSound",
+			float Volume = 1,
+			float Pitch = 1,
+			bool Positional = true,
+		},
+		GroundCollision = 
 		{
 		},
 	},
@@ -977,16 +1008,35 @@ Level =
 			string Name = "Platform",
 		},
 	},
+<<<<<<< HEAD
 	ArchetypeInstance = 
 	{
 		string Name = "55026c5dfdaa70ad:Launcher",
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+=======
+	Cog = 
+	{
+>>>>>>> origin/master
+>>>>>>> origin/master
 		LinkId = 
 		{
 			uint Id = 47,
 		},
+<<<<<<< HEAD
 		Transform = 
 		{
 			Vec3 Translation = [26.7735, 13.4336, 0],
+=======
+<<<<<<< HEAD
+		Transform = 
+		{
+			Vec3 Translation = [26.7443, 12.9037, 0],
+>>>>>>> origin/master
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1004,7 +1054,11 @@ Level =
 		},
 		Transform = 
 		{
+<<<<<<< HEAD
 			Vec3 Translation = [19.8475, 19.0191, 0],
+=======
+			Vec3 Translation = [22.1712, 17.2329, 0],
+>>>>>>> origin/master
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1022,7 +1076,11 @@ Level =
 		},
 		Transform = 
 		{
+<<<<<<< HEAD
 			Vec3 Translation = [26.3095, 22.1301, 0],
+=======
+			Vec3 Translation = [26.8662, 22.9644, 0],
+>>>>>>> origin/master
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1040,7 +1098,11 @@ Level =
 		},
 		Transform = 
 		{
+<<<<<<< HEAD
 			Vec3 Translation = [19.9768, 26.6853, 0],
+=======
+			Vec3 Translation = [20.8908, 27.6594, 0],
+>>>>>>> origin/master
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1051,20 +1113,32 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
+<<<<<<< HEAD
 		string Name = "550213475160f850:Platform",
+=======
+		string Name = "55026c5dfdaa70ad:Launcher",
+>>>>>>> origin/master
 		LinkId = 
 		{
 			uint Id = 51,
 		},
 		Transform = 
 		{
+<<<<<<< HEAD
 			Vec3 Translation = [14.6528, 19.1467, 0],
+=======
+			Vec3 Translation = [29.9759, 5.46491, 0],
+>>>>>>> origin/master
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
+<<<<<<< HEAD
 			string Name = "Platform",
+=======
+			string Name = "Launcher",
+>>>>>>> origin/master
 		},
 	},
 	ArchetypeInstance = 
@@ -1076,7 +1150,11 @@ Level =
 		},
 		Transform = 
 		{
+<<<<<<< HEAD
 			Vec3 Translation = [31.4291, 22.3687, 0],
+=======
+			Vec3 Translation = [15.9389, 16.5539, 0],
+>>>>>>> origin/master
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1094,7 +1172,10 @@ Level =
 		},
 		Transform = 
 		{
+<<<<<<< HEAD
 			Vec3 Translation = [13.5418, 32.1456, 0],
+=======
+			Vec3 Translation = [33.9261, 22.5293, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1103,4 +1184,69 @@ Level =
 			string Name = "Platform",
 		},
 	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 54,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [14.7992, 35.4173, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+<<<<<<< HEAD
+		},
+	},
+=======
+=======
+		Named = 
+		{
+			string Name = "Ground",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [12.7384, -5.68679, 8.0042e-007],
+			Vec3 Scale = [614.176, 2.76291, 2.76291],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = false,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
+>>>>>>> origin/master
+		},
+	},
+=======
+>>>>>>> parent of 711001b... last minute
+>>>>>>> origin/master
 },

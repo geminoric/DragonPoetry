@@ -3,7 +3,10 @@ class LevelData : ZilchComponent
     var Player : Cog = null;
     [Property]
     var TotalPlatforms : Integer = 0;
+    
     var PlatformsActivated : Integer = 0;
+    
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -14,10 +17,21 @@ class LevelData : ZilchComponent
     function ActivatePlatforms(actnum : Integer)
     {
         this.PlatformsActivated += actnum;
+        
+        /*
+        
+        if(this.TotalPlatforms == this.ActivatePlatforms)
+        {
+            var win = Level.Find("WinScreen");
+            
+            this.Space.LoadLevel(win);
+        }
+        
+        */
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-
     }
+
 }
