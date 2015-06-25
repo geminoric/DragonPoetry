@@ -51,6 +51,11 @@ class LevelSaveClass : ZilchComponent
     //Loops through all the objects that are loaded, calling the function on each one
     function LoopLoaded(callback : delegate(obj : Cog))
     {
+        //Return early if nothing to load
+        if(this.IDstring == "")
+        {
+            return;
+        }
         //Save the strings
         var ids = this.IDstring;
         var pos = this.Posstring;
@@ -116,6 +121,10 @@ class LevelSaveClass : ZilchComponent
     {
         //To store the loaded level
         var loaded = Zero.ObjectStore.Restore(levelName, this.Space);
+        if(loaded == null)
+        {
+            return;
+        }
         //Update data
         this.IDstring = loaded.LevelSaveClass.IDstring;
         this.Posstring = loaded.LevelSaveClass.Posstring;
