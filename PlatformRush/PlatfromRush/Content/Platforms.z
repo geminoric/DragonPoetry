@@ -1,13 +1,34 @@
 class Platforms : ZilchComponent
 {
-    
+    [Property]
+    var OtherSprite : SpriteSource = null;
+    var Active : Boolean = false;
     
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
+    
+    
 
-    function OnLogicUpdate(event : UpdateEvent)
+    function OnCollisionStarted(collisionEvent : CollisionEvent)
     {
+        if(!this.Active)
+        {
+          var otherObject = collisionEvent.OtherObject;
+          if(otherObject != null)
+          {
+             var player = otherObject.PlayerController;
+             if(player !=null)
+             {
+                if(this.OtherSprite != null)
+                {
+                    this.Owner.Sprite.SpriteSource = this.OtherSprite;
+                    this.Owner.Space.LevelSettings.LevelData.ActivatePlatforms(1);
+                    this.Active = true;
+                }
+             }
+          }
+        }
     }
 }

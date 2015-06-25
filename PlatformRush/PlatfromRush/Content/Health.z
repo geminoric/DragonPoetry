@@ -2,6 +2,8 @@ class Health : ZilchComponent
 {
     [Property]
     var Hp : Integer = 0;
+    var Vulnurable: Boolean = true;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -9,10 +11,13 @@ class Health : ZilchComponent
 
     function DealDamage(damage: Integer)
     {
-        this.Hp -= damage;
-        if(this.Hp < 0 )
+        if(this.Vulnurable)
         {
+          this.Hp -= damage;
+          if(this.Hp < 0 )
+          {
             this.Hp = 0;
+          }
         }
     }
     
