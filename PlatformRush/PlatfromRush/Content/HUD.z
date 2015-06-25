@@ -15,6 +15,9 @@ class HUD : ZilchComponent
     function Destroyed()
     {
         // Make sure to clean up the extra Space we created
-        this.HudSpace.Destroy();
+        if(this.HudSpace != null)
+        {
+           this.HudSpace.Destroy();
+        }
     }
 }

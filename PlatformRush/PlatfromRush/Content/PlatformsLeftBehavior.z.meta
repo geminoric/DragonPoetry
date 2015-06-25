@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "PlatformsLeftBehavior",
+		uint64 ResourceId = 5502317ede2403f2,
+	},
+},

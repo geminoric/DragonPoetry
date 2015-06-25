@@ -2,16 +2,16 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "fullhp",
-		uint64 ResourceId = 5502e7150b6d20e6,
+		string Name = "shadowfloor1",
+		uint64 ResourceId = 55022bfacf5cd44c,
 		uint64 AtlasId = 5274cf95e4a661fd,
-		uint FrameSizeX = 108,
-		uint FrameSizeY = 72,
+		uint FrameSizeX = 36,
+		uint FrameSizeY = 36,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333,
-		float OriginX = 54,
-		float OriginY = 36,
-		float PixelsPerUnit = 128,
+		float OriginX = 18,
+		float OriginY = 18,
+		float PixelsPerUnit = 32,
 		bool Smoothing = false,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],

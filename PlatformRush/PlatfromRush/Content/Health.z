@@ -1,9 +1,10 @@
 class Health : ZilchComponent
 {
+    [Property]
     var Hp : Integer = 0;
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function DealDamage(damage: Integer)
@@ -14,7 +15,20 @@ class Health : ZilchComponent
             this.Hp = 0;
         }
     }
+    
+    function HealtoFull()
+    {
+        this.Hp = 6;
+    }
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if ( Zero.Keyboard.KeyIsDown(Keys.H) )
+        {
+            Console.WriteLine(this.Hp);
+        }
+        if ( Zero.Keyboard.KeyIsDown(Keys.K) )
+        {
+            this.HealtoFull();
+        }
     }
 }

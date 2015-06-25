@@ -1,0 +1,120 @@
+class HpDisplay : ZilchComponent
+{
+    [Property]
+    var Id: Integer = 0;
+    [Property]
+    var FullSprite : SpriteSource = null;
+    [Property]
+    var HalfSprite : SpriteSource = null;
+    [Property]
+    var EmptySprite : SpriteSource = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function ChangetoSprite(spriteOut : SpriteSource)
+    {
+        if(spriteOut !=null)
+        {
+            this.Owner.Sprite.SpriteSource = spriteOut;
+        }
+    }
+
+    function ManageHp(hp : Integer)
+    {
+        if(this.Id == 0)
+        {
+            if(hp >= 2 == true)
+            {
+                if(this.FullSprite != null)
+                {
+                this.ChangetoSprite(this.FullSprite);
+                }
+            }
+            if(hp == 1)
+            {
+                
+                if(this.HalfSprite != null)
+                {
+                    this.ChangetoSprite(this.HalfSprite);
+                }
+            }
+            if(hp == 0)
+            {
+                
+                if(this.EmptySprite != null)
+                {
+                    this.ChangetoSprite(this.EmptySprite);
+                }
+            }
+        }
+        if(this.Id == 1)
+        {
+            if(hp >= 4 == true)
+            {
+                if(this.FullSprite != null)
+                {
+                this.ChangetoSprite(this.FullSprite);
+                }
+            }
+            if(hp == 3)
+            {
+                if(this.HalfSprite != null)
+                {
+                    this.ChangetoSprite(this.HalfSprite);
+                }
+            }
+            if(hp <= 2 == true)
+            {
+                
+                if(this.EmptySprite != null)
+                {
+                    this.ChangetoSprite(this.EmptySprite);
+                }
+            }
+        }
+        if(this.Id == 2)
+        {
+            if(hp == 6)
+            {
+                if(this.FullSprite != null)
+                {
+                  this.ChangetoSprite(this.FullSprite);
+                }
+            }
+            if(hp == 5)
+            {
+                if(this.HalfSprite != null)
+                {
+                    this.ChangetoSprite(this.HalfSprite);
+                }
+            }
+            if(hp <= 4 == true)
+            {
+                
+                if(this.EmptySprite != null)
+                {
+                    this.ChangetoSprite(this.EmptySprite);
+                }
+            }
+        }
+    }
+
+
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var otherSpace = this.GameSession.FindSpaceByName("Main");
+        if(otherSpace != null)
+        {
+           var player = otherSpace.FindObjectByName("Player");
+           if(player != null)
+           {
+                var playerhp = player.Health.Hp;
+                this.ManageHp(playerhp);
+           }
+        }
+    }
+}

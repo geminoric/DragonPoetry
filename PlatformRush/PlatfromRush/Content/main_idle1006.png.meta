@@ -2,15 +2,15 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "fullhp",
-		uint64 ResourceId = 5502e7150b6d20e6,
+		string Name = "main_idle1006",
+		uint64 ResourceId = 5502c88e6ee7c662,
 		uint64 AtlasId = 5274cf95e4a661fd,
-		uint FrameSizeX = 108,
-		uint FrameSizeY = 72,
+		uint FrameSizeX = 128,
+		uint FrameSizeY = 128,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333,
-		float OriginX = 54,
-		float OriginY = 36,
+		float OriginX = 64,
+		float OriginY = 64,
 		float PixelsPerUnit = 128,
 		bool Smoothing = false,
 		bool Looping = true,

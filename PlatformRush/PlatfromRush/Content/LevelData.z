@@ -1,0 +1,18 @@
+class LevelData : ZilchComponent
+{
+    var Player : Cog = null;
+    [Property]
+    var TotalPlatforms : Integer = 0;
+    [Property]
+    var PlatformsActivated : Integer = 0;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Player = this.Space.FindObjectByName("Player");
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+
+    }
+}

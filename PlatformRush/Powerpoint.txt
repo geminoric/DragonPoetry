@@ -1,0 +1,8 @@
+Name : Dash Girl AKA ( WHY DO I HAVE A SCYTHE IF I DO NOT USE IT? )
+
+High Concept: 2D sidescrolling Platformer in which the player race through obstacle course as fast as possible.
+
+Win condititon:activate all the different platforms in the game: 
+
+Lose Codition: Fall or lose all Health
+

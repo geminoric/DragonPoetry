@@ -1,8 +1,12 @@
 class Hazard : ZilchComponent
 {
+    [Property]
     var Damage : Integer = 0;
+    [Property]
     var StunOn : Boolean = false;
+    [Property]
     var Active : Boolean = false;
+    [Property]
     var KnockBackSpeed : Integer = 0;
     
     function Initialize(init : CogInitializer)
@@ -14,16 +18,19 @@ class Hazard : ZilchComponent
 
     function OnCollisionStarted(collisionEvent : CollisionEvent)
     {
+        
       if(this.Active == true)
       {
         var otherObject = collisionEvent.OtherObject;
         //replace with player controller
-        var player = otherObject.Dropper;
+        var player = otherObject.PlayerController;
         if(player != null )
         {
+            
             if(this.StunOn == true)
             {
-                //otherObject.PlayerController.Stun == true;
+                otherObject.PlayerController.ToggleStunned();
+
             }
             
             if(this.KnockBackSpeed > 0)

@@ -28,12 +28,19 @@ class PlayerController : ZilchComponent
     var GroundPoundTimerMax : Integer = 15;
     var GroundPoundingCurrently : Boolean = false;
     
+    //stunned
+    var IsStunned: Boolean = false;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionPersisted,     this.OnCollisionPersisted);
     }
     
+    function ToggleStunned()
+    {
+        this.IsStunned = !this.IsStunned;
+    }
     // Input
     //////////////////////////
     function CheckInput()
@@ -110,7 +117,7 @@ class PlayerController : ZilchComponent
             this.Jumps = 1;
         }
         
-        Console.WriteLine("Colliding");
+        //Console.WriteLine("Colliding");
     }
     
     // UpdateTimers
@@ -179,9 +186,12 @@ class PlayerController : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if(this.IsStunned == false)
+        {
         this.CheckInput();
+        }
         this.UpdateTimers();
         this.UpdatePosition();
-        Console.WriteLine(this.VelY);
+       // Console.WriteLine(this.VelY);
     }
 }

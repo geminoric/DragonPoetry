@@ -1,0 +1,23 @@
+class PlatformsLeftBehavior : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var mainLevel = this.GameSession.FindSpaceByName("Main");
+        if(mainLevel != null)
+        {
+            var leveldata = mainLevel.LevelSettings.LevelData;
+            if(leveldata != null)
+            {
+             var totalPlatforms = leveldata.TotalPlatforms;
+             var platformsActivated = leveldata.PlatformsActivated;
+             this.Owner.SpriteText.Text = "Platforms: `platformsActivated`/`totalPlatforms`";
+            }
+        }
+
+    }
+}
