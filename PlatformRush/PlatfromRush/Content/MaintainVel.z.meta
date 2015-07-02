@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "MaintainVel",
+		uint64 ResourceId = 551d4fe1f133b0ba,
+	},
+},

@@ -7,7 +7,7 @@ class Hazard : ZilchComponent
     [Property]
     var Active : Boolean = false;
     [Property]
-    var KnockBackSpeed : Integer = 0;
+    var KnockBackSpeed : Real = 0;
     
     function Initialize(init : CogInitializer)
     {
@@ -23,7 +23,7 @@ class Hazard : ZilchComponent
       {
         var otherObject = collisionEvent.OtherObject;
         //replace with player controller
-        var player = otherObject.PlayerController;
+        var player = otherObject.PlayerController; 
         if(player != null )
         {
             if(otherObject.Health.Vulnurable)
@@ -36,13 +36,15 @@ class Hazard : ZilchComponent
             
             if(this.KnockBackSpeed > 0)
             {
-                var x : Real = (player.Direction -0.5);
-                var y : Real = -player.VelY;
-                var direction: Real3 = Real3( x, y, 0);
+                otherObject.PlayerController.InAir = true;
+                var x : Real = -(player.Direction -0.5);
+                var direction: Real3 = Real3( x, Math.Abs(x), 0);
+
                 direction = Math.Normalize(direction);
 
                 direction.X *= this.KnockBackSpeed;
-                direction.Y *= this.KnockBackSpeed;
+                direction.Y *= this.KnockBackSpeed * 1.5;
+
                 player.VelX = direction.X;
                 player.VelY = direction.Y;
             }

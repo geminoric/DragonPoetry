@@ -14,7 +14,7 @@ class Launcher : ZilchComponent
             var player = otherObject.PlayerController;
             if(player != null)
             {
-                player.VelY = 1.0;
+                player.VelY = 0.5;
                 if(player.GroundPoundingCurrently)
                 {
                   player.VelY = 1.5;

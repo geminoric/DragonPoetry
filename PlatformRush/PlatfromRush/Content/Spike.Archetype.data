@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [2.80955, -1.57214, 0],
+		Vec3 Translation = [-23.4715, 1.26801, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -44,13 +44,13 @@ Cog =
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, -0.15, 0],
-		Vec3 Size = [0.375, 0.175, 0.5],
+		Vec3 Size = [0.3, 0.175, 0.5],
 	},
 	Hazard = 
 	{
 		int Damage = 1,
 		bool StunOn = false,
 		bool Active = true,
-		int KnockBackSpeed = 1,
+		float KnockBackSpeed = 0.5,
 	},
 },

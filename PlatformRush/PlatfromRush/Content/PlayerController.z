@@ -23,7 +23,7 @@ class PlayerController : ZilchComponent
     var DashCooldown : Integer = 0;
     var DashCooldownMax : Integer = 60;
     var DashDuration : Integer = 10;
-    var DashingCurrently : Boolean = false;
+    var DashingCurrently : Boolean = false; 
     var DashSpeed : Real = 1.2;
     
     var GroundPoundTimer : Integer = 0;
@@ -60,7 +60,7 @@ class PlayerController : ZilchComponent
         }
         else
         {
-            this.VelX = 0.0;
+            //this.VelX = 0.0;
         }
         
         // Jumping
@@ -114,18 +114,36 @@ class PlayerController : ZilchComponent
     /////////////////////////////
     function OnCollisionPersisted(event : CollisionEvent)
     {
+        var otherObj = event.OtherObject;
         var objPos = event.OtherObject.Transform.Translation;
         
-        if ( objPos.Y < this.Owner.Transform.Translation.Y )
+        if ( objPos.Y  < this.Owner.Transform.Translation.Y )
         {
             this.InAir = false;
             if(this.Jumps < 200)
             {
             this.Jumps = 1;
             }
+            if(this.VelY < 0)
+            {
             this.VelY = 0;
-        }
+            }
+        } 
         
+        if(this.Direction == 1)
+        {
+            if( objPos.X  > this.Owner.Transform.Translation.X)
+            {
+                this.VelX = 0.0;
+            }
+        }
+        else
+        {
+            if( objPos.X < this.Owner.Transform.Translation.X)
+            {
+                this.VelX = 0.0;
+            }
+        }
         //Console.WriteLine("Colliding");
     }
     
@@ -156,10 +174,10 @@ class PlayerController : ZilchComponent
     function UpdatePosition()
     {
         // Gravity
-        //if ( this.InAir && this.VelY > -1.0)
-        //{
+        if ( this.InAir)
+        {
             this.VelY -= this.Gravity;
-        //}
+        }
         //else if ( !this.InAir )
         //{
         //    this.VelY = 0;
@@ -198,8 +216,14 @@ class PlayerController : ZilchComponent
         {
             this.VelY = 0;
         }
+        if(this.VelY < -0.5)
+        {
+            this.VelY = -0.5;
+        }
         // Update Position
         this.Owner.Transform.Translation += Real3(this.VelX * this.Speed, this.VelY * this.Speed, 0.0);
+        //update rigid body
+        //this.Owner.RigidBody.Velocity = Real3(this.VelX, this.VelY, 0.0);
     }
     
     function OnLogicUpdate(event : UpdateEvent)

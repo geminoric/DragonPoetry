@@ -1,0 +1,24 @@
+class MaintainVel : ZilchComponent
+{
+    [Dependency]
+    var RigidBody : RigidBody = null;
+    [Property]
+    var MaxSpeed : Real = 0.0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var vel = this.Owner.RigidBody.Velocity;
+        var size = Math.Length(vel);
+        if(size >= this.MaxSpeed)
+        {
+            Math.Normalize(vel);
+            vel *= this.MaxSpeed;
+            this.Owner.RigidBody.Velocity = vel;
+        }
+    }
+}
