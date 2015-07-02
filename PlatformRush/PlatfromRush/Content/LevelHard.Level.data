@@ -64,7 +64,7 @@ Level =
 		},
 		LevelData = 
 		{
-			int TotalPlatforms = 4,
+			int TotalPlatforms = 7,
 		},
 		HUD = 
 		{
@@ -105,7 +105,23 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
+<<<<<<< HEAD
 			float Size = 40.2751,
+=======
+<<<<<<< HEAD
+			float Size = 81.1041,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+			float Size = 73.3861,
+=======
+			float Size = 54.3657,
+>>>>>>> origin/master
+=======
+			float Size = 44.5109,
+>>>>>>> parent of 711001b... last minute
+>>>>>>> origin/master
+>>>>>>> origin/master
 		},
 		EditorCameraController = 
 		{
@@ -999,12 +1015,204 @@ Level =
 			string Name = "Platform",
 		},
 	},
+<<<<<<< HEAD
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+=======
 	Cog = 
 	{
+>>>>>>> origin/master
+>>>>>>> origin/master
 		LinkId = 
 		{
 			uint Id = 47,
 		},
+<<<<<<< HEAD
+		Transform = 
+		{
+			Vec3 Translation = [26.7735, 13.4336, 0],
+=======
+<<<<<<< HEAD
+		Transform = 
+		{
+			Vec3 Translation = [26.7443, 12.9037, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 48,
+		},
+		Transform = 
+		{
+<<<<<<< HEAD
+			Vec3 Translation = [19.8475, 19.0191, 0],
+=======
+			Vec3 Translation = [22.1712, 17.2329, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 49,
+		},
+		Transform = 
+		{
+<<<<<<< HEAD
+			Vec3 Translation = [26.3095, 22.1301, 0],
+=======
+			Vec3 Translation = [26.8662, 22.9644, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 50,
+		},
+		Transform = 
+		{
+<<<<<<< HEAD
+			Vec3 Translation = [19.9768, 26.6853, 0],
+=======
+			Vec3 Translation = [20.8908, 27.6594, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+<<<<<<< HEAD
+		string Name = "550213475160f850:Platform",
+=======
+		string Name = "55026c5dfdaa70ad:Launcher",
+>>>>>>> origin/master
+		LinkId = 
+		{
+			uint Id = 51,
+		},
+		Transform = 
+		{
+<<<<<<< HEAD
+			Vec3 Translation = [14.6528, 19.1467, 0],
+=======
+			Vec3 Translation = [29.9759, 5.46491, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+<<<<<<< HEAD
+			string Name = "Platform",
+=======
+			string Name = "Launcher",
+>>>>>>> origin/master
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 52,
+		},
+		Transform = 
+		{
+<<<<<<< HEAD
+			Vec3 Translation = [31.4291, 22.3687, 0],
+=======
+			Vec3 Translation = [15.9389, 16.5539, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 53,
+		},
+		Transform = 
+		{
+<<<<<<< HEAD
+			Vec3 Translation = [13.5418, 32.1456, 0],
+=======
+			Vec3 Translation = [33.9261, 22.5293, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 54,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [14.7992, 35.4173, 0],
+>>>>>>> origin/master
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+<<<<<<< HEAD
+		},
+	},
+=======
+=======
 		Named = 
 		{
 			string Name = "Ground",
@@ -1042,6 +1250,10 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
+>>>>>>> origin/master
 		},
 	},
+=======
+>>>>>>> parent of 711001b... last minute
+>>>>>>> origin/master
 },

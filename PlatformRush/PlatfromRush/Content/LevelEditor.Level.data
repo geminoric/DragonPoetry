@@ -51,13 +51,20 @@ Level =
 		EditorSprite = 
 		{
 		},
+<<<<<<< HEAD
+<<<<<<< HEAD
+		StopEsc = 
+=======
 		QuitGameTest = 
 		{
 			bool AllowQuit = false,
 		},
 		ReturnToMenu = 
+>>>>>>> origin/master
 		{
 		},
+=======
+>>>>>>> parent of 711001b... last minute
 	},
 	Cog = 
 	{
