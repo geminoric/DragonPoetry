@@ -77,6 +77,9 @@ Level =
 		PauseControl = 
 		{
 		},
+		ShowWinScreen = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -90,7 +93,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [18.3115, -5.68679, 50],
+			Vec3 Translation = [16.0335, 4.27403, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -102,7 +105,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 54.3657,
+			float Size = 40.2751,
 		},
 		EditorCameraController = 
 		{
@@ -110,7 +113,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [18.3115, -5.68679, 8.0042e-007],
+			Vec3 LookTarget = [16.0335, 4.27403, 7.00847e-007],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
