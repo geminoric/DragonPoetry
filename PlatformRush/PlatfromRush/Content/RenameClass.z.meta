@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "RenameClass",
+		uint64 ResourceId = 55bfeee4c58e4d28,
+	},
+},
