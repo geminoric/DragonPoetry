@@ -1,0 +1,178 @@
+class Controls : ZilchComponent
+{
+    // Whether or not the player has pressed a button
+    var Pressed : Boolean = false;
+    var Ablity : Boolean = false;
+    
+    // Max time for ability cooldown
+    var MaxCD : Real = 60;
+    var CurrentCD : Real = 0;
+    var RateCD : Real = 0.5;
+    
+    var MaxStretch : Integer = 5;
+    var MinStretch : Integer = 1;
+    var Direction : Integer = 1;
+    var Right : Integer = 1;
+    var Left : Integer = -1;
+    
+    // Whether or not the player has jumped 
+    var Jumped : Real = 0.0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(this.Ablity == false)
+        {
+            this.MovementUpdate();
+        }
+        if(this.Ablity == true)
+        {
+            this.DashStretch(this.Direction);
+        }
+    }
+    
+    function MovementUpdate()
+    {
+        // The change in movement we will apply to the player
+        var movement = this.Owner.RigidBody.Velocity;
+        
+        var speed = 10;
+        
+        // Move left when A is down
+        if(Zero.Keyboard.KeyIsDown(Keys.A))
+        {
+            // Set movement to 1 unit towards the left
+            movement.X = -1.0;
+            
+            // Make the sprite face left
+            this.Owner.Sprite.FlipX = true;
+            // Let the Controller know an action has been taken
+            this.Pressed = true;
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.D))
+        {
+            // Set movement to 1 unit towards the right
+            movement.X = 1.0;
+            
+            // Make the sprite face right
+            this.Owner.Sprite.FlipX = false;
+            // Let the Controller know an action has been taken
+            this.Pressed = true;
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.Space) && (this.Jumped == 0.0 || this.Jumped == 2.0))
+        {
+            movement.Y = 10.0;
+            
+            if(this.Jumped == 2.0)
+            {
+                this.Jumped = 1.0;
+            }
+            
+            if(this.Jumped == 0.0)
+            {
+                this.Jumped = 1.0;
+            }
+        }
+        
+        // Once Hit the ground, let you jump again.
+        if((movement.Y > -0.01 && movement.Y < 0.01) && this.Jumped == 1.0)
+        {
+            this.Jumped = 0.0;
+            movement.Y = 0.0;
+        }
+        
+        // Use Dash Ability
+        if(Zero.Keyboard.KeyIsPressed(Keys.Shift))
+        {
+            if(this.Owner.Sprite.FlipX == true)
+            {
+                // Let the Controller know an action has been taken
+                this.Pressed = true;
+                
+                // Let the Controller know your ability has been used
+                this.Ablity = true;
+                
+                // Let the Controller know which direction you ar facing
+                this.Direction = this.Left;
+            }
+            else
+            {
+                // Let the Controller know an action has been taken
+                this.Pressed = true;
+                
+                // Let the Controller know your ability has been used
+                this.Ablity = true;
+                
+                // Let the Controller know which direction you ar facing
+                this.Direction = this.Right;
+            }
+        }
+        
+        if(this.Pressed == false && this.LevelSettings.PlayerVars.Hazard == false)
+        {
+            movement.X = 0.0;
+        }
+        
+        this.Pressed = false;
+        
+        movement.X *= 10;
+        
+        this.Owner.RigidBody.Velocity = movement;
+        
+    }
+    
+    function DashStretch(dir : Integer)
+    {
+        for(var i = 0; i < this.MaxStretch; ++i)
+        {
+            var scale = this.Owner.Transform.Scale;
+            
+            scale.X += dir;
+            
+            this.Owner.Transform.Scale = scale;
+            Console.WriteLine("`this.Owner.Transform.Scale`");
+        }
+        for(var i = 0; i > this.MaxStretch; ++i)
+        {
+            var scale = this.Owner.Transform.Scale;
+            
+            scale.X -= dir;
+            
+            this.Owner.Transform.Scale = scale;
+            Console.WriteLine("`this.Owner.Transform.Scale`");
+        }
+        
+                for(var i = 0; i < this.MaxStretch; ++i)
+        {
+            var scale = this.Owner.Transform.Scale;
+            
+            scale.X -= dir;
+            
+            this.Owner.Transform.Scale = scale;
+            Console.WriteLine("`this.Owner.Transform.Scale`");
+        }
+        for(var i = 0; i > this.MaxStretch; ++i)
+        {
+            var scale = this.Owner.Transform.Scale;
+            
+            scale.X += dir;
+            
+            this.Owner.Transform.Scale = scale;
+            Console.WriteLine("`this.Owner.Transform.Scale`");
+        }
+        
+        this.Ablity = false;
+    }
+    
+    function PoundStretch()
+    {
+        
+    }
+    
+}

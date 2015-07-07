@@ -18,16 +18,14 @@ class LevelData : ZilchComponent
     {
         this.PlatformsActivated += actnum;
         
-        /*
         
-        if(this.TotalPlatforms == this.ActivatePlatforms)
+        if(this.TotalPlatforms == this.PlatformsActivated)
         {
             var win = Level.Find("WinScreen");
             
             this.Space.LoadLevel(win);
         }
         
-        */
     }
 
     function OnLogicUpdate(event : UpdateEvent)
