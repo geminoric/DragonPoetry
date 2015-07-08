@@ -50,7 +50,4 @@ Cog =
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
 	},
-	AvoidCollision = 
-	{
-	},
 },

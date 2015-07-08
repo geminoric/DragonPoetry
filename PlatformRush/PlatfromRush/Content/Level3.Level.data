@@ -93,7 +93,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 18.0501,
+			float Size = 14.7782,
 		},
 		EditorCameraController = 
 		{
@@ -837,33 +837,15 @@ Level =
 			string Name = "Platform",
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "551c1014b7af5159:Portal",
-		LinkId = 
-		{
-			uint Id = 38,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [18.0526, 14.9854, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Portal2",
-		},
-	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 39,
+			uint Id = 38,
 		},
 		Named = 
 		{
-			string Name = "Portal1",
+			string Name = "Portal2",
 		},
 		Archetyped = 
 		{
@@ -871,7 +853,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [7.34408, 15.9663, 0],
+			Vec3 Translation = [18.0526, 14.9854, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -895,11 +877,11 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal2",
+			CogPath Link = ":/Portal1",
 		},
 		BoxCollider = 
 		{
-			bool Ghost = false,
+			bool Ghost = true,
 			bool SendsMessages = true,
 			bool Seamless = true,
 			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
@@ -907,16 +889,38 @@ Level =
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.25, 0.4, 0.5],
 		},
-		AvoidCollision = 
-		{
-		},
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5515fbf99ac08bb7:LowerTime",
+		string Name = "551c1014b7af5159:Portal",
+		LinkId = 
+		{
+			uint Id = 39,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [7.34408, 15.9663, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Portal1",
+		},
+	},
+	Cog = 
+	{
 		LinkId = 
 		{
 			uint Id = 40,
+		},
+		Named = 
+		{
+			string Name = "TimePowerUp",
+		},
+		Archetyped = 
+		{
+			string Name = "5515fbf99ac08bb7:LowerTime",
 		},
 		Transform = 
 		{
@@ -924,9 +928,37 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "TimePowerUp",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "55153bece2efcdb3:timer",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		LowerTime = 
+		{
+			float TimerSub = 1,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = true,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
 		},
 	},
 	ArchetypeInstance = 
@@ -947,12 +979,19 @@ Level =
 			string Name = "Sprite",
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "5515d694893ced13:Bullet",
 		LinkId = 
 		{
 			uint Id = 42,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Archetyped = 
+		{
+			string Name = "5515d694893ced13:Bullet",
 		},
 		Transform = 
 		{
@@ -960,9 +999,55 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "Sprite",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5515d3ed3f34fa4f:Bullets",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		SphereCollider = 
+		{
+			bool Ghost = true,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			float Radius = 0.35,
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = false,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		Hazard = 
+		{
+			int Damage = 1,
+			bool StunOn = false,
+			bool Active = true,
+			float KnockBackSpeed = 0,
+		},
+		DestroyOnCollision = 
+		{
 		},
 	},
 	ArchetypeInstance = 
@@ -983,19 +1068,12 @@ Level =
 			string Name = "Sprite",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "55140f05158be26b:Ghost",
 		LinkId = 
 		{
 			uint Id = 44,
-		},
-		Named = 
-		{
-			string Name = "Sprite",
-		},
-		Archetyped = 
-		{
-			string Name = "55140f05158be26b:Ghost",
 		},
 		Transform = 
 		{
@@ -1003,61 +1081,9 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.3893, 1, 0.015, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "551403b86dc98c95:Light",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		HomingOnPlayer = 
-		{
-			float HomingSpeed = -5,
-			CogPath Follow = ":/Player",
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = false,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		DestroyAfterTime = 
-		{
-			int Lifetime = 0,
-		},
-		AvoidCollision = 
-		{
-		},
-		GhostBehavior = 
-		{
-			int ActiveTime = 1,
+			string Name = "Sprite",
 		},
 	},
 },

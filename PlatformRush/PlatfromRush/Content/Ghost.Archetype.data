@@ -38,7 +38,7 @@ Cog =
 	},
 	BoxCollider = 
 	{
-		bool Ghost = false,
+		bool Ghost = true,
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "551403b86dc98c95:Light",
@@ -67,10 +67,8 @@ Cog =
 	{
 		int Lifetime = 0,
 	},
-	AvoidCollision = 
-	{
-	},
 	GhostBehavior = 
 	{
+		int ActiveTime = 1,
 	},
 },
