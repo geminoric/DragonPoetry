@@ -29,7 +29,10 @@ class LevelData : ZilchComponent
         this.PlatformsActivated += actnum;
         
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> origin/master
         if(this.TotalPlatforms == this.PlatformsActivated)
         {
             var win = Level.Find("WinScreen");
@@ -38,7 +41,10 @@ class LevelData : ZilchComponent
             
         }
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> origin/master
     }
 
     function OnLogicUpdate(event : UpdateEvent)

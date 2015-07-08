@@ -1,0 +1,51 @@
+class RenameClass : ZilchComponent
+{
+    var Renaming : Boolean = false;
+    var CurName : String = "";
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(Zero.Keyboard, Events.KeyUp, this.CheckInput);
+    }
+    
+    function CheckInput(event : KeyboardEvent)
+    {
+        //Inputting new keys to name
+        if(event.Key >= Keys.A && event.Key <= Keys.Z)
+        {
+            this.CurName = "`this.CurName``event.Key`";
+        }
+        //Confirming name or backspace
+        if(event.Key == Keys.Enter)
+        {
+            this.LevelSettings.LevelEditorClass.LevelName = this.CurName;
+            this.Renaming = false;
+        }
+        if(event.Key == Keys.Back)
+        {
+            if(this.CurName.Count != 0)
+            {
+                this.CurName = this.CurName.SubString(0, this.CurName.Count - 1);
+            }
+        }
+        this.CurName = this.CurName.ToLower();
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //Update text box depending on if renaming
+        if(this.Renaming)
+        {
+            //Make text red
+            this.Space.FindObjectByName("levelNameText").SpriteText.Color = Real4(1.0, 0.2, 0.2, 1.0);
+            this.Space.FindObjectByName("levelNameText").SpriteText.Text = this.CurName;
+        }
+        else
+        {
+            //Make text white
+            this.Space.FindObjectByName("levelNameText").SpriteText.Color = Real4(1.0, 1.0, 1.0, 1.0);
+            this.Space.FindObjectByName("levelNameText").SpriteText.Text = this.LevelSettings.LevelEditorClass.LevelName;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 class LevelEditorClass : ZilchComponent
 {
-    var LevelName : String = "TestName";
+    var LevelName : String = "testname";
     
     function Initialize(init : CogInitializer)
     {
@@ -57,7 +57,15 @@ class LevelEditorClass : ZilchComponent
     }
     function Rename()
     {
-        Console.WriteLine("Rename");
+        if(this.LevelSettings.RenameClass.Renaming)
+        {
+            this.LevelSettings.RenameClass.Renaming = false;
+        }
+        else
+        {
+            this.LevelSettings.RenameClass.CurName = this.LevelName;
+            this.LevelSettings.RenameClass.Renaming = true;
+        }
     }
     
     function LoadIntoEditor(obj : Cog)
