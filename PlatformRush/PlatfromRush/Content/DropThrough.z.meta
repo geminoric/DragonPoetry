@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "DropThrough",
+		uint64 ResourceId = 551c234ab86c48cc,
+	},
+},

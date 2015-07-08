@@ -6,15 +6,15 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Platform",
+		string Name = "Sprite",
 	},
 	Archetyped = 
 	{
-		string Name = "550213475160f850:Platform",
+		string Name = "5515d694893ced13:Bullet",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-9.19041, 2.30785, 0],
+		Vec3 Translation = [17.8091, 18.7458, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -28,7 +28,7 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "55153eea49445516:Blue_plat",
+		string SpriteSource = "5515d3ed3f34fa4f:Bullets",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -36,7 +36,7 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
-	BoxCollider = 
+	SphereCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
@@ -44,13 +44,28 @@ Cog =
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		Vec3 Size = [0.5, 0.15, 0.5],
+		float Radius = 0.5,
 	},
-	Platforms = 
+	RigidBody = 
 	{
-		string OtherSprite = "551539245d4d6884:Red_plat",
+		bool Static = false,
+		bool Asleep = false,
+		bool Kinematic = false,
+		bool RotationLocked = false,
+		bool Mode2D = true,
+		bool AllowSleep = true,
+		bool Inherit2DMode = true,
+		Vec3 Velocity = [0, 0, 0],
+		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	DropThrough = 
+	Hazard = 
+	{
+		int Damage = 1,
+		bool StunOn = false,
+		bool Active = true,
+		float KnockBackSpeed = 0,
+	},
+	DestroyOnCollision = 
 	{
 	},
 },

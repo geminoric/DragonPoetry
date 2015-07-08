@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "Switch",
+		uint64 ResourceId = 55151f3211d7e55d,
+	},
+},

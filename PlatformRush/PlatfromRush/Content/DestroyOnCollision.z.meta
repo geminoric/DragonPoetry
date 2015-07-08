@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "DestroyOnCollision",
+		uint64 ResourceId = 5515d2af58833230,
+	},
+},

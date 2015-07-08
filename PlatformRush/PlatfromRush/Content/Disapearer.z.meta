@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "Disapearer",
+		uint64 ResourceId = 5515178ea070c39e,
+	},
+},

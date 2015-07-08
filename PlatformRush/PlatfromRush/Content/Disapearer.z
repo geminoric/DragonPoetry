@@ -1,0 +1,37 @@
+class Disapearer : ZilchComponent
+{
+    
+    [Property]
+    var Delay : Integer = 0;
+    [Property]
+    var StartUp : Integer = 0;
+    var Count: Integer = 0;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Count = (this.Delay + this.StartUp) * 60;
+    }
+
+    function ToggleGhost()
+    {
+        this.Owner.BoxCollider.Ghost = !this.Owner.BoxCollider.Ghost;
+    }
+    
+    function ToggleVisible()
+    {
+        
+        this.Owner.Sprite.Visible = !this.Owner.Sprite.Visible;
+    }
+
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        --this.Count;
+        if(this.Count <= 0)
+        {
+            this.Count = this.Delay * 60;
+            this.ToggleGhost();
+            this.ToggleVisible();
+        }
+    }
+}

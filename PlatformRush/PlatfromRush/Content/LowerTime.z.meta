@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "LowerTime",
+		uint64 ResourceId = 5515fbea99e3316a,
+	},
+},

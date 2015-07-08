@@ -2,12 +2,18 @@ class LevelData : ZilchComponent
 {
     var Player : Cog = null;
     var TotalPlatforms : Integer = 0;
-    
+    var Switch : Boolean = false;
     var PlatformsActivated : Integer = 0;
     
     function PlatformCount()
     {
         ++this.TotalPlatforms;
+    }
+    
+    function ToggleSwitch()
+    {
+        this.Switch = !this.Switch;
+        Console.WriteLine(this.Switch);
     }
     
     function Initialize(init : CogInitializer)
@@ -22,16 +28,17 @@ class LevelData : ZilchComponent
     {
         this.PlatformsActivated += actnum;
         
-        /*
         
-        if(this.TotalPlatforms == this.ActivatePlatforms)
+        
+        if(this.TotalPlatforms == this.PlatformsActivated)
         {
             var win = Level.Find("WinScreen");
             
             this.Space.LoadLevel(win);
+            
         }
         
-        */
+        
     }
 
     function OnLogicUpdate(event : UpdateEvent)

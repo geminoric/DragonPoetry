@@ -8,6 +8,25 @@ class Timer : ZilchComponent
         this.IsOn = true;
     }
 
+    function PauseTimer()
+    {
+        this.IsOn =false;
+    }
+    
+    function UnpauseTimer()
+    {
+        this.IsOn = true;
+    }
+
+    function SubTime(time : Real)
+    {
+        this.Time -= time;
+        if(this.Time < 0)
+        {
+            this.Time = 0;
+        }
+    }
+ 
     function OnLogicUpdate(event : UpdateEvent)
     {
         if(this.IsOn == true)

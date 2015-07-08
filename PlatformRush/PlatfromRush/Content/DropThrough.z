@@ -1,0 +1,42 @@
+class DropThrough : ZilchComponent
+{
+    [Dependency]
+    var BoxCollider : BoxCollider = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        //connect to all the collision events
+        Zero.Connect(this.Owner, Events.CollisionStarted,     this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionPersisted,     this.OnCollisionPersisted);
+        Zero.Connect(this.Owner, Events.CollisionEnded,     this.OnCollisionEnded);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+       /* var otherObj = event.OtherObject;
+        if(otherObj != null)
+        {
+            Console.WriteLine(otherObj.RigidBody.Velocity);
+            if(otherObj.RigidBody.Velocity.Y >= 0)
+            {
+               this.Owner.BoxCollider.Ghost = true;
+            }
+        }*/
+    }
+
+    function OnCollisionPersisted(event : CollisionEvent)
+    {
+        //check if the player wantes to move down
+        if(Zero.Keyboard.KeyIsPressed(Keys.S))
+        {
+            //make this a ghost so that the player will drop down
+            this.Owner.BoxCollider.Ghost = true;
+        }
+    }
+    
+    function OnCollisionEnded(event : CollisionEvent)
+    {
+        //when the player finishes its collision change back 
+        this.Owner.BoxCollider.Ghost = false;
+    }
+}

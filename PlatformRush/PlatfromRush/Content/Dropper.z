@@ -1,10 +1,10 @@
 class Dropper : ZilchComponent
 {
-    //This Opjects spawns a colidable object that will hurt the player
-    
+
     //oject that will be spawned
     [Property]
     var SpawnObject : Archetype = null;
+    [Property]
     var Velocity : Real3 = Real3(0,0,0);
     [Property]
     var Delay : Integer = 0;
@@ -12,29 +12,30 @@ class Dropper : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        this.QueueActions();
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Count = this.Delay;
     }
     
-    function QueueActions()
-    {
-        var sequence = Action.Sequence(this.Owner.Actions);
-        Action.Delay(sequence, this.Delay);
-        //Action.Call(sequence, this.SpawnObject);
-    }
     
-    function SpawnObject()
+    function SpawnAnObject()
     {
         var obj = this.Space.CreateAtPosition(this.SpawnObject, this.Owner.Transform.Translation);
         if(obj != null)
         {
-            
+            obj.RigidBody.Velocity = this.Velocity;
         }
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        var count: Real = this.Delay;
+        this.Count -= 1;
+        if(this.Count <= 0)
+        {
+            this.Count = this.Delay;
+            
+            this.SpawnAnObject();
+        }
+        
     
     }
 }

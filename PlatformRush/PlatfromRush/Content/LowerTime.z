@@ -1,0 +1,24 @@
+class LowerTime : ZilchComponent
+{
+    [Property]
+    var TimerSub: Real = 0.0;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted (event : CollisionEvent)
+    {
+        var otherSpace = this.GameSession.FindSpaceByName("HudSpace");
+        if(otherSpace != null)
+        {
+           var timer = otherSpace.FindObjectByName("Timer");
+           if(timer != null)
+           {
+                timer.Timer.SubTime(this.TimerSub);
+           }
+        }
+        this.Owner.Destroy();
+    }
+    
+}

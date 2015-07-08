@@ -34,14 +34,18 @@ class Hazard : ZilchComponent
 
             }
             
+            //check if the knockback speed is valid
             if(this.KnockBackSpeed > 0)
             {
+                //change the players state
                 otherObject.PlayerController.InAir = true;
+                // get the players direction
                 var x : Real = -(player.Direction -0.5);
+                //set a vector to be at a 45 degrees upward
                 var direction: Real3 = Real3( x, Math.Abs(x), 0);
-
+                //normalize it
                 direction = Math.Normalize(direction);
-
+                //scale it by the knockbackspeed
                 direction.X *= this.KnockBackSpeed;
                 direction.Y *= this.KnockBackSpeed * 1.5;
 

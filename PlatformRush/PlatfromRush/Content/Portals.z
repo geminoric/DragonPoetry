@@ -1,13 +1,20 @@
 class Portals : ZilchComponent
 {
-    //Changes the players position between teo points when the player collides
+    [Property]
+    var Link : CogPath = null;
+    var CanPortal : Boolean = false;
     
-    //places where the portals will link to 
-    var Destination : Real3 = Real3(0,0,0);
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    }
+
+
+    function SetCanPortal(boolean: Boolean)
+    {
+        this.CanPortal = boolean;
     }
 
     function OnCollisionStarted(collisionEvent : CollisionEvent)
@@ -15,10 +22,22 @@ class Portals : ZilchComponent
         var otherObject = collisionEvent.OtherObject;
         
         //replace with player controller
-        var player = otherObject.Dropper;
-        if(player != null)
+        //var player = otherObject.PlayerController;
+        if(this.CanPortal == false)
         {
-            otherObject.Transform.Translation = this.Destination;
+            
+                
+                this.Link.Cog.Portals.SetCanPortal(true);
+                otherObject.Transform.Translation = this.Link.Cog.Transform.Translation;
+            
         }
+    }
+    
+    
+    
+    function OnCollisionEnded(event : CollisionEvent)
+    {
+        //when the player finishes its collision change back 
+       this.SetCanPortal(false);
     }
 }
