@@ -1,0 +1,53 @@
+class HomingOnPlayer : ZilchComponent
+{
+    [Property]
+    var HomingSpeed : Real = 0.0;
+    
+    [Property]
+    var Follow : CogPath = null;
+    
+    var CanMove : Boolean = true;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function MoveTowards()
+    {
+        var direction = this.Follow.Cog.Transform.Translation - this.Owner.Transform.Translation;
+
+        direction =Math.Normalize(direction);
+
+        direction *= Math.Abs(this.HomingSpeed);
+        this.Owner.RigidBody.Velocity = direction;
+
+    }
+    
+    function SetCanMove(option: Boolean)
+    {
+        this.CanMove = option;
+    }
+    
+    function ToggleCanMove()
+    {
+        this.CanMove = !this.CanMove;
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(this.CanMove)
+        {
+            if(this.Follow != null)
+            {
+                if(this.Follow.Cog != null)
+                {
+                    this.MoveTowards();
+                }
+            }
+        }
+        else
+        {
+            this.Owner.RigidBody.Velocity = Real3(0.0,0.0,0.0);
+        }
+    }
+}

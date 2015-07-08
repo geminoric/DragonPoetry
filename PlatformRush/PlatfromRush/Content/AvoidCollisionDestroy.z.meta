@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "AvoidCollisionDestroy",
+		uint64 ResourceId = 55140c8ffd3aa425,
+	},
+},

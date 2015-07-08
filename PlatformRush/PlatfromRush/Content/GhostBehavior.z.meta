@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "GhostBehavior",
+		uint64 ResourceId = 55140e3c4e526ab1,
+	},
+},

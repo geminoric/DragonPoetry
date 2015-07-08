@@ -9,6 +9,9 @@ class LowerTime : ZilchComponent
 
     function OnCollisionStarted (event : CollisionEvent)
     {
+        var otherObj = event.OtherObject;
+        if(otherObj.ArchetypeName == "Player")
+        {
         var otherSpace = this.GameSession.FindSpaceByName("HudSpace");
         if(otherSpace != null)
         {
@@ -19,6 +22,7 @@ class LowerTime : ZilchComponent
            }
         }
         this.Owner.Destroy();
+        }
     }
     
 }

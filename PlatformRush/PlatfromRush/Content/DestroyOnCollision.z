@@ -1,17 +1,15 @@
 class DestroyOnCollision : ZilchComponent
 {
     
-    var AvoidObject : String = null;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-        this.AvoidObject = this.Owner.ArchetypeName;
     }
 
     function OnCollisionStarted (event : CollisionEvent)
     {
-        var otherObject = event.OtherObject.ArchetypeName;
-        if(otherObject != this.AvoidObject)
+        var otherObject = event.OtherObject;
+        if(otherObject.AvoidCollision == null)
         {
            this.Owner.Destroy();
         }

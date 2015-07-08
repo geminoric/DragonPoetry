@@ -1,0 +1,21 @@
+class DestroyAfterTime : ZilchComponent
+{
+    [Property]
+    var Lifetime : Integer = 0;
+    
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Lifetime *= this.Lifetime;
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        --this.Lifetime;
+        if(this.Lifetime < 0)
+        {
+            this.Owner.Destroy;
+        }
+    }
+}
