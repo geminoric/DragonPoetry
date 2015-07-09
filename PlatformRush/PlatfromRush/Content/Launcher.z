@@ -16,15 +16,16 @@ class Launcher : ZilchComponent
         var otherObject = collisionEvent.OtherObject;
         if(otherObject != null)
         {
-            var player = otherObject.PlayerController;
+            var player = otherObject.Controls;
             if(player != null)
             {
-                player.VelY = 0.5;
+                player.Movement.Y = 5.5;
+                /*
                 if(player.GroundPoundingCurrently)
                 {
                   player.VelY = 1.5;
                   player.GroundPoundingCurrently = false;
-                }
+                }*/
             }
         }
     }

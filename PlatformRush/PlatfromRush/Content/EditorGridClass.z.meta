@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "EditorGridClass",
+		uint64 ResourceId = 55b85707768420a6,
+	},
+},

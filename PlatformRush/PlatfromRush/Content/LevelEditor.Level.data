@@ -57,6 +57,13 @@ Level =
 		LoadLevelClass = 
 		{
 		},
+		EditorGridClass = 
+		{
+		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{
@@ -471,6 +478,41 @@ Level =
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 			string SpriteSource = "5502c88e6e940b8f:main_idle1000",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Named = 
+		{
+			string Name = "MouseDot",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3.40513, 7.10047, 1.48842e-007],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 0, 0, 0.2],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,

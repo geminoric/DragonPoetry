@@ -58,7 +58,7 @@ class LoadLevelClass : ZilchComponent
         }
         if(obj.EditorObjectClass.TileID == 300)
         {
-            var hi = newSpace.CreateAtPosition(Archetype.Find("Ghost"), obj.EditorObjectClass.Pos);
+            var hi = newSpace.CreateAtPosition(Archetype.Find("MediumGhost"), obj.EditorObjectClass.Pos);
             hi.GhostBehavior.Init();
             hi.DestroyAfterTime.Init();
             hi.HomingOnPlayer.Init();
@@ -79,13 +79,6 @@ class LoadLevelClass : ZilchComponent
         newSpace.FindObjectByName("saver").LevelSaveClass.LoopLoaded(this.CreateObj);
         
         this.Space.Destroy();
-        
-        /*
-        this.Space.LoadLevel(Level.Find("EmptyLevel"));
-        //Load the level
-        newLevel.FindObjectByName("saver").LevelSaveClass.LoadLevel(levelName);
-        //Make all the things (FUCK YEAH)
-        thinewLevel.Space.FindObjectByName("saver").LevelSaveClass.LoopLoaded(this.CreateObj);*/
     }
     
 }

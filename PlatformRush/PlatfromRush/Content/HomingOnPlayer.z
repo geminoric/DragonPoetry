@@ -15,6 +15,7 @@ class HomingOnPlayer : ZilchComponent
     function Init()
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
     function NegateSpeed()
     {
         this.HomingSpeed = -this.HomingSpeed;

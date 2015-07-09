@@ -67,12 +67,19 @@ Level =
 		},
 		LevelData = 
 		{
+			float GoldTime = 0,
+			float SilverTime = 0,
+			float BronzeTime = 0,
 		},
 		HUD = 
 		{
 		},
 		PlayerVars = 
 		{
+		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
 		},
 	},
 	Cog = 
@@ -87,7 +94,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-10.237, 1.3115, 90],
+			Vec3 Translation = [-9.62436, 6.66192, 90],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -99,7 +106,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 13.4064,
+			float Size = 26.9972,
 		},
 		EditorCameraController = 
 		{
@@ -107,7 +114,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-10.237, 1.3115, 40],
+			Vec3 LookTarget = [-9.62436, 6.66192, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -151,7 +158,6 @@ Level =
 		},
 		CameraFollow = 
 		{
-			CogPath FollowObj = ":/Player",
 		},
 	},
 	Cog = 

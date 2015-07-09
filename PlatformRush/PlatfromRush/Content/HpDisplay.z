@@ -109,7 +109,7 @@ class HpDisplay : ZilchComponent
         var otherSpace = this.GameSession.FindSpaceByName("Main");
         if(otherSpace == null)
         {
-            otherSpace = this.GameSession.FindSpaceByName("MainNew");
+            otherSpace = this.GameSession.FindSpaceByName("Main");
         }
         if(otherSpace != null)
         {

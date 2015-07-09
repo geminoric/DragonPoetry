@@ -16,20 +16,26 @@ class LevelSelectInit : ZilchComponent
     
     function Easy()
     {
-        var level = Level.Find("LevelOne");
-        this.Space.LoadLevel(level);
+        var level = Level.Find("Level2");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
     }
     
     function Medium()
     {
         var level = Level.Find("LevelMed");
-        this.Space.LoadLevel(level);
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
     }
     
     function Hard()
     {
         var level = Level.Find("LevelHardAlt");
-        this.Space.LoadLevel(level);
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
     }
     
     function OnLogicUpdate(event : UpdateEvent)

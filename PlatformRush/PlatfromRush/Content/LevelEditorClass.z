@@ -21,9 +21,15 @@ class LevelEditorClass : ZilchComponent
         but4.ButtonClass.Init(Real3(-9.8,8.3,0), Real3(1.5,1.5,1), this.Rename, "rename", 30);
         var but5 = this.Space.Create(Archetype.Find("Button"));
         but5.ButtonClass.Init(Real3(3,8.3,0), Real3(1.5,1.5,1), this.Menu, "menu", 30);
+        var but6 = this.Space.Create(Archetype.Find("Button"));
+        but6.ButtonClass.Init(Real3(0,8.3,0), Real3(1.5,1.5,1), this.Grid, "grid", 30);
     }
     
     //Callback functions for buttons
+    function Grid()
+    {
+        this.LevelSettings.EditorGridClass.GridSelect = !this.LevelSettings.EditorGridClass.GridSelect;
+    }
     function New()
     {
         //Delete all the editor objects

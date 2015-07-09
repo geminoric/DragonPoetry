@@ -46,7 +46,16 @@ class PauseMenuInit : ZilchComponent
     function Quit()
     {
         var level = Level.Find("MainMenu");
-        this.Space.LoadLevel(level);
+        
+        //Make a new space to start menu in
+        var newSpace = this.GameSession.CreateNamedSpace("MenuSpace", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        
+        if(this.GameSession.FindSpaceByName("MainNew") != null)
+        {
+            this.GameSession.FindSpaceByName("MainNew").Destroy();
+        }
+        this.Space.Destroy();
     }
     function OnLogicUpdate(event : UpdateEvent)
     {

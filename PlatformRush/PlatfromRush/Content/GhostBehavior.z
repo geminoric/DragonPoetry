@@ -18,7 +18,6 @@ class GhostBehavior : ZilchComponent
     function Init()
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
          Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
          this.ActiveTime *= 60;
     }

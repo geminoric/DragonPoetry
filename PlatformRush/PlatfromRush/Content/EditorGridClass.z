@@ -1,0 +1,25 @@
+class EditorGridClass : ZilchComponent
+{
+    var GridSelect : Boolean = true;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //If in grid selection mode
+        if(this.GridSelect && this.LevelSettings.EditorDisplay.MousePos.Y > 10)
+        {
+            var mPos = this.LevelSettings.EditorDisplay.MousePos;
+            mPos = Real3(Math.Round(mPos.X), Math.Round(mPos.Y), mPos.Z);
+            this.LevelSettings.EditorDisplay.MousePos = mPos;
+            this.Space.FindObjectByName("MouseDot").Transform.Translation = mPos;
+            this.Space.FindObjectByName("MouseDot").Sprite.Visible = true;
+        }
+        if(!this.GridSelect || this.LevelSettings.EditorDisplay.MousePos.Y < 10)
+        {
+            this.Space.FindObjectByName("MouseDot").Sprite.Visible = false;
+        }
+    }
+}

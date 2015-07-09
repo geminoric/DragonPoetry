@@ -31,7 +31,7 @@ class PauseMenu : ZilchComponent
     
     function Unpaws()
     {
-        
+        Console.WriteLine("Test");
             //this.Space.TimeSpace.TogglePause();
             //this.LastSpace.TimeSpace.TogglePause();
            // this.LastSpace.LevelSettings.PauseControl.IsPawsed = false;

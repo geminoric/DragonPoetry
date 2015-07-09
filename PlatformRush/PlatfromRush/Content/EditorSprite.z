@@ -89,7 +89,7 @@ class EditorSprite : ZilchComponent
         }
         if(tileID == 300)
         {
-            return SpriteSource.Find("TestTile");
+            return SpriteSource.Find("Ghost");
         }
         return SpriteSource.Find("TestTile");
     }

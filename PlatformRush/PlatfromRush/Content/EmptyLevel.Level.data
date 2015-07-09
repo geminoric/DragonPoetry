@@ -67,12 +67,22 @@ Level =
 		},
 		LevelData = 
 		{
+			float GoldTime = 0,
+			float SilverTime = 0,
+			float BronzeTime = 0,
 		},
 		PlayerVars = 
 		{
 		},
 		LoadLevelClass = 
 		{
+		},
+		PauseControl = 
+		{
+		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
 		},
 	},
 	Cog = 
