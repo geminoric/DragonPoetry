@@ -5,7 +5,7 @@ class PlayerController : ZilchComponent
     var VelY : Real = 0.0;
     var Direction : Integer = 0; // 0 for left, 1 for right
     //
-    var Speed : Real = 0.30;
+    var Speed : Real = 0.35;
     var Gravity : Real = 0.04;
     
     
@@ -52,15 +52,34 @@ class PlayerController : ZilchComponent
         {
             this.Direction = 0;
             this.VelX = -this.Speed;
+            this.Owner.Sprite.FlipX = true;
+            this.Owner.BoxCollider.Offset = Real3(-0.125, 0.0, 0.0);
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Idle )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Running);
+            }
         }
         else if ( Zero.Keyboard.KeyIsDown(Keys.D) )
         {
             this.Direction = 1;
             this.VelX = this.Speed;
+            this.Owner.Sprite.FlipX = false;
+            this.Owner.BoxCollider.Offset = Real3(0.125, 0.0, 0.0);
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Idle )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Running);
+            }
         }
         else
         {
             this.VelX = 0.0;
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Running )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
+            }
         }
         
         // Jumping
@@ -73,26 +92,31 @@ class PlayerController : ZilchComponent
             
             this.InAir = true;
             this.VelY = this.JumpHeight;
+            this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
         }
         
         // Dashing
-        if ( Zero.Keyboard.KeyIsDown(Keys.Q) )
-        {            
+        if ( Zero.Keyboard.KeyIsPressed(Keys.Q) )
+        {    
+            this.DashTimer0 = this.DashTimerMax0;
+            
             if ( this.DashTimer0 > 0 && this.DashCooldown <= 0 )
             {
                 this.DashCooldown = this.DashCooldownMax;
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Dashing);
             }
             
             this.DashTimer0 = this.DashTimerMax0;
         }
-        if ( Zero.Keyboard.KeyIsDown(Keys.E) )
+        if ( Zero.Keyboard.KeyIsPressed(Keys.E) )
         {
+            this.DashTimer1 = this.DashTimerMax1;
+            
             if ( this.DashTimer1 > 0 && this.DashCooldown <= 0 )
             {
                 this.DashCooldown = this.DashCooldownMax;
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Dashing);
             }
-            
-            this.DashTimer1 = this.DashTimerMax1;
         }
         
         // GroundPounding
@@ -124,6 +148,11 @@ class PlayerController : ZilchComponent
             this.Jumps = 1;
             }
             this.VelY = 0;
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Jumping )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
+            }
         }
         
         //Console.WriteLine("Colliding");
@@ -172,15 +201,22 @@ class PlayerController : ZilchComponent
             if ( this.DashTimer0 > 0)
             {
                 this.VelX = -this.DashSpeed;
+                this.Owner.Sprite.FlipX = true;
             }
             if ( this.DashTimer1 > 0 )
             {
                 this.VelX = this.DashSpeed;
+                this.Owner.Sprite.FlipX = false;
             }
         }
         else
         {
             this.DashingCurrently = false;
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Dashing )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
+            }
         }
         
         // Are we ground pounding
@@ -199,7 +235,7 @@ class PlayerController : ZilchComponent
             this.VelY = 0;
         }
         // Update Position
-        this.Owner.Transform.Translation += Real3(this.VelX * this.Speed, this.VelY * this.Speed, 0.0);
+        this.Owner.Transform.Translation += Real3(this.VelX * this.Speed, this.VelY * 0.30, 0.0);
     }
     
     function OnLogicUpdate(event : UpdateEvent)

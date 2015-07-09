@@ -1,5 +1,9 @@
 class PauseControl : ZilchComponent
 {
+    var PauseSpace : Space = null;
+    var OptionsSpace : Space = null;
+    var ControlsSpace : Space = null;
+
     var IsPawsed : Boolean = false;
 
     function Initialize(init : CogInitializer)
@@ -9,16 +13,10 @@ class PauseControl : ZilchComponent
      
     function OnKeyDown(event : KeyboardEvent)
     {
-        if(event.Keyboard.KeyIsPressed(Keys.Escape))
+        if(event.Keyboard.KeyIsPressed(Keys.Escape) && this.IsPawsed == false)
         {
-            if(this.IsPawsed == false)
-            {
-                 this.Paws();
-            }
-            else
-            {
-                this.UnPaws();
-            }
+            this.Paws();
+            Console.WriteLine("PAUSED");
         }
     }
     
@@ -29,15 +27,66 @@ class PauseControl : ZilchComponent
     //unpauses the game
     function UnPaws()
     {
-            this.IsPawsed = false;
-            this.Space.TimeSpace.TogglePause();
-    } 
+        this.IsPawsed = false;
+        this.Space.TimeSpace.TogglePause();
+        this.LevelSettings.HUD.HudSpace.TimeSpace.TogglePause();
+        this.PauseSpace.Destroy();
+    }
     //pauses the game
     function Paws()
     {
-            this.IsPawsed = true;
-            var gameSpace = this.GameSession.CreateSpace(Archetype.Find("PauseMenu"));
-            gameSpace.LoadLevel(Level.Find("Pause"));
-            this.Space.TimeSpace.TogglePause();
+        this.IsPawsed = true;
+        this.PauseSpace = this.GameSession.CreateNamedSpace("PauseSpace", Archetype.Find("Space"));
+        this.PauseSpace.LoadLevel(Level.Find("Pause"));
+        this.PauseSpace.LevelSettings.PauseMenu.Init(this.UnPaws);
+        this.Space.TimeSpace.TogglePause();
+        this.LevelSettings.HUD.HudSpace.TimeSpace.TogglePause();
+        
+        this.PauseSpace.LevelSettings.PauseMenuInit.Init(this.UnPaws, this.Restart, this.Options, this.Controls, this.Quit);
+    }
+    
+    function Continue()
+    {
+        this.UnPaws();
+    }
+    function Restart()
+    {
+        this.UnPaws();
+        this.Space.ReloadLevel();
+    }
+    
+    function Options()
+    {
+        this.OptionsSpace = this.GameSession.CreateNamedSpace("OptionsSpace", Archetype.Find("Space"));
+        this.OptionsSpace.LoadLevel(Level.Find("Options"));
+        
+        var button = this.OptionsSpace.Create(Archetype.Find("Button"));
+            button.ButtonClass.Init(Real3(7,-4,0), Real3(3,1.5,1), this.OptionsQuit , "back", 20);
+    }
+
+    function OptionsQuit()
+    {
+        this.OptionsSpace.Destroy();
+    }
+    
+    function Controls()
+    {
+        this.ControlsSpace = this.GameSession.CreateNamedSpace("ControlsSpace", Archetype.Find("Space"));
+        this.ControlsSpace.LoadLevel(Level.Find("Controls"));
+        
+        var button = this.ControlsSpace.Create(Archetype.Find("Button"));
+            button.ButtonClass.Init(Real3(7,-4,0), Real3(3,1.5,1), this.ControlsQuit , "back", 20);
+        //this.Space.LoadLevel(level);
+    }
+    
+    function ControlsQuit()
+    {
+        this.ControlsSpace.Destroy();
+    }
+    
+    function Quit()
+    {
+        this.UnPaws();
+        this.Space.LoadLevel(Level.Find("MainMenu"));
     }
 }

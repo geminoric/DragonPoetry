@@ -70,6 +70,9 @@ Level =
 		{
 			int TotalPlatforms = 8,
 		},
+		PauseControl = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -210,6 +213,9 @@ Level =
 			int Hp = 6,
 		},
 		CheatCodes = 
+		{
+		},
+		PlayerAnimations = 
 		{
 		},
 	},

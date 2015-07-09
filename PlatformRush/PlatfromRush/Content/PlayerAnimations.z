@@ -1,0 +1,40 @@
+enum AnimationState
+{
+    Idle, Running, Jumping, Dashing
+}
+
+class PlayerAnimations : ZilchComponent
+{
+    var CurrentState : AnimationState = AnimationState.Idle;
+
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function ChangeState(state : AnimationState)
+    {
+        this.CurrentState = state;
+        
+        if ( state == AnimationState.Idle )
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_idle1resized");
+        }
+        else if ( state == AnimationState.Running )
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_walk2");
+        }
+        else if ( state == AnimationState.Jumping )
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_jump1");
+        }
+        else if ( state == AnimationState.Dashing )
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_charge");
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

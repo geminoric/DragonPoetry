@@ -234,6 +234,9 @@ Level =
 		PlayerController = 
 		{
 		},
+		PlayerAnimations = 
+		{
+		},
 	},
 	Cog = 
 	{

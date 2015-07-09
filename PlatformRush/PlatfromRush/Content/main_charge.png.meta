@@ -2,12 +2,12 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "main_jump1",
-		uint64 ResourceId = 55fc1a9eb8f38c4f,
+		string Name = "main_charge",
+		uint64 ResourceId = 559dbc7ba1bf4dca,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 36,
 		uint FrameSizeY = 36,
-		uint FrameCount = 6,
+		uint FrameCount = 4,
 		float FrameDelay = 0.0833333,
 		float OriginX = 18,
 		float OriginY = 18,
