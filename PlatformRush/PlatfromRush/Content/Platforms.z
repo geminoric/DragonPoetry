@@ -7,9 +7,12 @@ class Platforms : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-        this.Space.LevelSettings.LevelData.PlatformCount();
     }
     
+    function Init()
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
     
 
     function OnCollisionStarted(collisionEvent : CollisionEvent)

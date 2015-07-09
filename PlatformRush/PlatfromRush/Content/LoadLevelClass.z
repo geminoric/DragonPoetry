@@ -1,0 +1,91 @@
+class LoadLevelClass : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        //Create object used in saving
+        var save = this.Space.CreateAtPosition(Archetype.Find("EmptySprite"), Real3(0,10000,0));
+        save.AddComponentByName("LevelSaveClass");
+        save.Name = "saver";
+    }
+    
+    //This function gets called on each temp object, delete temp object after
+    function CreateObj(obj : Cog)
+    {
+        var newSpace = this.GameSession.FindSpaceByName("MainNew");
+        //Modify object pos because camera is shifted
+        obj.EditorObjectClass.Pos -= Real3(0, 500, 40);
+        //Moving the player
+        if(obj.EditorObjectClass.TileID == 0)
+        {
+            newSpace.FindObjectByName("Player").Transform.Translation = obj.EditorObjectClass.Pos;
+        }
+        
+        //Create the object with the properties of the temp
+        if(obj.EditorObjectClass.TileID == 100)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("DisapearingBlock"), obj.EditorObjectClass.Pos);
+            hi.Disapearer.Init(60, 60, true, false);
+        }
+        if(obj.EditorObjectClass.TileID == 101)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("DisapearingBlock"), obj.EditorObjectClass.Pos);
+            hi.Disapearer.Init(60, 0, true, false);
+        }
+        if(obj.EditorObjectClass.TileID == 102)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("Platform"), obj.EditorObjectClass.Pos);
+            hi.Platforms.Init();
+            hi.DropThrough.Init();
+        }
+        if(obj.EditorObjectClass.TileID == 103)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("TempWall"), obj.EditorObjectClass.Pos);
+        }
+        if(obj.EditorObjectClass.TileID == 104)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("Launcher"), obj.EditorObjectClass.Pos);
+            hi.Launcher.Init();
+        }
+        if(obj.EditorObjectClass.TileID == 200)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("Dropper"), obj.EditorObjectClass.Pos);
+            hi.Dropper.Init();
+        }
+        if(obj.EditorObjectClass.TileID == 201)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("Spike"), obj.EditorObjectClass.Pos);
+            hi.Hazard.Init();
+        }
+        if(obj.EditorObjectClass.TileID == 300)
+        {
+            var hi = newSpace.CreateAtPosition(Archetype.Find("Ghost"), obj.EditorObjectClass.Pos);
+            hi.GhostBehavior.Init();
+            hi.DestroyAfterTime.Init();
+            hi.HomingOnPlayer.Init();
+        }
+        
+        //Delete the temp object
+        obj.Destroy();
+    }
+    
+    
+    //Call this function to load a level
+    function LoadLevel(levelName : String)
+    {
+        //Create a new space
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(Level.Find("EmptyLevel"));
+        newSpace.FindObjectByName("saver").LevelSaveClass.LoadLevel(levelName);
+        newSpace.FindObjectByName("saver").LevelSaveClass.LoopLoaded(this.CreateObj);
+        
+        this.Space.Destroy();
+        
+        /*
+        this.Space.LoadLevel(Level.Find("EmptyLevel"));
+        //Load the level
+        newLevel.FindObjectByName("saver").LevelSaveClass.LoadLevel(levelName);
+        //Make all the things (FUCK YEAH)
+        thinewLevel.Space.FindObjectByName("saver").LevelSaveClass.LoopLoaded(this.CreateObj);*/
+    }
+    
+}

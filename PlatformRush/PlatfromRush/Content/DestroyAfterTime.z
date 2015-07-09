@@ -9,7 +9,13 @@ class DestroyAfterTime : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.Lifetime *= this.Lifetime;
     }
-
+    
+    function Init()
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Lifetime *= this.Lifetime;
+    }
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
         --this.Lifetime;

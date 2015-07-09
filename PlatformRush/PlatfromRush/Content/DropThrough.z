@@ -10,7 +10,15 @@ class DropThrough : ZilchComponent
         Zero.Connect(this.Owner, Events.CollisionPersisted,     this.OnCollisionPersisted);
         Zero.Connect(this.Owner, Events.CollisionEnded,     this.OnCollisionEnded);
     }
-
+    
+    function Init()
+    {
+        //connect to all the collision events
+        Zero.Connect(this.Owner, Events.CollisionStarted,     this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionPersisted,     this.OnCollisionPersisted);
+        Zero.Connect(this.Owner, Events.CollisionEnded,     this.OnCollisionEnded);
+    }
+    
     function OnCollisionStarted(event : CollisionEvent)
     {
        /* var otherObj = event.OtherObject;

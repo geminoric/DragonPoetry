@@ -3,6 +3,7 @@ class EditorDisplay : ZilchComponent
     var MousePos : Real3 = Real3(0,0,0);
     //Is the mouse button down
     var MDown : Boolean = false;
+    var RMDown : Boolean = false;
     var XMin : Real = -100.0;
     var XMax : Real = 100.0;
     var YMin : Real = 400.0;
@@ -20,6 +21,25 @@ class EditorDisplay : ZilchComponent
     //Checks what happens when mouse pressed
     function MousePress(event : MouseEvent)
     {
+        //Check if right mouse button is triggered
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Right))
+        {
+            this.RMDown = true;
+        }
+        else
+        if(this.RMDown)
+        {
+            //If mouse is inside window
+            if(this.MousePos.Y > 100)
+            {
+                //Move player to mouse
+                var obj = this.Space.FindObjectByName("Player");
+                obj.Transform.Translation = this.MousePos;
+                
+            }
+            this.RMDown = false;
+        }
+        
         //Check if mouse button is triggered
         if(Zero.Mouse.IsButtonDown(MouseButtons.Left))
         {
@@ -37,6 +57,18 @@ class EditorDisplay : ZilchComponent
                 obj.EditorObjectClass.Init(this.LevelSettings.EditorTileSelect.SelID);
                 obj.Name = "EditorObject";
                 obj.Sprite.SpriteSource = this.LevelSettings.EditorSprite.GetSprite(this.LevelSettings.EditorTileSelect.SelID);
+                
+                //Add disapearer if it dissapears
+                if(this.LevelSettings.EditorTileSelect.SelID == 100)
+                {
+                    obj.AddComponentByName("Disapearer");
+                    obj.Disapearer.Init(60, 60, false, false);
+                }
+                if(this.LevelSettings.EditorTileSelect.SelID == 101)
+                {
+                    obj.AddComponentByName("Disapearer");
+                    obj.Disapearer.Init(60, 0, false, false);
+                }
             }
             this.MDown = false;
         }

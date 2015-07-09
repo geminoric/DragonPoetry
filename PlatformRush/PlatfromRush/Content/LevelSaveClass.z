@@ -39,9 +39,22 @@ class LevelSaveClass : ZilchComponent
         this.Pos2string = "";
         this.ConPortPosstring = "";
         
+        //save player location
+        var tmp = this.Space.CreateAtPosition(Archetype.Find("EmptySprite"), this.Space.FindObjectByName("Player").Transform.Translation);
+        tmp.AddComponentByName("EditorObjectClass");
+        tmp.EditorObjectClass.Init(0);
+        this.AddObject(tmp);
+        tmp.Destroy();
+        
         var objs = this.Space.FindAllObjectsByName("EditorObject");
         while(objs.IsNotEmpty)
         {
+            //Skip object if it is the player
+            if(objs.Current.EditorObjectClass.TileID == 0)
+            {
+                objs.MoveNext();
+                continue;
+            }
             this.AddObject(objs.Current);
             objs.MoveNext();
         }

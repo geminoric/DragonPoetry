@@ -27,7 +27,7 @@ class EditorTileSelect : ZilchComponent
     var EnemyTiles : Array[Integer] = new Array[Integer](0);
     //Which selection mode
     //0 : BG 1 : Platform 2 : Hazard 3 : Enemy
-    var SelectMode : Integer = 0;
+    var SelectMode : Integer = 1;
     //Amount of y tiles that fit in the grid
     var MouseYNum : Real = 4.7;
     //Size of each tile
@@ -76,19 +76,16 @@ class EditorTileSelect : ZilchComponent
         this.ScrollWheel = this.Space.FindObjectByName("TileScroll");
         
         
-        //TEMP Create tiles in the tile selector
-        for(var i : Integer = 0;i < 17;++i)
-        {
-            this.MakeTile(i);
-        }
-        for(var i : Integer = 100;i < 124;++i)
-        {
-            this.MakeTile(i);
-        }
-        for(var i : Integer = 200;i < 205;++i)
-        {
-            this.MakeTile(i);
-        }
+        //Create tiles
+        this.MakeTile(100);
+        this.MakeTile(101);
+        this.MakeTile(102);
+        this.MakeTile(103);
+        this.MakeTile(104);
+        this.MakeTile(200);
+        this.MakeTile(201);
+        this.MakeTile(300);
+        
     }
     
     //Checks if the player has selected a tile to make active
@@ -292,9 +289,21 @@ class EditorTileSelect : ZilchComponent
         var tile = this.Space.CreateAtPosition(Archetype.Find("EmptySprite"), Real3(this.X1 + ((obj % 3) + 0.5) * this.TileSize, this.Y2 - ((obj / 3) + 0.5) * this.TileSize, -1));
         tile.AddComponentByName("SelectTileClass");
         tile.Sprite.SpriteSource = this.LevelSettings.EditorSprite.GetSprite(tileID);
-        tile.Transform.Scale = Real3(5,5,1);
+        tile.Transform.Scale = Real3(2,2,1);
         tile.SelectTileClass.Init(tileID);
         tile.Name = "EditorTile";
+        
+        //Add disapearer if it dissapears
+        if(tileID == 100)
+        {
+            tile.AddComponentByName("Disapearer");
+            tile.Disapearer.Init(60, 60, false, true);
+        }
+        if(tileID == 101)
+        {
+            tile.AddComponentByName("Disapearer");
+            tile.Disapearer.Init(60, 0, false, true);
+        }
     }
     
     //Check if the mouse is inside the button

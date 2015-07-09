@@ -6,10 +6,23 @@ class Disapearer : ZilchComponent
     [Property]
     var StartUp : Integer = 0;
     var Count: Integer = 0;
+    var HasBoxCollider : Boolean = false;
+    var IsFlashing : Boolean = false;
+    
+    var Visible : Boolean = true;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        this.Count = (this.Delay + this.StartUp) * 60;
+    }
+    
+    function Init(delay : Integer, start : Integer, hasBoxCollider : Boolean, isFlashing : Boolean)
+    {
+        this.Delay = delay;
+        this.StartUp = start;
+        this.Count = this.StartUp;
+        this.IsFlashing = isFlashing;
+        this.HasBoxCollider = hasBoxCollider;
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function ToggleGhost()
@@ -19,8 +32,12 @@ class Disapearer : ZilchComponent
     
     function ToggleVisible()
     {
-        
-        this.Owner.Sprite.Visible = !this.Owner.Sprite.Visible;
+        this.Visible = !this.Visible;
+        //If in correct selection mode for tiles in level editor
+        if(!this.IsFlashing || this.Owner.SelectTileClass.Category == this.LevelSettings.EditorTileSelect.SelectMode)
+        {
+            this.Owner.Sprite.Visible = this.Visible;
+        }
     }
 
 
@@ -29,8 +46,11 @@ class Disapearer : ZilchComponent
         --this.Count;
         if(this.Count <= 0)
         {
-            this.Count = this.Delay * 60;
-            this.ToggleGhost();
+            this.Count = this.Delay;
+            if(this.HasBoxCollider)
+            {
+                this.ToggleGhost();
+            }
             this.ToggleVisible();
         }
     }

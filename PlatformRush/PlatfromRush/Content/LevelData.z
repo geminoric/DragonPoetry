@@ -21,6 +21,14 @@ class LevelData : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.Player = this.Space.FindObjectByName("Player");
         this.PlatformsActivated = 0;
+        
+        //Update platform count
+        var objs = this.Space.FindAllObjectsByName("Platform");
+        while(objs.IsNotEmpty)
+        {
+            this.PlatformCount();
+            objs.MoveNext();
+        }
 
     }
 

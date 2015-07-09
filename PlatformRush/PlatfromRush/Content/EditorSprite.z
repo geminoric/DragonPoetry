@@ -5,11 +5,91 @@ class EditorSprite : ZilchComponent
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
     
+    
+    //IDs of tiles
+    //0-99    : background
+    //100-199 : platforms
+    //200-299 : hazards
+    //300-399 : enemies
+    //
+    //SPRITE ID LIST
+    //--------------
+    //0-Player
+    //
+    //
+    //
+    //
+    //100-Dissapearing block 0 DELAY
+    //101-Dissapearing block 30 DELAY
+    //102-Platform
+    //103-TempWall
+    //104-Spring
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //200-Dropper
+    //201-spike
+    //
+    //
+    //
+    //
+    //
+    //
+    //300-Ghost
+    //
+    //
+    //
+    //
+    
     function GetSprite(tileID : Integer) : SpriteSource
     {
-        if(tileID == 1)
+        if(tileID == 0)
         {
-            return SpriteSource.Find("TestTile2");
+            //TEMP empty sprite
+            return SpriteSource.Find("main_idle1019");
+        }
+        if(tileID == 100)
+        {
+            return SpriteSource.Find("shadowfloor1");
+        }
+        if(tileID == 101)
+        {
+            return SpriteSource.Find("shadowfloor1");
+        }
+        if(tileID == 102)
+        {
+            return SpriteSource.Find("platfrom_inactive");
+        }
+        if(tileID == 103)
+        {
+            return SpriteSource.Find("shadowfloor1");
+        }
+        if(tileID == 104)
+        {
+            return SpriteSource.Find("Spring");
+        }
+        if(tileID == 200)
+        {
+            return SpriteSource.Find("dopper");
+        }
+        if(tileID == 201)
+        {
+            return SpriteSource.Find("spikes");
+        }
+        if(tileID == 300)
+        {
+            return SpriteSource.Find("TestTile");
         }
         return SpriteSource.Find("TestTile");
     }

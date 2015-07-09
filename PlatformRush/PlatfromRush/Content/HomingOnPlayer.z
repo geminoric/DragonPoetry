@@ -11,6 +11,11 @@ class HomingOnPlayer : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
+    
+    function Init()
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
 
     function MoveTowards()
     {

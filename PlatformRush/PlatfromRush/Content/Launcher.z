@@ -6,6 +6,11 @@ class Launcher : ZilchComponent
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
     
+    function Init()
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+    
     function OnCollisionStarted(collisionEvent : CollisionEvent)
     {
         var otherObject = collisionEvent.OtherObject;

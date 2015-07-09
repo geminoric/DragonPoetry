@@ -16,6 +16,12 @@ class Dropper : ZilchComponent
         this.Count = this.Delay;
     }
     
+    function Init()
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Count = this.Delay;
+    }
+    
     
     function SpawnAnObject()
     {

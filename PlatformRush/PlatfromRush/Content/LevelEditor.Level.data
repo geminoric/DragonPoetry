@@ -54,6 +54,9 @@ Level =
 		RenameClass = 
 		{
 		},
+		LoadLevelClass = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -76,10 +79,10 @@ Level =
 			ProjectionMode ProjectionMode = Orthographic,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = ZDepth,
-			float FieldOfView = 45,
+			float FieldOfView = 46,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 33.287,
+			float Size = 50,
 		},
 		EditorCameraController = 
 		{
@@ -352,7 +355,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 4,
+			float Size = 10,
 		},
 		Microphone = 
 		{
@@ -439,6 +442,41 @@ Level =
 			TextAlign Align = Left,
 			float PixelsPerUnit = 64,
 			bool Smoothing = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Named = 
+		{
+			string Name = "Player",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 500, 3],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5502c88e6e940b8f:main_idle1000",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
 		},
 	},
 },
