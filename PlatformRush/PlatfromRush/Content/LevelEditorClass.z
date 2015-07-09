@@ -93,6 +93,13 @@ class LevelEditorClass : ZilchComponent
     
     function LoadIntoEditor(obj : Cog)
     {
+        //Player sprite
+        if(obj.EditorObjectClass.TileID == 0)
+        {
+            this.Space.FindObjectByName("Player").Transform.Translation = obj.EditorObjectClass.Pos;
+            obj.Destroy();
+            return;
+        }
         obj.Name = "EditorObject";
         obj.Sprite.SpriteSource = this.LevelSettings.EditorSprite.GetSprite(obj.EditorObjectClass.TileID);
     }
