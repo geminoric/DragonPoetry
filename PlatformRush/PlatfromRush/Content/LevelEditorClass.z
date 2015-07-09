@@ -10,19 +10,19 @@ class LevelEditorClass : ZilchComponent
         
         //Main buttons
         var but0 = this.Space.Create(Archetype.Find("Button"));
-        but0.ButtonClass.Init(Real3(-19,8.3,0), Real3(1.5,1.5,1), this.New, "new", 30);
+        but0.ButtonClass.Init(Real3(-19,8.3,0), Real3(1.5,1.5,1), this.New, "New", 30);
         var but1 = this.Space.Create(Archetype.Find("Button"));
-        but1.ButtonClass.Init(Real3(-16.7,8.3,0), Real3(1.5,1.5,1), this.Save, "save", 30);
+        but1.ButtonClass.Init(Real3(-16.7,8.3,0), Real3(1.5,1.5,1), this.Save, "Save", 30);
         var but2 = this.Space.Create(Archetype.Find("Button"));
-        but2.ButtonClass.Init(Real3(-14.4,8.3,0), Real3(1.5,1.5,1), this.Load, "load", 30);
+        but2.ButtonClass.Init(Real3(-14.4,8.3,0), Real3(1.5,1.5,1), this.Load, "Load", 30);
         var but3 = this.Space.Create(Archetype.Find("Button"));
-        but3.ButtonClass.Init(Real3(-12.1,8.3,0), Real3(1.5,1.5,1), this.Test, "test", 30);
+        but3.ButtonClass.Init(Real3(-12.1,8.3,0), Real3(1.5,1.5,1), this.Test, "Test", 30);
         var but4 = this.Space.Create(Archetype.Find("Button"));
-        but4.ButtonClass.Init(Real3(-9.8,8.3,0), Real3(1.5,1.5,1), this.Rename, "rename", 30);
+        but4.ButtonClass.Init(Real3(-9.8,8.3,0), Real3(1.5,1.5,1), this.Rename, "Rename", 25);
         var but5 = this.Space.Create(Archetype.Find("Button"));
-        but5.ButtonClass.Init(Real3(3,8.3,0), Real3(1.5,1.5,1), this.Menu, "menu", 30);
+        but5.ButtonClass.Init(Real3(3,8.3,0), Real3(1.5,1.5,1), this.Menu, "Menu", 30);
         var but6 = this.Space.Create(Archetype.Find("Button"));
-        but6.ButtonClass.Init(Real3(0,8.3,0), Real3(1.5,1.5,1), this.Grid, "grid", 30);
+        but6.ButtonClass.Init(Real3(0,8.3,0), Real3(1.5,1.5,1), this.Grid, "Grid", 30);
     }
     
     //Callback functions for buttons

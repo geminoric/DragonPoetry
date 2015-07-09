@@ -1,0 +1,8 @@
+FontContent = 
+{
+	FontBuilder = 
+	{
+		string Name = "Sansation-Regular",
+		uint64 ResourceId = 55b8afdd5ab8830f,
+	},
+},

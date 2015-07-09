@@ -9,22 +9,22 @@ class MainMenuInit : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
         var but0 = this.Space.Create(Archetype.Find("Button"));
-        but0.ButtonClass.Init(Real3(10,5,0), Real3(3,1.5,1), this.StartGame , "start", 20);
+        but0.ButtonClass.Init(Real3(10,5,0), Real3(3,1.5,1), this.StartGame , "Start", 20);
         
         var but1 = this.Space.Create(Archetype.Find("Button"));
-        but1.ButtonClass.Init(Real3(10,3,0), Real3(3,1.5,1), this.LevelEditor , "editor", 20);
+        but1.ButtonClass.Init(Real3(10,3,0), Real3(3,1.5,1), this.LevelEditor , "Editor", 20);
         
         var but2 = this.Space.Create(Archetype.Find("Button"));
-        but2.ButtonClass.Init(Real3(10,1,0), Real3(3,1.5,1), this.Options , "options", 20);
+        but2.ButtonClass.Init(Real3(10,1,0), Real3(3,1.5,1), this.Options , "Options", 20);
         
         var but3 = this.Space.Create(Archetype.Find("Button"));
-        but3.ButtonClass.Init(Real3(10,-1,0), Real3(3,1.5,1), this.Controls , "controls", 20);
+        but3.ButtonClass.Init(Real3(10,-1,0), Real3(3,1.5,1), this.Controls , "Controls", 20);
         
         var but4 = this.Space.Create(Archetype.Find("Button"));
-        but4.ButtonClass.Init(Real3(10,-3,0), Real3(3,1.5,1), this.Credits , "credits", 20);
+        but4.ButtonClass.Init(Real3(10,-3,0), Real3(3,1.5,1), this.Credits , "Credits", 20);
         
         var but5 = this.Space.Create(Archetype.Find("Button"));
-        but5.ButtonClass.Init(Real3(10,-5,0), Real3(3,1.5,1), this.Quit , "quit", 20);
+        but5.ButtonClass.Init(Real3(10,-5,0), Real3(3,1.5,1), this.Quit , "Quit", 20);
     }
 
     function StartGame()

@@ -58,13 +58,13 @@ class EditorTileSelect : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         //Tile select buttons
         var but5 = this.Space.Create(Archetype.Find("Button"));
-        but5.ButtonClass.Init(Real3(9,8.3,0), Real3(1.5,1.5,1), this.BG, "background", 18);
+        but5.ButtonClass.Init(Real3(9,8.3,0), Real3(1.5,1.5,1), this.BG, "Background", 18);
         var but6 = this.Space.Create(Archetype.Find("Button"));
-        but6.ButtonClass.Init(Real3(11.3,8.3,0), Real3(1.5,1.5,1), this.Platforms, "platforms", 18);
+        but6.ButtonClass.Init(Real3(11.3,8.3,0), Real3(1.5,1.5,1), this.Platforms, "Platforms", 18);
         var but7 = this.Space.Create(Archetype.Find("Button"));
-        but7.ButtonClass.Init(Real3(13.6,8.3,0), Real3(1.5,1.5,1), this.Hazards, "hazards", 18);
+        but7.ButtonClass.Init(Real3(13.6,8.3,0), Real3(1.5,1.5,1), this.Hazards, "Hazards", 18);
         var but8 = this.Space.Create(Archetype.Find("Button"));
-        but8.ButtonClass.Init(Real3(15.9,8.3,0), Real3(1.5,1.5,1), this.Enemies, "enemies", 18);
+        but8.ButtonClass.Init(Real3(15.9,8.3,0), Real3(1.5,1.5,1), this.Enemies, "Enemies", 18);
         
         //Init events
         Zero.Connect(this.Space, Events.MouseUpdate, this.UpdateMousePos);

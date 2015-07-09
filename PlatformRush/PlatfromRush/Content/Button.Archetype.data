@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [4.0566, 4.08089, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -102,7 +102,7 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string FontName = "55ac6763ecfc7746:data-unifon",
+				string FontName = "55b8afdd5ab8830f:Sansation-Regular",
 				uint FontSize = 30,
 				string Text = "test",
 				TextAlign Align = Left,
