@@ -12,8 +12,6 @@ class HUD : ZilchComponent
         this.HudLevel = Level.Find("HUD");
         // Load the HUD level set in the property
         this.HudSpace.LoadLevel(this.HudLevel);
-
-
     }
 
     function Destroyed()

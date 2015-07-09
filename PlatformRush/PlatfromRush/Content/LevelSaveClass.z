@@ -11,6 +11,8 @@ class LevelSaveClass : ZilchComponent
     [Serialized]
     var ConPortPosstring : String = "";
     
+    var LevelName : String = "TestName";
+    
     //Storage of loaded data
     var Data : Cog = null;
     
@@ -139,6 +141,8 @@ class LevelSaveClass : ZilchComponent
             return;
         }
         //Update data
+        this.LevelName = levelName;
+        
         this.IDstring = loaded.LevelSaveClass.IDstring;
         this.Posstring = loaded.LevelSaveClass.Posstring;
         this.Pos1string = loaded.LevelSaveClass.Pos1string;

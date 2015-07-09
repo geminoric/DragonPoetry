@@ -12,10 +12,10 @@ Level =
 		},
 		GravityEffect = 
 		{
-			bool Active = false,
+			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 10,
+			float Strength = 30,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
@@ -64,12 +64,22 @@ Level =
 		},
 		LevelData = 
 		{
+			float GoldTime = 0,
+			float SilverTime = 0,
+			float BronzeTime = 0,
 		},
 		PauseControl = 
 		{
 		},
 		HUD = 
 		{
+		},
+		LoseControl = 
+		{
+		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
 		},
 	},
 	Cog = 
@@ -96,7 +106,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 49.1922,
+			float Size = 40.2752,
 		},
 		EditorCameraController = 
 		{
@@ -148,7 +158,6 @@ Level =
 		},
 		CameraFollow = 
 		{
-			CogPath FollowObj = ":/Player",
 		},
 	},
 	Cog = 

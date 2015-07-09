@@ -1,40 +1,28 @@
 class PauseMenu : ZilchComponent
 {
-    var LastSpace : Space;
+    var UnPaws : delegate() = null;
     var Delay : Integer = 42;
     
     function Initialize(init : CogInitializer)
     {
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+       // Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    }
+    
+    function OnKeyDown(event: KeyboardEvent)
+    {
+        if ( event.Keyboard.KeyIsPressed(Keys.Escape) )
+        {
+            this.UnPaws();
+        }
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if(this.Delay < 0)
-        {
-            if(Zero.Keyboard.KeyIsPressed(Keys.Escape))
-            {
-                    this.Unpaws();
-            }
-        }
-        else
-        {
-            --this.Delay;
-        }
     }
     
-    function SetSpace(previous : Space)
+    function Init(unpaus : delegate())
     {
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        this.LastSpace = previous;
-    }
-    
-    function Unpaws()
-    {
-        Console.WriteLine("Test");
-            //this.Space.TimeSpace.TogglePause();
-            //this.LastSpace.TimeSpace.TogglePause();
-           // this.LastSpace.LevelSettings.PauseControl.IsPawsed = false;
-            this.Space.DestroyAll();
+        this.UnPaws = unpaus;
+        Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
     }
 }

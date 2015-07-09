@@ -71,6 +71,16 @@ Level =
 		HUD = 
 		{
 		},
+		PauseControl = 
+		{
+		},
+		LoseControl = 
+		{
+		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{
@@ -148,7 +158,6 @@ Level =
 		},
 		CameraFollow = 
 		{
-			CogPath FollowObj = ":/Player",
 		},
 	},
 	Cog = 

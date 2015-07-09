@@ -67,8 +67,17 @@ Level =
 		},
 		LevelData = 
 		{
+			float GoldTime = 0,
+			float SilverTime = 0,
+			float BronzeTime = 0,
 		},
 		PlayerVars = 
+		{
+		},
+		PauseControl = 
+		{
+		},
+		LoseControl = 
 		{
 		},
 	},

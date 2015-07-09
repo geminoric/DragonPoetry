@@ -5,13 +5,22 @@ class LevelSelectInit : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
         var but0 = this.Space.Create(Archetype.Find("Button"));
-        but0.ButtonClass.Init(Real3(-10,0,0), Real3(5,5,1), this.Easy , "easy", 20);
+        but0.ButtonClass.Init(Real3(-10,0,0), Real3(5,5,1), this.Easy , "1", 20);
         
         var but1 = this.Space.Create(Archetype.Find("Button"));
-        but1.ButtonClass.Init(Real3(0,0,0), Real3(5,5,1), this.Medium , "medium", 20);
+        but1.ButtonClass.Init(Real3(0,0,0), Real3(5,5,1), this.Medium , "2", 20);
         
         var but2 = this.Space.Create(Archetype.Find("Button"));
-        but2.ButtonClass.Init(Real3(10,0,0), Real3(5,5,1), this.Hard , "hard", 20);
+        but2.ButtonClass.Init(Real3(10,0,0), Real3(5,5,1), this.Hard , "3", 20);
+        
+        var but3 = this.Space.Create(Archetype.Find("Button"));
+        but3.ButtonClass.Init(Real3(-10,-4,0), Real3(5,5,1), this.Four , "4", 20);
+        
+        var but4 = this.Space.Create(Archetype.Find("Button"));
+        but4.ButtonClass.Init(Real3(0,-4,0), Real3(5,5,1), this.Five , "5", 20);
+        
+        var but5 = this.Space.Create(Archetype.Find("Button"));
+        but5.ButtonClass.Init(Real3(10,-4,0), Real3(5,5,1), this.Six , "6", 20);
     }
     
     function Easy()
@@ -33,6 +42,30 @@ class LevelSelectInit : ZilchComponent
     function Hard()
     {
         var level = Level.Find("LevelHardAlt");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Four()
+    {
+        var level = Level.Find("Level4");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Five()
+    {
+        var level = Level.Find("Level5");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Six()
+    {
+        var level = Level.Find("MEGAMOOON");
         var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
         newSpace.LoadLevel(level);
         this.Space.Destroy();

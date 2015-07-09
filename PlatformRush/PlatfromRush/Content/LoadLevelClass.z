@@ -72,6 +72,8 @@ class LoadLevelClass : ZilchComponent
     //Call this function to load a level
     function LoadLevel(levelName : String)
     {
+        Console.WriteLine(levelName);
+        this.Space.Name = "fds";
         //Create a new space
         var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
         newSpace.LoadLevel(Level.Find("EmptyLevel"));

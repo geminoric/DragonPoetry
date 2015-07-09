@@ -1,0 +1,38 @@
+class LoseScreenClass : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+      //  Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function Init(restart: delegate(), levelselect: delegate(), menu: delegate(), 
+                  time: String, platforms: Integer, platformsActivated: Integer, lose: Boolean)
+    {
+        var but0 = this.Space.Create(Archetype.Find("Button"));
+        but0.ButtonClass.Init(Real3(0,0,0), Real3(3,1.5,1), restart , "restart", 20);
+        
+        var but1 = this.Space.Create(Archetype.Find("Button"));
+        but1.ButtonClass.Init(Real3(0,-2,0), Real3(3,1.5,1), levelselect , "level select", 14);
+        
+        var but2 = this.Space.Create(Archetype.Find("Button"));
+        but2.ButtonClass.Init(Real3(0,-4,0), Real3(3,1.5,1), menu , "main menu", 20);
+        
+        this.Space.FindObjectByName("Timer").SpriteText.Text = time;
+        
+        this.Space.FindObjectByName("PlatformsLeft").SpriteText.Text = 
+            "Platforms: `platformsActivated`/`platforms`";
+
+        if ( lose )
+        {
+            this.Space.FindObjectByName("WinLoseText").SpriteText.Text = "you lose";
+        }
+        else
+        {
+            this.Space.FindObjectByName("WinLoseText").SpriteText.Text = "you win";
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

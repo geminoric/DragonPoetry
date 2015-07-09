@@ -67,6 +67,15 @@ Level =
 		},
 		LevelData = 
 		{
+			float GoldTime = 0,
+			float SilverTime = 0,
+			float BronzeTime = 0,
+		},
+		LoseControl = 
+		{
+		},
+		PauseControl = 
+		{
 		},
 	},
 	Cog = 
@@ -81,7 +90,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [11.3335, 11.2757, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -101,7 +110,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [11.3335, 11.2757, 1.29698e-008],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -145,7 +154,6 @@ Level =
 		},
 		CameraFollow = 
 		{
-			CogPath FollowObj = ":/Player",
 		},
 	},
 	Cog = 
@@ -223,7 +231,9 @@ Level =
 		},
 		MaintainVel = 
 		{
-			float MaxSpeed = 10,
+			float MaxDownSpeed = 0,
+			float MaxUpSpeed = 0,
+			float MaxRunSpeed = 0,
 		},
 	},
 	Cog = 

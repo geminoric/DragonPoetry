@@ -47,14 +47,7 @@ class LevelData : ZilchComponent
 
         if(this.TotalPlatforms == this.PlatformsActivated)
         {
-            var gameSpace = this.GameSession.CreateSpace(Archetype.Find("Space"));
-            var win = Level.Find("WinScreen");
-            
-            gameSpace.LoadLevel(win);
-            var levelsets = gameSpace.FindObjectByName("LevelSettings");
-            
-            
-            
+            this.LevelSettings.LoseControl.OpenLoseWinScreen(false);
         }
         
 

@@ -35,7 +35,7 @@ class DropThrough : ZilchComponent
             {
                 this.Owner.BoxCollider.Ghost = false;
             }*/
-            if(otherObj.RigidBody.Velocity.Y <= 0)
+            if(otherObj.RigidBody.Velocity.Y <= 0 && this.Owner.Sprite.Visible)
             {
                 this.Owner.BoxCollider.Ghost = false;
             }

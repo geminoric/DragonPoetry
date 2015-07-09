@@ -1,7 +1,7 @@
 class Health : ZilchComponent
 {
     [Property]
-    var Hp : Integer = 0;
+    var Hp : Integer = 6;
     var Vulnurable: Boolean = true;
     
     function Initialize(init : CogInitializer)
@@ -18,6 +18,11 @@ class Health : ZilchComponent
           {
             this.Hp = 0;
           }
+        }
+
+        if ( this.Hp == 0 )
+        {
+            this.LevelSettings.LoseControl.OpenLoseWinScreen(true);
         }
     }
     

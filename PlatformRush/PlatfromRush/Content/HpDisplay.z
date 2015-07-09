@@ -106,11 +106,7 @@ class HpDisplay : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
-        var otherSpace = this.GameSession.FindSpaceByName("Main");
-        if(otherSpace == null)
-        {
-            otherSpace = this.GameSession.FindSpaceByName("Main");
-        }
+        var otherSpace = this.GameSession.FindSpaceByName("MainNew");
         if(otherSpace != null)
         {
            var player = otherSpace.FindObjectByName("Player");

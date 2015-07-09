@@ -1,0 +1,67 @@
+class LoseControl : ZilchComponent
+{
+    var LoseSpace : Space;
+    var LoseScreenActive : Boolean = false;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OpenLoseWinScreen(lose: Boolean)
+    {
+        this.LoseSpace = this.GameSession.CreateNamedSpace("OptionsSpace", Archetype.Find("Space"));
+        this.LoseSpace.LoadLevel(Level.Find("LoseScreen"));
+        
+        var time = this.LevelSettings.HUD.HudSpace.FindObjectByName("Timer").SpriteText.Text;
+        var totalPlatforms = this.LevelSettings.LevelData.TotalPlatforms;
+        var platformsActivated = this.LevelSettings.LevelData.PlatformsActivated;
+        
+        this.LoseSpace.LevelSettings.LoseScreenClass.Init(this.RestartLevel, this.LevelSelect, this.Quit, 
+                                                          time, totalPlatforms, platformsActivated, lose);
+        
+        this.Space.TimeSpace.TogglePause();
+        this.LevelSettings.HUD.HudSpace.TimeSpace.TogglePause();
+        
+        this.LoseScreenActive = true;
+    }
+    
+    function RestartLevel()
+    {
+        this.LoseSpace.Destroy();
+        this.Space.TimeSpace.TogglePause();
+        this.LevelSettings.HUD.HudSpace.TimeSpace.TogglePause();
+        this.LevelSettings.HUD.HudSpace.Destroy();
+        
+        //TEMP CODE
+        if ( this.Space.CurrentLevel.Name == "EmptyLevel")
+        {
+            //this.Space.LoadLevel(Level.Find("MainMenu"));
+            this.LevelSettings.LoadLevelClass.LoadLevel("DONTUSETHISNAME452420789");
+        }
+        else
+        {
+            this.Space.ReloadLevel();
+        }
+    }
+    
+    function LevelSelect()
+    {
+        this.LoseSpace.Destroy();
+        this.Space.TimeSpace.TogglePause();
+        this.LevelSettings.HUD.HudSpace.TimeSpace.TogglePause();
+        this.Space.LoadLevel(Level.Find("LevelSelect"));
+    }
+    
+    function Quit()
+    {
+        this.LoseSpace.Destroy();
+        this.Space.TimeSpace.TogglePause();
+        this.LevelSettings.HUD.HudSpace.TimeSpace.TogglePause();
+        this.Space.LoadLevel(Level.Find("MainMenu"));
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

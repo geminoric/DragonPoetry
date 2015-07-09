@@ -84,6 +84,9 @@ Level =
 		{
 			bool AllowQuit = false,
 		},
+		LoseControl = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -224,6 +227,9 @@ Level =
 		{
 		},
 		Controls = 
+		{
+		},
+		PlayerAnimations = 
 		{
 		},
 	},

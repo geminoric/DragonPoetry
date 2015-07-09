@@ -1,5 +1,9 @@
 class MainMenuInit : ZilchComponent
 {
+    var OptionsSpace : Space = null;
+    var ControlsSpace : Space = null;
+    var CreditsSpace : Space = null;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -14,7 +18,7 @@ class MainMenuInit : ZilchComponent
         but2.ButtonClass.Init(Real3(10,1,0), Real3(3,1.5,1), this.Options , "options", 20);
         
         var but3 = this.Space.Create(Archetype.Find("Button"));
-        but3.ButtonClass.Init(Real3(10,-1,0), Real3(3,1.5,1), this.Controls , "controles", 20);
+        but3.ButtonClass.Init(Real3(10,-1,0), Real3(3,1.5,1), this.Controls , "controls", 20);
         
         var but4 = this.Space.Create(Archetype.Find("Button"));
         but4.ButtonClass.Init(Real3(10,-3,0), Real3(3,1.5,1), this.Credits , "credits", 20);
@@ -37,20 +41,45 @@ class MainMenuInit : ZilchComponent
     
     function Options()
     {
-        var level = Level.Find("Options");
-        //this.Space.LoadLevel(level);
+        this.OptionsSpace = this.GameSession.CreateNamedSpace("OptionsSpace", Archetype.Find("Space"));
+        this.OptionsSpace.LoadLevel(Level.Find("Options"));
+        
+        var button = this.OptionsSpace.Create(Archetype.Find("Button"));
+            button.ButtonClass.Init(Real3(7,-4,0), Real3(3,1.5,1), this.OptionsQuit , "back", 20);
     }
 
+    function OptionsQuit()
+    {
+        this.OptionsSpace.Destroy();
+    }
+    
     function Controls()
     {
-        var level = Level.Find("Controls");
+        this.ControlsSpace = this.GameSession.CreateNamedSpace("ControlsSpace", Archetype.Find("Space"));
+        this.ControlsSpace.LoadLevel(Level.Find("Controls"));
+        
+        var button = this.ControlsSpace.Create(Archetype.Find("Button"));
+            button.ButtonClass.Init(Real3(7,-4,0), Real3(3,1.5,1), this.ControlsQuit , "back", 20);
         //this.Space.LoadLevel(level);
+    }
+    
+    function ControlsQuit()
+    {
+        this.ControlsSpace.Destroy();
     }
     
     function Credits()
     {
-        var level = Level.Find("Credits");
-        this.Space.LoadLevel(level);
+        this.CreditsSpace = this.GameSession.CreateNamedSpace("ControlsSpace", Archetype.Find("Space"));
+        this.CreditsSpace.LoadLevel(Level.Find("Credits"));
+        
+        var button = this.CreditsSpace.Create(Archetype.Find("Button"));
+            button.ButtonClass.Init(Real3(7,-4,0), Real3(3,1.5,1), this.CreditsQuit , "back", 20);
+    }
+    
+    function CreditsQuit()
+    {
+        this.CreditsSpace.Destroy();
     }
     
     function Quit()

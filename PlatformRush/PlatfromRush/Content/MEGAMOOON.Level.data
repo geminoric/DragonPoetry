@@ -71,6 +71,16 @@ Level =
 			float SilverTime = 0,
 			float BronzeTime = 0,
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
+		LoseControl = 
+		{
+		},
+		PauseControl = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -84,7 +94,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.163345, 11.4268, 90],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -96,7 +106,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.1034,
+			float Size = 10.9479,
 		},
 		EditorCameraController = 
 		{
@@ -104,7 +114,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.163345, 11.4268, 40],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -260,9 +270,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			float Delay = 2,
-			float Start = 0,
-			float Sync = 10,
+			int Delay = 124,
+			int StartUp = 90,
 		},
 	},
 	Cog = 
@@ -322,9 +331,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			float Delay = 2,
-			float Start = 2,
-			float Sync = 10,
+			int Delay = 200,
+			int StartUp = 34,
 		},
 	},
 	Cog = 
@@ -384,9 +392,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			float Delay = 2,
-			float Start = 4,
-			float Sync = 10,
+			int Delay = 61,
+			int StartUp = 296,
 		},
 	},
 	Cog = 
@@ -446,9 +453,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			float Delay = 2,
-			float Start = 6,
-			float Sync = 10,
+			int Delay = 125,
+			int StartUp = 0,
 		},
 	},
 	Cog = 
@@ -508,9 +514,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			float Delay = 2,
-			float Start = 4,
-			float Sync = 10,
+			int Delay = 53,
+			int StartUp = 0,
 		},
 	},
 	ArchetypeInstance = 
@@ -588,9 +593,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			float Delay = 2,
-			float Start = 0,
-			float Sync = 10,
+			int Delay = 85,
+			int StartUp = 57,
 		},
 	},
 	Cog = 
@@ -650,9 +654,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			float Delay = 2,
-			float Start = 2,
-			float Sync = 10,
+			int Delay = 342,
+			int StartUp = 0,
 		},
 	},
 	ArchetypeInstance = 

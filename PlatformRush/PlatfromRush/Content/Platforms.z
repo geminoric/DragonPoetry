@@ -12,6 +12,7 @@ class Platforms : ZilchComponent
     function Init()
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        this.LevelSettings.LevelData.PlatformCount();
     }
     
 
@@ -25,7 +26,7 @@ class Platforms : ZilchComponent
              var player = otherObject.Name;
              if(player == "Player")
              {
-                if(otherObject.RigidBody.Velocity.Y <= 0)
+                if(otherObject.RigidBody.Velocity.Y <= 0 && this.Owner.Sprite.Visible)
                 {
                 if(this.OtherSprite != null)
                 {

@@ -73,7 +73,6 @@ class Controls : ZilchComponent
                 this.OnCD = false;
             }
         }
-        Console.WriteLine(this.Jumped);
     }
     
     function OnCollision(event : CollisionEvent)
@@ -124,9 +123,13 @@ class Controls : ZilchComponent
             this.Owner.Sprite.FlipX = true;
             // Let the Controller know an action has been taken
             this.Pressed = true;
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Idle )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Running);
+            }
         }
-        
-        if(Zero.Keyboard.KeyIsDown(Keys.D))
+        else if(Zero.Keyboard.KeyIsDown(Keys.D))
         {
             // Set movement to 1 unit towards the right
             movement.X = 1.0;
@@ -135,6 +138,15 @@ class Controls : ZilchComponent
             this.Owner.Sprite.FlipX = false;
             // Let the Controller know an action has been taken
             this.Pressed = true;
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Idle )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Running);
+            }
+        }
+        else if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Running )
+        {
+            this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
         }
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Space) && (this.Jumped == 0.0 || this.Jumped == 2.0))
@@ -150,6 +162,8 @@ class Controls : ZilchComponent
             {
                 this.Jumped = 2.0;
             }
+            
+            this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
         }
         
         // Once Hit the ground, let you jump again.
@@ -157,6 +171,11 @@ class Controls : ZilchComponent
         {
             this.Jumped = 0.0;
             movement.Y = 0.0;
+            
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Jumping )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
+            }
         }
         
         // Use Dash JumpsLeftity

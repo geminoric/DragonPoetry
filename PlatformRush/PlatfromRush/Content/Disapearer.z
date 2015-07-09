@@ -6,13 +6,18 @@ class Disapearer : ZilchComponent
     [Property]
     var StartUp : Integer = 0;
     var Count: Integer = 0;
-    var HasBoxCollider : Boolean = false;
+    var HasBoxCollider : Boolean = true;
     var IsFlashing : Boolean = false;
     
-    var Visible : Boolean = true;
+    var Visible : Boolean = false;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        if(this.Owner.Name == "Platform")
+        {
+            this.Owner.BoxCollider.Ghost = true;
+            this.Owner.BoxCollider.SendsEvents = true;
+        }
     }
     
     function Init(delay : Integer, start : Integer, hasBoxCollider : Boolean, isFlashing : Boolean)
@@ -27,6 +32,10 @@ class Disapearer : ZilchComponent
 
     function ToggleGhost()
     {
+        if(this.Owner.Name == "Platform")
+        {
+            return;
+        }
         this.Owner.BoxCollider.Ghost = !this.Owner.BoxCollider.Ghost;
     }
     
