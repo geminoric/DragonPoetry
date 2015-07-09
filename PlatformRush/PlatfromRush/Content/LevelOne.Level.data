@@ -12,7 +12,7 @@ Level =
 		},
 		GravityEffect = 
 		{
-			bool Active = false,
+			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
 			float Strength = 10,
@@ -236,7 +236,7 @@ Level =
 			float Pitch = 1,
 			bool Positional = true,
 		},
-		PlayerController = 
+		Controls = 
 		{
 		},
 	},
