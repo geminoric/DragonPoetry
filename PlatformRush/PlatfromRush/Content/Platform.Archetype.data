@@ -14,11 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-<<<<<<< HEAD
-		Vec3 Translation = [-9.19041, 2.30785, 0],
-=======
 		Vec3 Translation = [0, 0, 0],
->>>>>>> origin/master
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
