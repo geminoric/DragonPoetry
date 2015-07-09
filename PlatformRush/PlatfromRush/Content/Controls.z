@@ -7,8 +7,11 @@ class Controls : ZilchComponent
     var Pressed : Boolean = false;
     var Ablity : Integer = 0;
     
+
     // Max time for JumpsLeft cooldown
-    var MaxCD : Real = 60;
+
+    // Max time for ability cooldown
+    var MaxCD : Real = 10;
     var CurrentCD : Real = 0;
     var RateCD : Real = 0.5;
     var OnCD : Boolean = false;
@@ -42,6 +45,12 @@ class Controls : ZilchComponent
         if(this.Ablity == 1)
         {
             this.OnCD = false;
+            var trans = this.Owner.Sprite.Color;
+            trans.W = 0.4;
+            this.Movement.Y = 0;
+            this.Owner.Sprite.Color = trans;
+            this.OnCD = true;
+
             this.CurrentCD = this.MaxCD;
             this.DashStretch(this.Direction);
             this.Owner.Transform.Scale = this.Scale;
@@ -52,10 +61,12 @@ class Controls : ZilchComponent
             }
             if(this.Owner.Transform.Scale.X <= this.MinStretch)
             {
+                trans.W = 1.0;
                 this.Scale.X = this.MinStretch;
                 this.Owner.Transform.Scale = this.Scale;
                 this.Stretch = true;
                 this.Ablity = 0;
+                this.Owner.Sprite.Color = trans;
             }
         }
         if(this.Ablity == 2)
@@ -137,23 +148,23 @@ class Controls : ZilchComponent
             this.Pressed = true;
         }
         
-        if(Zero.Keyboard.KeyIsDown(Keys.Space) && (this.Jumped == 0.0 || this.Jumped == 2.0))
+        if(Zero.Keyboard.KeyIsDown(Keys.Space) && (this.Jumped == 0.0 || this.Jumped == 1.0))
         {
             movement.Y = 15.0;
             
-            if(this.Jumped == 2.0)
+            if(this.Jumped == 1.0)
             {
-                this.Jumped = 1.0;
+                this.Jumped = 2.0;
             }
             
             if(this.Jumped == 0.0)
             {
-                this.Jumped = 2.0;
+                this.Jumped = 1.0;
             }
         }
         
         // Once Hit the ground, let you jump again.
-        if((movement.Y > -0.01 && movement.Y < 0.01) && this.Jumped == 1.0)
+        if((movement.Y > -0.01 && movement.Y < 0.01) && this.Jumped == 2.0)
         {
             this.Jumped = 0.0;
             movement.Y = 0.0;
