@@ -28,7 +28,7 @@ class LevelSelectInit : ZilchComponent
     
     function Hard()
     {
-        var level = Level.Find("LevelHard");
+        var level = Level.Find("LevelHardAlt");
         this.Space.LoadLevel(level);
     }
     

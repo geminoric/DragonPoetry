@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Sprite",
+		string Name = "Ghost",
 	},
 	Archetyped = 
 	{
@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-0.449287, 3.19494, 0],
+		Vec3 Translation = [2.7787, 0.208565, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,11 +24,11 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.3893, 1, 0.015, 1],
+		Vec4 Color = [1, 1, 1, 0.995],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5275aa4d802dd6dc:Square",
+		string SpriteSource = "551782ba25562d2b:Ghost",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -48,7 +48,7 @@ Cog =
 	},
 	HomingOnPlayer = 
 	{
-		float HomingSpeed = 25,
+		float HomingSpeed = 20,
 		CogPath Follow = ":/Player",
 	},
 	RigidBody = 
@@ -71,6 +71,7 @@ Cog =
 	{
 		int ActiveTime = 30,
 		int CoolDown = 45,
+		float MaxDistance = 15,
 	},
 	GravityEffect = 
 	{
@@ -84,13 +85,13 @@ Cog =
 	{
 		bool Active = true,
 		bool WakeUpOnChange = true,
-		float Drag = 7,
+		float Drag = 5,
 	},
 	Hazard = 
 	{
 		int Damage = 6,
 		bool StunOn = false,
-		bool Active = false,
+		bool Active = true,
 		float KnockBackSpeed = 0,
 	},
 },

@@ -11,17 +11,28 @@ class HomingOnPlayer : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
+    
+    function NegateSpeed()
+    {
+        this.HomingSpeed = -this.HomingSpeed;
+    }
 
     function MoveTowards()
     {
         var direction = this.Follow.Cog.Transform.Translation - this.Owner.Transform.Translation;
 
         direction =Math.Normalize(direction);
-
-        this.Owner.RigidBody.Velocity += direction;
-        if(Math.Length(this.Owner.RigidBody.Velocity) > this.HomingSpeed)
+        if(this.HomingSpeed > 0)
         {
-            direction *= Math.Abs(this.HomingSpeed);
+        this.Owner.RigidBody.Velocity += direction;
+        }
+        else
+        {
+            this.Owner.RigidBody.Velocity -= direction;
+        }
+        if(Math.Length(this.Owner.RigidBody.Velocity) > Math.Abs(this.HomingSpeed))
+        {
+            direction *= Math.Abs(direction) * this.HomingSpeed;
         this.Owner.RigidBody.Velocity = direction;
         }
 

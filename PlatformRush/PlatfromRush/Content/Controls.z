@@ -186,7 +186,7 @@ class Controls : ZilchComponent
             }
         }
         
-        if(this.Pressed == false && this.LevelSettings.PlayerVars.Hazard == false)
+        if(this.Pressed == false)//&& this.LevelSettings.PlayerVars.Hazard == false)
         {
             movement.X = 0.0;
         }

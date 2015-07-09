@@ -6,6 +6,8 @@ class GhostBehavior : ZilchComponent
     var ActiveTime : Integer = 0;
     [Property]
     var CoolDown : Integer = 0;
+    [Property]
+    var MaxDistance : Real = 0.0;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
@@ -22,6 +24,16 @@ class GhostBehavior : ZilchComponent
         }
     }
     
+    function AdjustForDistance()
+    {
+        var player = this.Space.FindObjectByName("Player");
+        if(Math.Length(player.Transform.Translation - this.Owner.Transform.Translation) > this.MaxDistance)
+        {
+            this.Count = 0;
+            this.Owner.HomingOnPlayer.HomingSpeed = Math.Abs(this.Owner.HomingOnPlayer.HomingSpeed);
+        } 
+    }
+
     
     function OnLogicUpdate(event : UpdateEvent)
     {
@@ -38,5 +50,6 @@ class GhostBehavior : ZilchComponent
             this.Count = 0;
             this.Owner.HomingOnPlayer.ToggleCanMove();
         }
+        this.AdjustForDistance();
     }
 }

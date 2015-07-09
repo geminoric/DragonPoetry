@@ -1,0 +1,22 @@
+class GhostGone : ZilchComponent
+{
+
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted (event : CollisionEvent)
+    {
+        var otherObj = event.OtherObject;
+        if(otherObj.ArchetypeName == "Player")
+        {
+          var ghost = this.Space.FindObjectByName("Ghost");
+          if(ghost != null)
+          {
+              ghost.HomingOnPlayer.NegateSpeed();
+          }
+          this.Owner.Destroy();
+        }
+    }
+}

@@ -5,6 +5,13 @@ class LevelData : ZilchComponent
     var Switch : Boolean = false;
     var PlatformsActivated : Integer = 0;
     
+    [Property]
+    var GoldTime : Real = 0.0;
+    [Property]
+    var SilverTime : Real = 0.0;
+    [Property]
+    var BronzeTime : Real = 0.0;
+    
     function PlatformCount()
     {
         ++this.TotalPlatforms;
@@ -32,9 +39,13 @@ class LevelData : ZilchComponent
 
         if(this.TotalPlatforms == this.PlatformsActivated)
         {
+            var gameSpace = this.GameSession.CreateSpace(Archetype.Find("Space"));
             var win = Level.Find("WinScreen");
             
-            this.Space.LoadLevel(win);
+            gameSpace.LoadLevel(win);
+            var levelsets = gameSpace.FindObjectByName("LevelSettings");
+            
+            
             
         }
         

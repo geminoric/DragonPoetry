@@ -20,7 +20,8 @@ class Portals : ZilchComponent
     function OnCollisionStarted(collisionEvent : CollisionEvent)
     {
         var otherObject = collisionEvent.OtherObject;
-        
+        if(otherObject.Name != "Ghost")
+        {
         //replace with player controller
         //var player = otherObject.PlayerController;
         if(this.CanPortal == false)
@@ -30,6 +31,7 @@ class Portals : ZilchComponent
                 this.Link.Cog.Portals.SetCanPortal(true);
                 otherObject.Transform.Translation = this.Link.Cog.Transform.Translation;
             
+        }
         }
     }
     
