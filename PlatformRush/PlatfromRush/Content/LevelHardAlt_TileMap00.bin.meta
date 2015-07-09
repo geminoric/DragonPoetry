@@ -1,0 +1,12 @@
+BinaryContent = 
+{
+	BinaryBuilder = 
+	{
+		string Name = "LevelHardAlt_TileMap00",
+		uint64 ResourceId = 5517bafeae37a36c,
+		string LoaderType = "TileMapSource",
+		uint Version = 0,
+		string FilterTag = "",
+		string ResourceOwner = "5517b87e2b4c6cea:LevelHardAlt",
+	},
+},

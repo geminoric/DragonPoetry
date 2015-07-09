@@ -13,8 +13,10 @@ class DestroyOnCollision : ZilchComponent
         {
             if(otherObject.BoxCollider.Ghost == false)
             {
+
                 this.Owner.Destroy();
             }
+        
         }
         
         if(otherObject.SphereCollider != null)
@@ -24,7 +26,6 @@ class DestroyOnCollision : ZilchComponent
                 this.Owner.Destroy();
             }
         }
-        
     }
     
 }

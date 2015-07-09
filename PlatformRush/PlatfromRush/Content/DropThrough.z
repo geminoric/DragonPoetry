@@ -8,6 +8,7 @@ class DropThrough : ZilchComponent
         //connect to all the collision events
         Zero.Connect(this.Owner, Events.CollisionStarted,     this.OnCollisionStarted);
         Zero.Connect(this.Owner, Events.CollisionPersisted,     this.OnCollisionPersisted);
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionEnded,     this.OnCollisionEnded);
     }
     
@@ -21,15 +22,29 @@ class DropThrough : ZilchComponent
     
     function OnCollisionStarted(event : CollisionEvent)
     {
-       /* var otherObj = event.OtherObject;
+        var otherObj = event.OtherObject;
         if(otherObj != null)
         {
-            Console.WriteLine(otherObj.RigidBody.Velocity);
-            if(otherObj.RigidBody.Velocity.Y >= 0)
+            /*var myTranslation = this.Owner.Transform.Translation;
+            var mySize = this.BoxCollider.Size/2;
+            var playerTrans = otherObj.Transform.Translation;
+            var playerSize = otherObj.BoxCollider.Size/2;
+            myTranslation += mySize;
+            playerTrans - playerSize;
+            if(myTranslation.Y <= playerTrans.Y)
             {
-               this.Owner.BoxCollider.Ghost = true;
+                this.Owner.BoxCollider.Ghost = false;
+            }*/
+            if(otherObj.RigidBody.Velocity.Y <= 0)
+            {
+                this.Owner.BoxCollider.Ghost = false;
             }
-        }*/
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //Console.WriteLine(this.Owner.BoxCollider.Ghost);
     }
 
     function OnCollisionPersisted(event : CollisionEvent)
@@ -45,6 +60,6 @@ class DropThrough : ZilchComponent
     function OnCollisionEnded(event : CollisionEvent)
     {
         //when the player finishes its collision change back 
-        this.Owner.BoxCollider.Ghost = false;
+        this.Owner.BoxCollider.Ghost = true;
     }
 }

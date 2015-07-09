@@ -1,0 +1,12 @@
+BinaryContent = 
+{
+	BinaryBuilder = 
+	{
+		string Name = "MEGAMOOON_TileMap00",
+		uint64 ResourceId = 55179020ba86c6ed,
+		string LoaderType = "TileMapSource",
+		uint Version = 0,
+		string FilterTag = "",
+		string ResourceOwner = "551791cdad4e2961:MEGAMOOON",
+	},
+},

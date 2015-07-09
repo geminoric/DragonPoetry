@@ -1,14 +1,18 @@
 class GhostBehavior : ZilchComponent
 {
     var Count: Integer = 0;
+    var Cdcount : Integer = 0;
     [Property]
     var ActiveTime : Integer = 0;
+    [Property]
+    var CoolDown : Integer = 0;
+    [Property]
+    var MaxDistance : Real = 0.0;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+         //Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
          Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-         this.ActiveTime *= 60;
     }
     
     function Init()
@@ -22,25 +26,38 @@ class GhostBehavior : ZilchComponent
     function OnCollisionStarted (event : CollisionEvent)
     {
         var otherObject = event.OtherObject;
-        if(otherObject.PlayerController != null)
+        if(otherObject.ArchetypeName == "Player")
         {
            this.Owner.Destroy();
         }
-        this.Owner.BoxCollider.Ghost = true;
     }
     
-    function OnCollisionEnded(event : CollisionEvent)
+    function AdjustForDistance()
     {
-        this.Owner.BoxCollider.Ghost = false;
+        var player = this.Space.FindObjectByName("Player");
+        if(Math.Length(player.Transform.Translation - this.Owner.Transform.Translation) > this.MaxDistance)
+        {
+            this.Count = 0;
+            this.Owner.HomingOnPlayer.HomingSpeed = Math.Abs(this.Owner.HomingOnPlayer.HomingSpeed);
+        } 
     }
+
     
     function OnLogicUpdate(event : UpdateEvent)
     {
         ++this.Count;
-        if(this.Count > this.ActiveTime)
+        --this.Cdcount;
+        if(this.Count == this.ActiveTime)
+        {
+            this.Cdcount = this.CoolDown;
+            this.Owner.HomingOnPlayer.ToggleCanMove();
+        }
+        
+        if(this.Cdcount == 0)
         {
             this.Count = 0;
             this.Owner.HomingOnPlayer.ToggleCanMove();
         }
+        this.AdjustForDistance();
     }
 }

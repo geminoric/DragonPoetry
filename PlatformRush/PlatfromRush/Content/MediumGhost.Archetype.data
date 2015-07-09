@@ -1,0 +1,97 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Ghost",
+	},
+	Archetyped = 
+	{
+		string Name = "5517a9f405b1732b:MediumGhost",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [2.7787, 0.208565, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Sprite = 
+	{
+		bool Visible = true,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 0.995],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string SpriteSource = "551782ba25562d2b:Ghost",
+		bool RenderMask = false,
+		bool FlipX = false,
+		bool FlipY = false,
+		bool AnimationActive = true,
+		float AnimationSpeed = 1,
+		uint StartFrame = 0,
+	},
+	BoxCollider = 
+	{
+		bool Ghost = true,
+		bool SendsMessages = true,
+		bool Seamless = true,
+		string MaterialName = "551403b86dc98c95:Light",
+		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		Vec3 Offset = [0, 0, 0],
+		Vec3 Size = [0.5, 0.5, 0.5],
+	},
+	HomingOnPlayer = 
+	{
+		float HomingSpeed = 20,
+		CogPath Follow = ":/Player",
+	},
+	RigidBody = 
+	{
+		bool Static = false,
+		bool Asleep = false,
+		bool Kinematic = false,
+		bool RotationLocked = false,
+		bool Mode2D = true,
+		bool AllowSleep = true,
+		bool Inherit2DMode = false,
+		Vec3 Velocity = [0, 0, 0],
+		Vec3 AngularVelocity = [0, 0, 0],
+	},
+	DestroyAfterTime = 
+	{
+		int Lifetime = 0,
+	},
+	GhostBehavior = 
+	{
+		int ActiveTime = 30,
+		int CoolDown = 45,
+		float MaxDistance = 15,
+	},
+	GravityEffect = 
+	{
+		bool Active = true,
+		bool WakeUpOnChange = true,
+		bool LocalSpaceDirection = false,
+		float Strength = 30,
+		Vec3 Direction = [0, 1, 0],
+	},
+	DragEffect = 
+	{
+		bool Active = true,
+		bool WakeUpOnChange = true,
+		float Drag = 5,
+	},
+	Hazard = 
+	{
+		int Damage = 6,
+		bool StunOn = false,
+		bool Active = true,
+		float KnockBackSpeed = 0,
+	},
+},

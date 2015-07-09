@@ -15,6 +15,9 @@ class HomingOnPlayer : ZilchComponent
     function Init()
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    function NegateSpeed()
+    {
+        this.HomingSpeed = -this.HomingSpeed;
     }
 
     function MoveTowards()
@@ -22,9 +25,19 @@ class HomingOnPlayer : ZilchComponent
         var direction = this.Follow.Cog.Transform.Translation - this.Owner.Transform.Translation;
 
         direction =Math.Normalize(direction);
-
-        direction *= Math.Abs(this.HomingSpeed);
+        if(this.HomingSpeed > 0)
+        {
+        this.Owner.RigidBody.Velocity += direction;
+        }
+        else
+        {
+            this.Owner.RigidBody.Velocity -= direction;
+        }
+        if(Math.Length(this.Owner.RigidBody.Velocity) > Math.Abs(this.HomingSpeed))
+        {
+            direction *= Math.Abs(direction) * this.HomingSpeed;
         this.Owner.RigidBody.Velocity = direction;
+        }
 
     }
     
@@ -50,9 +63,9 @@ class HomingOnPlayer : ZilchComponent
                 }
             }
         }
-        else
+        /*else
         {
             this.Owner.RigidBody.Velocity = Real3(0.0,0.0,0.0);
-        }
+        }*/
     }
 }

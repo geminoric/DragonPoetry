@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "DashPlatform",
+		uint64 ResourceId = 5517a6042706ad02,
+	},
+},

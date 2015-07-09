@@ -1,14 +1,14 @@
 class CameraFollow : ZilchComponent
 {
-    [Property]
-    var FollowObj : CogPath = null;
+    var FollowObj : Cog = null;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.FollowObj = this.Space.FindObjectByName("Player");
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.Owner.Transform.Translation = Real3(this.FollowObj.Cog.Transform.Translation.X, this.FollowObj.Cog.Transform.Translation.Y, this.Owner.Transform.Translation.Z);
+        this.Owner.Transform.Translation = Real3(this.FollowObj.Transform.Translation.X, this.FollowObj.Transform.Translation.Y, this.Owner.Transform.Translation.Z);
     }
 }

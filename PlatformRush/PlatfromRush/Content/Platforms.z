@@ -22,14 +22,17 @@ class Platforms : ZilchComponent
           var otherObject = collisionEvent.OtherObject;
           if(otherObject != null)
           {
-             var player = otherObject.PlayerController;
-             if(player !=null)
+             var player = otherObject.ArchetypeName;
+             if(player == "Player")
              {
+                if(otherObject.RigidBody.Velocity.Y <= 0)
+                {
                 if(this.OtherSprite != null)
                 {
                     this.Owner.Sprite.SpriteSource = this.OtherSprite;
                     this.Owner.Space.LevelSettings.LevelData.ActivatePlatforms(1);
                     this.Active = true;
+                }
                 }
              }
           }

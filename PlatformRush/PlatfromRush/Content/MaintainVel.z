@@ -3,7 +3,11 @@ class MaintainVel : ZilchComponent
     [Dependency]
     var RigidBody : RigidBody = null;
     [Property]
-    var MaxSpeed : Real = 0.0;
+    var MaxDownSpeed : Real = 0.0;
+        [Property]
+    var MaxUpSpeed : Real = 0.0;
+        [Property]
+    var MaxRunSpeed : Real = 0.0;
     
     function Initialize(init : CogInitializer)
     {
@@ -12,13 +16,24 @@ class MaintainVel : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        var vel = this.Owner.RigidBody.Velocity;
-        var size = Math.Length(vel);
-        if(size >= this.MaxSpeed)
+        if(this.RigidBody.Velocity.Y > this.MaxUpSpeed)
         {
-            Math.Normalize(vel);
-            vel *= this.MaxSpeed;
-            this.Owner.RigidBody.Velocity = vel;
+            this.RigidBody.Velocity.Y = this.MaxUpSpeed;
+        }
+        
+        if(this.RigidBody.Velocity.Y < -this.MaxDownSpeed)
+        {
+            this.RigidBody.Velocity.Y = -this.MaxDownSpeed;
+        }
+        
+        if(this.RigidBody.Velocity.X > this.MaxRunSpeed)
+        {
+            this.RigidBody.Velocity.X = this.MaxRunSpeed;
+        }
+        
+        if(this.RigidBody.Velocity.X < -this.MaxRunSpeed)
+        {
+            this.RigidBody.Velocity.X = -this.MaxRunSpeed;
         }
     }
 }

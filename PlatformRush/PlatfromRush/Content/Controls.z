@@ -9,12 +9,14 @@ class Controls : ZilchComponent
     
     // Max time for ability cooldown
     var MaxCD : Real = 10;
+    // Max time for JumpsLeft cooldown
+    var MaxCD : Real = 60;
     var CurrentCD : Real = 0;
     var RateCD : Real = 0.5;
     var OnCD : Boolean = false;
     
     var Stretch : Boolean = true;
-    var MaxStretch : Integer = 5;
+    var MaxStretch : Integer = 6;
     var MinStretch : Integer = 1;
     var DashSpeed : Integer = 40;
     var Direction : Integer = 1;
@@ -29,6 +31,7 @@ class Controls : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollision);
     }
+    
     
     function OnLogicUpdate(event : UpdateEvent)
     {
@@ -45,6 +48,7 @@ class Controls : ZilchComponent
             this.Movement.Y = 0;
             this.Owner.Sprite.Color = trans;
             this.OnCD = true;
+            this.OnCD = false;
             this.CurrentCD = this.MaxCD;
             this.DashStretch(this.Direction);
             this.Owner.Transform.Scale = this.Scale;
@@ -78,13 +82,38 @@ class Controls : ZilchComponent
                 this.OnCD = false;
             }
         }
+        Console.WriteLine(this.Jumped);
     }
     
     function OnCollision(event : CollisionEvent)
     {
-        var stop = this.Owner.RigidBody.Velocity;
-        stop.Y =  0;
-        this.Owner.RigidBody.Velocity = stop;
+        var otherObj = event.OtherObject;
+        if(this.Owner.RigidBody.Velocity.Y == 0)
+        {
+
+            
+        if(otherObj.BoxCollider != null)
+        {
+            if(otherObj.BoxCollider.Ghost == false)
+            {
+                
+                var stop = this.Owner.RigidBody.Velocity;
+                stop.Y =  0;
+                this.Owner.RigidBody.Velocity = stop;
+            }
+        }
+        
+        if(otherObj.SphereCollider != null)
+        {
+            if(otherObj.SphereCollider.Ghost == false)
+            {
+                var stop = this.Owner.RigidBody.Velocity;
+                stop.Y =  0;
+                this.Owner.RigidBody.Velocity = stop;
+            }
+        }
+    
+    }
     }
     
     function PlayerInput()
@@ -128,7 +157,7 @@ class Controls : ZilchComponent
             
             if(this.Jumped == 0.0)
             {
-                this.Jumped = 1.0;
+                this.Jumped = 2.0;
             }
         }
         
@@ -139,7 +168,7 @@ class Controls : ZilchComponent
             movement.Y = 0.0;
         }
         
-        // Use Dash Ability
+        // Use Dash JumpsLeftity
         if(Zero.Keyboard.KeyIsPressed(Keys.Shift) && this.OnCD == false)
         {
             if(this.Owner.Sprite.FlipX == true)
@@ -147,7 +176,7 @@ class Controls : ZilchComponent
                 // Let the Controller know an action has been taken
                 this.Pressed = true;
                 
-                // Let the Controller know your ability has been used
+                // Let the Controller know your JumpsLeft has been used
                 this.Ablity = 1;
                 
                 // Let the Controller know which direction you ar facing
@@ -158,7 +187,7 @@ class Controls : ZilchComponent
                 // Let the Controller know an action has been taken
                 this.Pressed = true;
                 
-                // Let the Controller know your ability has been used
+                // Let the Controller know your JumpsLeft has been used
                 this.Ablity = 1;
                 
                 // Let the Controller know which direction you ar facing
@@ -166,7 +195,7 @@ class Controls : ZilchComponent
             }
         }
         
-        if(this.Pressed == false && this.LevelSettings.PlayerVars.Hazard == false)
+        if(this.Pressed == false)//&& this.LevelSettings.PlayerVars.Hazard == false)
         {
             movement.X = 0.0;
         }
