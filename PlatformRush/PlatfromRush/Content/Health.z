@@ -19,6 +19,11 @@ class Health : ZilchComponent
             this.Hp = 0;
           }
         }
+        
+        if ( this.Hp == 0 )
+        {
+            this.LevelSettings.LoseControl.OpenLoseWinScreen(true);
+        }
     }
     
     function HealtoFull()

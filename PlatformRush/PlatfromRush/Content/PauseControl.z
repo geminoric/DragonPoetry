@@ -13,7 +13,7 @@ class PauseControl : ZilchComponent
      
     function OnKeyDown(event : KeyboardEvent)
     {
-        if(event.Keyboard.KeyIsPressed(Keys.Escape) && this.IsPawsed == false)
+        if(event.Keyboard.KeyIsPressed(Keys.Escape) && this.IsPawsed == false && !this.LevelSettings.LoseControl.LoseScreenActive)
         {
             this.Paws();
             Console.WriteLine("PAUSED");
@@ -27,6 +27,11 @@ class PauseControl : ZilchComponent
     //unpauses the game
     function UnPaws()
     {
+        if ( this.OptionsSpace != null || this.ControlsSpace != null )
+        {
+            return;
+        }
+        
         this.IsPawsed = false;
         this.Space.TimeSpace.TogglePause();
         this.LevelSettings.HUD.HudSpace.TimeSpace.TogglePause();

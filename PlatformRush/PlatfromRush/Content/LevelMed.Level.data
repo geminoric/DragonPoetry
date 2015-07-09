@@ -12,10 +12,10 @@ Level =
 		},
 		GravityEffect = 
 		{
-			bool Active = false,
+			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 10,
+			float Strength = 30,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
@@ -83,6 +83,9 @@ Level =
 		PlayerVars = 
 		{
 		},
+		LoseControl = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -96,7 +99,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.90526, 2.29474, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -108,7 +111,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 6.65741,
+			float Size = 14.9569,
 		},
 		EditorCameraController = 
 		{
@@ -116,7 +119,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-2.90526, 2.29474, 0],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -1184,9 +1187,6 @@ Level =
 			Vec3 Offset = [0.125, 0, 0],
 			Vec3 Size = [0.3, 0.5, 0.5],
 		},
-		PlayerController = 
-		{
-		},
 		RigidBody = 
 		{
 			bool Static = false,
@@ -1218,7 +1218,7 @@ Level =
 		GroundCollision = 
 		{
 		},
-		PlayerAnimations = 
+		Controls = 
 		{
 		},
 	},

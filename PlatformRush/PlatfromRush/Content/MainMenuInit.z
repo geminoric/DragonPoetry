@@ -18,7 +18,7 @@ class MainMenuInit : ZilchComponent
         but2.ButtonClass.Init(Real3(10,1,0), Real3(3,1.5,1), this.Options , "options", 20);
         
         var but3 = this.Space.Create(Archetype.Find("Button"));
-        but3.ButtonClass.Init(Real3(10,-1,0), Real3(3,1.5,1), this.Controls , "controles", 20);
+        but3.ButtonClass.Init(Real3(10,-1,0), Real3(3,1.5,1), this.Controls , "controls", 20);
         
         var but4 = this.Space.Create(Archetype.Find("Button"));
         but4.ButtonClass.Init(Real3(10,-3,0), Real3(3,1.5,1), this.Credits , "credits", 20);

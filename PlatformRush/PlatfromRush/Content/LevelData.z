@@ -21,9 +21,7 @@ class LevelData : ZilchComponent
         
         if(this.TotalPlatforms == this.PlatformsActivated)
         {
-            var win = Level.Find("WinScreen");
-            
-            this.Space.LoadLevel(win);
+            this.LevelSettings.LoseControl.OpenLoseWinScreen(false);
         }
         
     }
