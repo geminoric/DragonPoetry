@@ -8,22 +8,16 @@ class DestroyOnCollision : ZilchComponent
 
     function OnCollisionStarted (event : CollisionEvent)
     {
-        var otherObject = event.OtherObject;
-        if(otherObject.BoxCollider != null)
-        {
-            if(otherObject.BoxCollider.Ghost == false)
+        //var otherObject = event.OtherObject;
+
+            if(event.IsGhost == false)
             {
                 this.Owner.Destroy();
             }
-        }
         
-        if(otherObject.SphereCollider != null)
-        {
-            if(otherObject.SphereCollider.Ghost == false)
-            {
-                this.Owner.Destroy();
-            }
-        }
+        
+        
+        
         
     }
     

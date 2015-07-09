@@ -1,0 +1,27 @@
+class DashPlatform : ZilchComponent
+{
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        this.Owner.Platforms.Active = true;
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        var otherObj = event.OtherObject;
+        if(otherObj != null)
+          {
+             var player = otherObj.ArchetypeName;
+             if(player == "Player")
+             {
+                if(otherObj.Controls.Ablity == 1)
+                {
+                    this.Owner.Platforms.Active = false;
+                    this.Owner.RemoveComponentByName("DashPlatform");
+                }
+             }
+          }
+    }
+    
+}

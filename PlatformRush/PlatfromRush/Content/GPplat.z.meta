@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "GPplat",
+		uint64 ResourceId = 5517a07b95fe5cc2,
+	},
+},

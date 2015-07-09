@@ -1,35 +1,39 @@
 class GhostBehavior : ZilchComponent
 {
     var Count: Integer = 0;
+    var Cdcount : Integer = 0;
     [Property]
     var ActiveTime : Integer = 0;
+    [Property]
+    var CoolDown : Integer = 0;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+         //Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
          Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-         this.ActiveTime *= 60;
     }
 
     function OnCollisionStarted (event : CollisionEvent)
     {
         var otherObject = event.OtherObject;
-        if(otherObject.PlayerController != null)
+        if(otherObject.ArchetypeName == "Player")
         {
            this.Owner.Destroy();
         }
-        this.Owner.BoxCollider.Ghost = true;
     }
     
-    function OnCollisionEnded(event : CollisionEvent)
-    {
-        this.Owner.BoxCollider.Ghost = false;
-    }
     
     function OnLogicUpdate(event : UpdateEvent)
     {
         ++this.Count;
-        if(this.Count > this.ActiveTime)
+        --this.Cdcount;
+        if(this.Count == this.ActiveTime)
+        {
+            this.Cdcount = this.CoolDown;
+            this.Owner.HomingOnPlayer.ToggleCanMove();
+        }
+        
+        if(this.Cdcount == 0)
         {
             this.Count = 0;
             this.Owner.HomingOnPlayer.ToggleCanMove();

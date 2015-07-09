@@ -18,8 +18,12 @@ class HomingOnPlayer : ZilchComponent
 
         direction =Math.Normalize(direction);
 
-        direction *= Math.Abs(this.HomingSpeed);
+        this.Owner.RigidBody.Velocity += direction;
+        if(Math.Length(this.Owner.RigidBody.Velocity) > this.HomingSpeed)
+        {
+            direction *= Math.Abs(this.HomingSpeed);
         this.Owner.RigidBody.Velocity = direction;
+        }
 
     }
     
@@ -45,9 +49,9 @@ class HomingOnPlayer : ZilchComponent
                 }
             }
         }
-        else
+        /*else
         {
             this.Owner.RigidBody.Velocity = Real3(0.0,0.0,0.0);
-        }
+        }*/
     }
 }

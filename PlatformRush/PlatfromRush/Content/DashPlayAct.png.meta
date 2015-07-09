@@ -2,8 +2,8 @@ ImageContent =
 {
 	SpriteSourceBuilder = 
 	{
-		string Name = "timer",
-		uint64 ResourceId = 55153bece2efcdb3,
+		string Name = "DashPlayAct",
+		uint64 ResourceId = 5517a729f1f2c1df,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 36,
 		uint FrameSizeY = 36,
@@ -11,7 +11,7 @@ ImageContent =
 		float FrameDelay = 0.0833333,
 		float OriginX = 18,
 		float OriginY = 18,
-		float PixelsPerUnit = 64,
+		float PixelsPerUnit = 32,
 		bool Smoothing = false,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],

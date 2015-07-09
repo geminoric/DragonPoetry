@@ -23,7 +23,7 @@ class Hazard : ZilchComponent
       {
         var otherObject = collisionEvent.OtherObject;
         //replace with player controller
-        var player = otherObject.PlayerController; 
+        var player = otherObject.Controls; 
         if(player != null )
         {
             if(otherObject.Health.Vulnurable)
@@ -38,7 +38,7 @@ class Hazard : ZilchComponent
             if(this.KnockBackSpeed > 0)
             {
                 //change the players state
-                otherObject.PlayerController.InAir = true;
+                player.Jumped = 1;
                 // get the players direction
                 var x : Real = -(player.Direction -0.5);
                 //set a vector to be at a 45 degrees upward
@@ -49,8 +49,10 @@ class Hazard : ZilchComponent
                 direction.X *= this.KnockBackSpeed;
                 direction.Y *= this.KnockBackSpeed * 1.5;
 
-                player.VelX = direction.X;
-                player.VelY = direction.Y;
+                otherObject.RigidBody.Velocity.X = direction.X;
+                otherObject.RigidBody.Velocity.Y = direction.Y;
+                Console.WriteLine(otherObject.RigidBody.Velocity);
+                 Console.WriteLine(direction.Y);
             }
             
             if(this.Damage > 0)

@@ -15,7 +15,7 @@ class CheatCodes : ZilchComponent
         }
         if(event.Key == Keys.J)
         {
-            this.Owner.PlayerController.Jumps += 1000;
+            this.Owner.Controls.Jumped = 0;
         }
     
     }
