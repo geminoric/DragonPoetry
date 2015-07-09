@@ -1,0 +1,62 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Platform",
+	},
+	Archetyped = 
+	{
+		string Name = "551790dddcad3152:DisapearPlatform",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [-6.99378, 1.94086, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Sprite = 
+	{
+		bool Visible = false,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string SpriteSource = "55153eea49445516:Blue_plat",
+		bool RenderMask = false,
+		bool FlipX = false,
+		bool FlipY = false,
+		bool AnimationActive = true,
+		float AnimationSpeed = 1,
+		uint StartFrame = 0,
+	},
+	BoxCollider = 
+	{
+		bool Ghost = true,
+		bool SendsMessages = false,
+		bool Seamless = true,
+		string MaterialName = "55e2698a2e96d782:Heavy",
+		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		Vec3 Offset = [0, 0, 0],
+		Vec3 Size = [0.5, 0.15, 0.5],
+	},
+	Platforms = 
+	{
+		string OtherSprite = "551539245d4d6884:Red_plat",
+	},
+	DropThrough = 
+	{
+	},
+	Disapearer = 
+	{
+		float Delay = 3,
+		float Start = 0,
+		float Sync = 16,
+	},
+},
