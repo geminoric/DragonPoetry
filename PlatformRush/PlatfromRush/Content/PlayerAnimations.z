@@ -1,6 +1,6 @@
 enum AnimationState
 {
-    Idle, Running, Jumping
+    Idle, Running, Jumping, InAir
 }
 
 class PlayerAnimations : ZilchComponent
@@ -22,11 +22,11 @@ class PlayerAnimations : ZilchComponent
         }
         else if ( state == AnimationState.Running )
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_walk2");
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_walk1");
         }
         else if ( state == AnimationState.Jumping )
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_jump1");
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("Jumping");
         }
     }
 

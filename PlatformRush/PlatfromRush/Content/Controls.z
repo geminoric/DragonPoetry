@@ -73,37 +73,47 @@ class Controls : ZilchComponent
                 this.OnCD = false;
             }
         }
+        
+        if(this.Owner.RigidBody.Velocity.Y < 0 && (this.Owner.RigidBody.Velocity. X != 0 || this.Pressed == false))
+        {
+            this.Owner.PlayerAnimations.ChangeState(AnimationState.InAir);
+        }
     }
     
     function OnCollision(event : CollisionEvent)
     {
+        var stop =  this.Owner.RigidBody.Velocity;
+        stop.Y = 0.0;
+        this.Owner.RigidBody.Velocity = stop;
+        
+        
+        /*
         var otherObj = event.OtherObject;
         if(this.Owner.RigidBody.Velocity.Y == 0)
         {
-
             
-        if(otherObj.BoxCollider != null)
-        {
-            if(otherObj.BoxCollider.Ghost == false)
+            if(otherObj.BoxCollider != null)
             {
-                
-                var stop = this.Owner.RigidBody.Velocity;
-                stop.Y =  0;
-                this.Owner.RigidBody.Velocity = stop;
+                if(otherObj.BoxCollider.Ghost == false)
+                {
+                    
+                    var stop = this.Owner.RigidBody.Velocity;
+                    stop.Y =  0;
+                    this.Owner.RigidBody.Velocity = stop;
+                }
+            }
+            
+            if(otherObj.SphereCollider != null)
+            {
+                if(otherObj.SphereCollider.Ghost == false)
+                {
+                    var stop = this.Owner.RigidBody.Velocity;
+                    stop.Y =  0;
+                    this.Owner.RigidBody.Velocity = stop;
+                }
             }
         }
-        
-        if(otherObj.SphereCollider != null)
-        {
-            if(otherObj.SphereCollider.Ghost == false)
-            {
-                var stop = this.Owner.RigidBody.Velocity;
-                stop.Y =  0;
-                this.Owner.RigidBody.Velocity = stop;
-            }
-        }
-    
-    }
+            */
     }
     
     function PlayerInput()
@@ -151,7 +161,7 @@ class Controls : ZilchComponent
         
         if(Zero.Keyboard.KeyIsPressed(Keys.Space) && (this.Jumped == 0.0 || this.Jumped == 2.0))
         {
-            movement.Y = 15.0;
+            movement.Y = 12.0;
             
             if(this.Jumped == 2.0)
             {
@@ -167,7 +177,7 @@ class Controls : ZilchComponent
         }
         
         // Once Hit the ground, let you jump again.
-        if((movement.Y > -0.01 && movement.Y < 0.01) && this.Jumped == 1.0)
+        if((movement.Y > -0.01 && movement.Y < 0.01) && (this.Jumped == 1.0 || this.Jumped == 2.0))
         {
             this.Jumped = 0.0;
             movement.Y = 0.0;
