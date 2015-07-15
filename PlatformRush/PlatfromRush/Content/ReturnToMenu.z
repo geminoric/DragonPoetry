@@ -1,5 +1,6 @@
 class ReturnToMenu : ZilchComponent
 {
+    var Disabled : Boolean = false;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -9,7 +10,7 @@ class ReturnToMenu : ZilchComponent
     {
         var menu = Level.Find("MainMenu");
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.Back))
+        if(Zero.Keyboard.KeyIsPressed(Keys.Back) && !this.Disabled)
         {
             this.Space.LoadLevel(menu);
         }

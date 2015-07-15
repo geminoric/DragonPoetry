@@ -62,7 +62,7 @@ class LevelEditorClass : ZilchComponent
         //Reset camera
         this.Space.FindObjectByName("Camera2").Transform.Translation = Real3(0, 500, 40);
         
-        this.Space.FindObjectByName("saver").LevelSaveClass.LoadLevel("TestName");
+        this.Space.FindObjectByName("saver").LevelSaveClass.LoadLevel(this.LevelName);
         this.Space.FindObjectByName("saver").LevelSaveClass.LoopLoaded(this.LoadIntoEditor);
     }
     function Test()

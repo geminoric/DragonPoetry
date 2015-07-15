@@ -72,6 +72,12 @@ Level =
 		LevelSelectInit = 
 		{
 		},
+		ChooseCustomClass = 
+		{
+		},
+		LoadLevelClass = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -212,6 +218,74 @@ Level =
 			string FontName = "55ac6763ecfc7746:data-unifon",
 			uint FontSize = 30,
 			string Text = "level select",
+			TextAlign Align = Left,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Named = 
+		{
+			string Name = "clevel",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-10.3056, -7.15086, 1.48842e-007],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "55b8afdd5ab8830f:Sansation-Regular",
+			uint FontSize = 42,
+			string Text = "Custom Level:",
+			TextAlign Align = Left,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Named = 
+		{
+			string Name = "levelSelectText",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-5.73657, -7.15086, 1.48842e-007],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "55b8afdd5ab8830f:Sansation-Regular",
+			uint FontSize = 42,
+			string Text = "TestTextPleaseIgnore",
 			TextAlign Align = Left,
 			float PixelsPerUnit = 64,
 			bool Smoothing = true,

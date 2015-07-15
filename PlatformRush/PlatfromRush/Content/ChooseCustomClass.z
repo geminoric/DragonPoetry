@@ -1,0 +1,74 @@
+class ChooseCustomClass : ZilchComponent
+{
+    var Renaming : Boolean = false;
+    var CurName : String = "";
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(Zero.Keyboard, Events.KeyUp, this.CheckInput);
+        //Start custom level button
+        var but0 = this.Space.Create(Archetype.Find("Button"));
+        but0.ButtonClass.Init(Real3(-12.75,-7,0), Real3(3,3,1), this.StartCustomLevel , "Start Custom Level", 10);
+        //Rename button
+        var but1 = this.Space.Create(Archetype.Find("Button"));
+        but1.ButtonClass.Init(Real3(-12.75,-9.2,0), Real3(3,3,1), this.RenameButton , "Rename", 10);
+    }
+    
+    function RenameButton()
+    {
+        this.Renaming = !this.Renaming;
+    }
+    
+    function StartCustomLevel()
+    {
+        this.LevelSettings.LoadLevelClass.LoadLevel(this.CurName);
+    }
+    
+    function CheckInput(event : KeyboardEvent)
+    {
+        if(this.Renaming)
+        {
+            this.LevelSettings.ReturnToMenu.Disabled = true;
+            //Inputting new keys to name
+            if(event.Key >= Keys.A && event.Key <= Keys.Z)
+            {
+                this.CurName = "`this.CurName``event.Key`";
+            }
+            //Confirming name or backspace
+            if(event.Key == Keys.Enter)
+            {
+                this.Renaming = false;
+            }
+            if(event.Key == Keys.Back)
+            {
+                if(this.CurName.Count != 0)
+                {
+                    this.CurName = this.CurName.SubString(0, this.CurName.Count - 1);
+                }
+            }
+            this.CurName = this.CurName.ToLower();
+        }
+        else
+        {
+            this.LevelSettings.ReturnToMenu.Disabled = false;
+        }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //Update text box depending on if renaming
+        if(this.Renaming)
+        {
+            //Make text red
+            this.Space.FindObjectByName("levelSelectText").SpriteText.Color = Real4(1.0, 0.2, 0.2, 1.0);
+            this.Space.FindObjectByName("levelSelectText").SpriteText.Text = this.CurName;
+        }
+        else
+        {
+            //Make text white
+            this.Space.FindObjectByName("levelSelectText").SpriteText.Color = Real4(1.0, 1.0, 1.0, 1.0);
+            this.Space.FindObjectByName("levelSelectText").SpriteText.Text = this.CurName;
+        }
+    }
+}
