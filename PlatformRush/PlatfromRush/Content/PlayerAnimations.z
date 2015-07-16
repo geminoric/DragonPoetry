@@ -19,15 +19,28 @@ class PlayerAnimations : ZilchComponent
         if ( state == AnimationState.Idle )
         {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_idle1resized");
+         //   Console.WriteLine("Idle");
         }
         else if ( state == AnimationState.Running )
         {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_walk1");
+        //   Console.WriteLine("Running");
         }
         else if ( state == AnimationState.Jumping )
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("Jumping");
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("Jump");
+        //   Console.WriteLine("Jumping");
         }
+        else if ( state == AnimationState.InAir )
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("InAir");
+        //   Console.WriteLine("InAir");
+        }
+       // else if ( state == AnimationState.GroundPounding )
+       // {
+      //      this.Owner.Sprite.SpriteSource = SpriteSource.Find("main_charge");
+       //     Console.WriteLine("GroundPounding");
+       // }
     }
 
     function OnLogicUpdate(event : UpdateEvent)

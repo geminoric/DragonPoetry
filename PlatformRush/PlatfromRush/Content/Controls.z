@@ -23,11 +23,21 @@ class Controls : ZilchComponent
     
     // Whether or not the player has jumped 
     var Jumped : Real = 0.0;
+    var JumpingTimer : Integer = 0;
+    var JumpingTimerMax : Integer = 25;
+    
+    var GPPhase : Integer = 0;
+    var GPTimer : Integer = 0;
+    var GPTimerMax : Integer = 15;
+    
+    var ControlData : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollision);
+        
+        this.ControlData = Zero.ObjectStore.RestoreOrArchetype("ControlSchemeData", "SavedControlData", this.Space);
     }
     
     
@@ -60,7 +70,33 @@ class Controls : ZilchComponent
         }
         if(this.Ablity == 2)
         {
+            this.PoundStretch();
             
+            if ( this.GPPhase == 1 || this.GPPhase == 3)
+            {
+                if ( this.GPTimer > 0 )
+                {
+                    --this.GPTimer;
+                }
+                else if ( this.GPTimer == 0 )
+                {
+                    ++this.GPPhase;
+                }
+            }
+            
+            if ( this.GPPhase == 2 )
+            {
+                this.Owner.RigidBody.Velocity = Real3(0.0, 25.0, 0.0);
+                this.GPPhase = 3;
+                this.GPTimer = this.GPTimerMax + 10;
+            }
+            
+            if ( this.GPPhase == 4 )
+            {
+                this.Owner.RigidBody.Velocity = this.Owner.RigidBody.Velocity;
+            }
+            
+          //  Console.WriteLine("GROUNDPDFING");
         }
         
         
@@ -76,9 +112,23 @@ class Controls : ZilchComponent
         
         if(this.Owner.RigidBody.Velocity.Y < 0 && (this.Owner.RigidBody.Velocity. X != 0 || this.Pressed == false))
         {
-            this.Owner.PlayerAnimations.ChangeState(AnimationState.InAir);
+           // this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
         }
         //Console.WriteLine(this.Owner.RigidBody.Velocity);
+        
+                    
+        if ( this.JumpingTimer > 1 )
+        {
+            --this.JumpingTimer;
+        }
+        else if ( this.JumpingTimer == 1 )
+        {
+            this.JumpingTimer = 0;
+            if ( this.Ablity != 2 )
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.InAir);
+            }
+        }
     }
     
     function OnCollision(event : CollisionEvent)
@@ -130,7 +180,7 @@ class Controls : ZilchComponent
         var speed = 10;
         
         // Move left when A is down
-        if(Zero.Keyboard.KeyIsDown(Keys.A))
+        if(Zero.Keyboard.KeyIsDown(this.ControlData.ControlScheme.MoveLeft))
         {
             // Set movement to 1 unit towards the left
             movement.X = -1.0;
@@ -145,7 +195,7 @@ class Controls : ZilchComponent
                 this.Owner.PlayerAnimations.ChangeState(AnimationState.Running);
             }
         }
-        else if(Zero.Keyboard.KeyIsDown(Keys.D))
+        else if(Zero.Keyboard.KeyIsDown(this.ControlData.ControlScheme.MoveRight))
         {
             // Set movement to 1 unit towards the right
             movement.X = 1.0;
@@ -165,7 +215,7 @@ class Controls : ZilchComponent
             this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
         }
         
-        if(Zero.Keyboard.KeyIsPressed(Keys.Space) && (this.Jumped == 0.0 || this.Jumped == 2.0))
+        if(Zero.Keyboard.KeyIsPressed(this.ControlData.ControlScheme.Jump) && (this.Jumped == 0.0 || this.Jumped == 2.0))
         {
             movement.Y = 12.0;
             
@@ -180,6 +230,8 @@ class Controls : ZilchComponent
             }
             
             this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
+            this.JumpingTimer = this.JumpingTimerMax;
+
         }
         
         // Once Hit the ground, let you jump again.
@@ -188,14 +240,25 @@ class Controls : ZilchComponent
             this.Jumped = 0.0;
             movement.Y = 0.0;
             
-            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.Jumping )
+            if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.InAir || this.Owner.PlayerAnimations.CurrentState == AnimationState.Jumping )
             {
                 this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
             }
+            
+            if ( this.Ablity == 2 )
+            {
+                this.Ablity = 0;
+                this.GPPhase = 0;
+            }
+          //  if ( this.Owner.PlayerAnimations.CurrentState == AnimationState.GroundPounding )
+           // {
+           //     this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
+          //      this.Owner.Transform.RotateAnglesLocal(Real3(0.0, 0.0, Math.Pi/2));
+          //  }
         }
         
         // Use Dash JumpsLeftity
-        if(Zero.Keyboard.KeyIsPressed(Keys.Shift) && this.OnCD == false)
+        if(Zero.Keyboard.KeyIsPressed(this.ControlData.ControlScheme.Dash) && this.OnCD == false && this.Ablity == 0)
         {
             if(this.Owner.Sprite.FlipX == true)
             {
@@ -221,6 +284,15 @@ class Controls : ZilchComponent
             }
         }
         
+        if(Zero.Keyboard.KeyIsPressed(this.ControlData.ControlScheme.GroundPound) && this.OnCD == false && this.Ablity == 0 && this.Jumped != 0.0)
+        {
+            this.Ablity = 2;
+      //      this.Owner.PlayerAnimations.ChangeState(AnimationState.GroundPounding);
+       //     this.Owner.Transform.RotateAnglesLocal(Real3(0.0, 0.0, -Math.Pi/2));
+            Console.WriteLine("GP");
+            this.GPPhase = 1;
+            this.GPTimer = this.GPTimerMax;
+        }
         if(this.Pressed == false)//&& this.LevelSettings.PlayerVars.Hazard == false)
         {
             movement.X = 0.0;
@@ -261,7 +333,14 @@ class Controls : ZilchComponent
     
     function PoundStretch()
     {
-        
+        if ( this.GPPhase == 1 )
+        {
+            this.Owner.RigidBody.Velocity = Real3(0.0, 0.0, 0.0);
+        }
+        else if ( this.GPPhase == 3 )
+        {
+            this.Owner.RigidBody.Velocity = Real3(0.0, this.Owner.RigidBody.Velocity.Y - 1.5, 0.0);
+        }
     }
     
 }

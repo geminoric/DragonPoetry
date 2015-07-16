@@ -334,4 +334,22 @@ Level =
 			uint StartFrame = 0,
 		},
 	},
+	ArchetypeInstance = 
+	{
+		string Name = "55a7d80b73e7c8e0:SavedControlData",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ControlSchemeData",
+		},
+	},
 },
