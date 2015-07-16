@@ -2,13 +2,13 @@ class Disapearer : ZilchComponent
 {
     
     [Property]
-    var Delay : Integer = 0;
+    var ActiveTime : Integer = 0;
     [Property]
     var StartUp : Integer = 0;
     var Count: Integer = 0;
     var HasBoxCollider : Boolean = true;
     var IsFlashing : Boolean = false;
-    
+    var LoopTime : Integer = 0;
     var Visible : Boolean = false;
     function Initialize(init : CogInitializer)
     {
@@ -18,16 +18,18 @@ class Disapearer : ZilchComponent
             this.Owner.BoxCollider.Ghost = true;
             this.Owner.BoxCollider.SendsEvents = true;
         }
+        this.LoopTime =20;
     }
     
     function Init(delay : Integer, start : Integer, hasBoxCollider : Boolean, isFlashing : Boolean)
     {
-        this.Delay = delay;
+        this.ActiveTime = delay;
         this.StartUp = start;
         this.Count = this.StartUp;
         this.IsFlashing = isFlashing;
         this.HasBoxCollider = hasBoxCollider;
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.LoopTime = 20;
     }
 
     function ToggleGhost()
@@ -37,6 +39,16 @@ class Disapearer : ZilchComponent
             return;
         }
         this.Owner.BoxCollider.Ghost = !this.Owner.BoxCollider.Ghost;
+    }
+    
+    function SetSendEvents(flag : Boolean)
+    {
+        this.Owner.BoxCollider.SendsEvents = flag;
+    }
+    
+    function SetGhost(flag : Boolean)
+    {
+        this.Owner.BoxCollider.Ghost = flag;
     }
     
     function ToggleVisible()
@@ -49,18 +61,47 @@ class Disapearer : ZilchComponent
         }
     }
 
+    function SetVisible(flag : Boolean)
+    {
+        this.Owner.Sprite.Visible = flag;
+    }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        --this.Count;
-        if(this.Count <= 0)
+        ++this.Count;
+        if(this.Count == this.StartUp * 60)
         {
-            this.Count = this.Delay;
+
             if(this.HasBoxCollider)
             {
-                this.ToggleGhost();
+                this.SetSendEvents(true);
             }
-            this.ToggleVisible();
+            this.SetVisible(true);
+        }
+        
+        if(this.Count == (this.StartUp + this.ActiveTime)* 60)
+        {
+            //Console.WriteLine(this.Count);
+            if(this.HasBoxCollider)
+            {
+                this.SetSendEvents(false);
+                this.SetGhost(true);
+            }
+            this.SetVisible(false);
+        }
+        
+        
+        if(this.Count >= this.LoopTime * 60)
+        {
+            this.Count = 0;
+            if(this.HasBoxCollider)
+            {
+                this.SetSendEvents(false);
+                this.SetGhost(true);
+            }
+            this.SetVisible(false);
+            
+            
         }
     }
 }

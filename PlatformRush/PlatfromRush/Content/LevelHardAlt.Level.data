@@ -106,7 +106,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 36.4424,
+			float Size = 20,
 		},
 		EditorCameraController = 
 		{
@@ -1173,8 +1173,8 @@ Level =
 		},
 		GhostBehavior = 
 		{
-			int ActiveTime = 30,
-			int CoolDown = 45,
+			int ActiveTime = 22,
+			int CoolDown = 75,
 			float MaxDistance = 15,
 		},
 		GravityEffect = 
@@ -1195,7 +1195,7 @@ Level =
 		{
 			int Damage = 6,
 			bool StunOn = false,
-			bool Active = true,
+			bool Active = false,
 			float KnockBackSpeed = 0,
 		},
 	},

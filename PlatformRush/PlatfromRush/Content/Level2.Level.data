@@ -97,7 +97,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-12.0777, -1.16514, 50],
+			Vec3 Translation = [-16.785, 4.16777, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -109,7 +109,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 26.9972,
+			float Size = 18.0968,
 		},
 		EditorCameraController = 
 		{
@@ -117,7 +117,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-12.0777, -1.16514, -5.27933e-007],
+			Vec3 LookTarget = [-16.785, 4.16777, -5.27933e-007],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -163,12 +163,19 @@ Level =
 		{
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "55026d5bce1438f4:Player",
 		LinkId = 
 		{
 			uint Id = 4,
+		},
+		Named = 
+		{
+			string Name = "Player",
+		},
+		Archetyped = 
+		{
+			string Name = "55026d5bce1438f4:Player",
 		},
 		Transform = 
 		{
@@ -176,9 +183,61 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "Player",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "559e4a92e524f9e0:main_idle1resized",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, -0.05, 0],
+			Vec3 Size = [0.4, 0.45, 0.5],
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = true,
+			bool Mode2D = true,
+			bool AllowSleep = false,
+			bool Inherit2DMode = false,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		Health = 
+		{
+			int Hp = 6,
+		},
+		CheatCodes = 
+		{
+		},
+		GroundCollision = 
+		{
+		},
+		Controls = 
+		{
+		},
+		PlayerAnimations = 
+		{
 		},
 	},
 	ArchetypeInstance = 
@@ -243,7 +302,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-11.1767, 0.368095, 0],
+			Vec3 Translation = [-11, 0.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -261,7 +320,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-3.58869, 1.81581, 0],
+			Vec3 Translation = [-4, 1.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -279,7 +338,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-11.2765, 5.46005, 0],
+			Vec3 Translation = [-11, 5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -297,7 +356,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-3.78838, 7.05752, 0],
+			Vec3 Translation = [-4, 8.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -315,7 +374,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-11.3764, 10.4522, 0],
+			Vec3 Translation = [-11, 10.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -333,7 +392,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.0879, 12.0496, 0],
+			Vec3 Translation = [-4, 12, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},

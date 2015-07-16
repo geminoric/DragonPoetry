@@ -3,17 +3,28 @@ class Health : ZilchComponent
     [Property]
     var Hp : Integer = 6;
     var Vulnurable: Boolean = true;
+    var Count : Integer = 0;
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
+    function ChangeColor(color : Real4)
+    {
+        this.Owner.Sprite.Color = color;
+        
+    }
+    
+
     function DealDamage(damage: Integer)
     {
         if(this.Vulnurable)
         {
           this.Hp -= damage;
+          this.Count =  15;
+          this.Vulnurable = false;
+          this.ChangeColor(Real4(1,0,0,1));
           if(this.Hp < 0 )
           {
             this.Hp = 0;
@@ -32,6 +43,12 @@ class Health : ZilchComponent
     }
     function OnLogicUpdate(event : UpdateEvent)
     {
+        --this.Count;
+        if(this.Count == 0)
+        {
+            this.Vulnurable = true;
+            this.ChangeColor(Real4(1,1,1,1));
+        }
         if ( Zero.Keyboard.KeyIsDown(Keys.H) )
         {
             Console.WriteLine(this.Hp);

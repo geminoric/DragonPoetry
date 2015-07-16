@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [1.47134, 7.19631, 0],
+		Vec3 Translation = [5.52111, -1.57214, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -51,6 +51,6 @@ Cog =
 		int Damage = 1,
 		bool StunOn = false,
 		bool Active = true,
-		float KnockBackSpeed = 0.5,
+		float KnockBackSpeed = 15,
 	},
 },

@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Portal1",
+		string Name = "Portal",
 	},
 	Archetyped = 
 	{
@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [7.34408, 15.9663, 0],
+		Vec3 Translation = [21.7847, 8.33785, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -38,7 +38,7 @@ Cog =
 	},
 	Portals = 
 	{
-		CogPath Link = ":/Portal2",
+		CogPath Link = ":/Portal1",
 	},
 	BoxCollider = 
 	{

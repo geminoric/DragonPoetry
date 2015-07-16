@@ -106,7 +106,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.9479,
+			float Size = 40.1711,
 		},
 		EditorCameraController = 
 		{
@@ -254,7 +254,7 @@ Level =
 		BoxCollider = 
 		{
 			bool Ghost = true,
-			bool SendsMessages = false,
+			bool SendsMessages = true,
 			bool Seamless = true,
 			string MaterialName = "55e2698a2e96d782:Heavy",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
@@ -270,8 +270,8 @@ Level =
 		},
 		Disapearer = 
 		{
-			int Delay = 124,
-			int StartUp = 90,
+			int ActiveTime = 2,
+			int StartUp = 2,
 		},
 	},
 	Cog = 
@@ -331,7 +331,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int Delay = 200,
+			int ActiveTime = 0,
 			int StartUp = 34,
 		},
 	},
@@ -392,7 +392,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int Delay = 61,
+			int ActiveTime = 0,
 			int StartUp = 296,
 		},
 	},
@@ -453,7 +453,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int Delay = 125,
+			int ActiveTime = 0,
 			int StartUp = 0,
 		},
 	},
@@ -514,7 +514,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int Delay = 53,
+			int ActiveTime = 0,
 			int StartUp = 0,
 		},
 	},
@@ -593,7 +593,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int Delay = 85,
+			int ActiveTime = 0,
 			int StartUp = 57,
 		},
 	},
@@ -654,7 +654,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int Delay = 342,
+			int ActiveTime = 0,
 			int StartUp = 0,
 		},
 	},

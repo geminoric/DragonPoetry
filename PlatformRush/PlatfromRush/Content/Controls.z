@@ -78,17 +78,24 @@ class Controls : ZilchComponent
         {
             this.Owner.PlayerAnimations.ChangeState(AnimationState.InAir);
         }
+        //Console.WriteLine(this.Owner.RigidBody.Velocity);
     }
     
     function OnCollision(event : CollisionEvent)
     {
-        var stop =  this.Owner.RigidBody.Velocity;
+        /*var stop =  this.Owner.RigidBody.Velocity;
         stop.Y = 0.0;
-        this.Owner.RigidBody.Velocity = stop;
+        this.Owner.RigidBody.Velocity = stop;*/
         
         
-        /*
         var otherObj = event.OtherObject;
+        if(otherObj.TileMap !=null)
+        {
+              var stop = this.Owner.RigidBody.Velocity;
+                    stop.Y =  0;
+                    this.Owner.RigidBody.Velocity = stop;
+        }
+        
         if(this.Owner.RigidBody.Velocity.Y == 0)
         {
             
@@ -113,7 +120,6 @@ class Controls : ZilchComponent
                 }
             }
         }
-            */
     }
     
     function PlayerInput()

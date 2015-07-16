@@ -40,6 +40,7 @@ class DropThrough : ZilchComponent
                 this.Owner.BoxCollider.Ghost = false;
             }
         }
+        Console.WriteLine(otherObj.RigidBody.Velocity.Y); 
     }
 
     function OnLogicUpdate(event : UpdateEvent)

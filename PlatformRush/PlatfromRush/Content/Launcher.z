@@ -3,15 +3,15 @@ class Launcher : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
     }
     
     function Init()
     {
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
     }
     
-    function OnCollisionStarted(collisionEvent : CollisionEvent)
+    function OnCollisionEnded(collisionEvent : CollisionEvent)
     {
         var otherObject = collisionEvent.OtherObject;
         if(otherObject != null)
@@ -19,13 +19,20 @@ class Launcher : ZilchComponent
             var player = otherObject.Controls;
             if(player != null)
             {
-                player.Movement.Y = 5.5;
+                var vel = otherObject.RigidBody.Velocity;
+                vel.Y += 6.9;
+                otherObject.RigidBody.Velocity = vel;
                 /*
                 if(player.GroundPoundingCurrently)
                 {
                   player.VelY = 1.5;
                   player.GroundPoundingCurrently = false;
                 }*/
+                if(otherObject.Controls.Ablity == 2)
+                {
+                    otherObject.RigidBody.Velocity.Y += 16;
+                }
+             
             }
         }
     }
