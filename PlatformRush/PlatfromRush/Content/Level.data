@@ -80,6 +80,9 @@ Level =
 		LoseControl = 
 		{
 		},
+		ParticleExplosion = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -219,7 +222,7 @@ Level =
 		CheatCodes = 
 		{
 		},
-		Controls = 
+		NewControls = 
 		{
 		},
 	},

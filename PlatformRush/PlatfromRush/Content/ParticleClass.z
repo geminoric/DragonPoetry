@@ -1,0 +1,67 @@
+class ParticleClass : ZilchComponent
+{
+    //Drag of particle
+    var Drag : Real = 0.1;
+    //Velocity components
+    var VelX : Real = 0;
+    var VelY : Real = 0;
+    //Brightness
+    var Bright : Real = 1.0;
+    var Decay : Real = 0.1;
+    var Color : Real4 = Real4(0,0,0,0);
+    //Stats done on collision
+    var Damage : Real = 0.0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    //With no experience
+    function Init(vx : Real, vy : Real, drag : Real, light : Real, ldecay : Real, col : Real4, damage : Real)
+    {
+        this.Damage = damage;
+        this.VelX = vx;
+        this.VelY = vy;
+        this.Drag = drag;
+        this.Bright = light;
+        this.Decay = ldecay;
+        this.Color = col;
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    //Manage brightness
+    function Brightness()
+    {
+        this.Owner.Sprite.Color = Real4(this.Color.X * this.Bright, this.Color.Y * this.Bright, this.Color.Z * this.Bright, this.Color.W * this.Bright);
+        this.Bright -= this.Decay;
+        //Destroy if no time left
+        if(this.Bright <= 0.2)
+        {
+            this.Owner.Destroy();
+        }
+    }
+    
+    //Manage drag
+    function ManageDrag()
+    {
+        this.VelX -= (this.VelX * this.Drag);
+        this.VelY -= (this.VelY * this.Drag);
+    }
+    
+    
+    //Manage movement
+    function Movement()
+    {
+        var trans = Real3(this.VelX, this.VelY, 0.0);
+        this.Owner.Transform.Translation += trans;
+    }
+    
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Brightness();
+        this.ManageDrag();
+        this.Movement();
+    }
+}

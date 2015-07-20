@@ -26,7 +26,11 @@ class PlayerAnimations : ZilchComponent
         }
         else if ( state == AnimationState.Jumping )
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("Jumping");
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("Jump");
+        }
+        else if(state == AnimationState.InAir)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("InAir");
         }
     }
 

@@ -1,0 +1,201 @@
+class NewControls : ZilchComponent
+{
+    var Velocity : Real3 = Real3(0,0,0);
+    
+    //Acceleration of the player sideways
+    var SideAccelSpeed : Real = 2.8;
+    //Sideways decleration of player
+    var SideDeceleration : Real = 0.75;
+    //Velocity given when jump pressed
+    var JumpMinVel : Real = 8.5;
+    //Velocity given per frame player is holding jump key
+    var JumpGainPerFrame : Real = 1.7;
+    //Maximum frames player can hold jump to gain velocity
+    var JumpMaxFrames : Integer = 6;
+    //Frames jumping counter
+    var JumpFrameCounter : Integer = 0;
+    //Has first jump been used
+    var FirstJumpUsed : Boolean = false;
+    //Has double jump been used
+    var DoubleJumpUsed : Boolean = false;
+    
+    var DashCooldown : Integer = 0;
+    var DashMaxCooldown : Integer = 40;
+    var DashSpeed : Real = 50.0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Owner.BoxCollider.Material.Restitution = 0.1;
+        this.LevelSettings.GravityEffect.Strength = 50;
+    }
+    
+    //Particle effects for jumping
+    function JumpEffects()
+    {
+        this.LevelSettings.ParticleExplosion.MakeExplosion(this.Owner.Transform.Translation - Real3(0,0.4,0), -0.125, 0.125, -0.125, 0.025, 0.01, 0.03, Real4(0.7, 0.7, 0.7, 0.8), Real4(0.2, 0.2, 0.2, 0.5), 75, 0.1, 0);
+    }
+    
+    function JumpControls()
+    {
+        //Check for jump ending
+        if(this.FirstJumpUsed && this.Owner.RigidBody.Velocity.Y < 0.001 && this.Owner.RigidBody.Velocity.Y > -0.001)
+        {
+            this.FirstJumpUsed = false;
+            this.DoubleJumpUsed = false;
+        }
+        
+        //Check if the player is starting a jump or continuing one
+        if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(Keys.W))
+        {
+            //Check if player is falling to not allow first jump
+            if(this.Velocity.Y < -0.01)
+            {
+                this.FirstJumpUsed = true;
+            }
+            
+            //Check if starting a new jump
+            if(!this.FirstJumpUsed)
+            {
+                this.JumpEffects();
+                this.JumpFrameCounter = 1;
+                this.Velocity.Y = this.JumpMinVel;
+                this.FirstJumpUsed = true;
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
+            }
+            else
+            //Check if continuing first jump
+            if(this.FirstJumpUsed && !this.DoubleJumpUsed && this.JumpFrameCounter < this.JumpMaxFrames && this.JumpFrameCounter != 0)
+            {
+                this.Velocity.Y += this.JumpGainPerFrame;
+                ++this.JumpFrameCounter;
+            }
+            
+            //Check if starting second jump
+            if(!this.DoubleJumpUsed && this.FirstJumpUsed && this.JumpFrameCounter == 0)
+            {
+                this.JumpEffects();
+                this.Velocity.Y = this.JumpMinVel;
+                this.DoubleJumpUsed = true;
+                this.JumpFrameCounter = 1;
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
+            }
+            else
+            //Check if continuing second jump
+            if(this.FirstJumpUsed && this.DoubleJumpUsed && this.JumpFrameCounter < this.JumpMaxFrames && this.JumpFrameCounter != 0)
+            {
+                this.Velocity.Y += this.JumpGainPerFrame;
+                ++this.JumpFrameCounter;
+            }
+        }
+        else
+        {
+            //Reset jump counter
+            this.JumpFrameCounter = 0;
+        }
+        
+        //Animate player if in air
+        if(this.Velocity.Y < -0.01 || (this.Owner.PlayerAnimations.CurrentState == AnimationState.Jumping && this.Owner.Sprite.CurrentFrame == 5))
+        {
+            if(this.Owner.PlayerAnimations.CurrentState != AnimationState.InAir)
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.InAir);
+            }
+        }
+        //If not in air make state idle
+        else
+        {
+            if(this.Owner.PlayerAnimations.CurrentState == AnimationState.InAir)
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
+            }
+        }
+    }
+    
+    function SideMoveControls()
+    {
+        //Apply deceleration
+        this.Velocity.X *= this.SideDeceleration;
+        
+        var rng : Random = new Random();
+        
+        //Sideways movement controls
+        if(Zero.Keyboard.KeyIsDown(Keys.A))
+        {
+            this.Velocity.X -= this.SideAccelSpeed;
+            
+            //Animate player
+            if(this.Owner.PlayerAnimations.CurrentState == AnimationState.Idle)
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Running);
+            }
+            this.Owner.Sprite.FlipX = true;
+        }
+        else
+        if(Zero.Keyboard.KeyIsDown(Keys.D))
+        {
+            this.Velocity.X += this.SideAccelSpeed;
+            
+            //Animate player
+            if(this.Owner.PlayerAnimations.CurrentState == AnimationState.Idle)
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Running);
+            }
+            this.Owner.Sprite.FlipX = false;
+        }
+        else
+        {
+            if (this.Owner.PlayerAnimations.CurrentState == AnimationState.Running)
+            {
+                this.Owner.PlayerAnimations.ChangeState(AnimationState.Idle);
+            }
+        }
+        
+        if(this.Owner.PlayerAnimations.CurrentState == AnimationState.Running)
+        {
+            //Particle effects
+            this.LevelSettings.ParticleExplosion.MakeExplosion(this.Owner.Transform.Translation - Real3(0,0.4,0), 0, 0.0, -0.006, 0.09, 0.1, 0.3, Real4(0.7, 0, 0.7, 0.8), Real4(0.2, 0, 0.2, 0.5), 4, 0.3, 0);
+        }
+    }
+    
+    function DashAbility()
+    {
+        if(Zero.Keyboard.KeyIsDown(Keys.Shift) && this.DashCooldown <= 0)
+        {
+            if(this.Owner.Sprite.FlipX)
+            {
+                this.Velocity.X = -this.DashSpeed;
+            }
+            else
+            {
+                this.Velocity.X = this.DashSpeed;
+            }
+            
+            this.DashCooldown = this.DashMaxCooldown;
+        }
+        if(this.DashCooldown > 0)
+        {
+            --this.DashCooldown;
+        }
+    }
+    
+    function RunControls()
+    {
+        //Update velocity
+        this.Velocity = this.Owner.RigidBody.Velocity;
+        
+        //Keep jumpcontrols as the first called function here
+        this.JumpControls();
+        
+        this.SideMoveControls();
+        this.DashAbility();
+        
+        //Update velocity
+        this.Owner.RigidBody.Velocity = this.Velocity;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.RunControls();
+    }
+}

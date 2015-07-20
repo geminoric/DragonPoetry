@@ -81,6 +81,9 @@ Level =
 		{
 			bool AllowQuit = false,
 		},
+		ParticleExplosion = 
+		{
+		},
 	},
 	Cog = 
 	{

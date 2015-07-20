@@ -35,7 +35,7 @@ class DropThrough : ZilchComponent
             {
                 this.Owner.BoxCollider.Ghost = false;
             }*/
-            if(otherObj.RigidBody.Velocity.Y <= 0 && this.Owner.Sprite.Visible)
+            if(otherObj.Name == "Player" && otherObj.RigidBody.Velocity.Y <= 0 && this.Owner.Sprite.Visible)
             {
                 this.Owner.BoxCollider.Ghost = false;
             }
@@ -59,7 +59,10 @@ class DropThrough : ZilchComponent
     
     function OnCollisionEnded(event : CollisionEvent)
     {
-        //when the player finishes its collision change back 
-        this.Owner.BoxCollider.Ghost = true;
+        if(event.OtherObject.Name == "Player")
+        {
+            //when the player finishes its collision change back 
+            this.Owner.BoxCollider.Ghost = true;
+        }
     }
 }

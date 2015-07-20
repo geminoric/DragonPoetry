@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "ParticleClass",
+		uint64 ResourceId = 558b3590eb8bac43,
+	},
+},

@@ -1,0 +1,59 @@
+class ParticleExplosion : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    //Create a single particle
+    function MakeDot(loc : Real3, vel : Real3, drag : Real, decay : Real, col : Real4, damage : Real)
+    {
+        var dot = this.Space.CreateAtPosition(Archetype.Find("Particle"), loc);
+        dot.ParticleClass.Init(vel.X, vel.Y, drag, 1.0, decay, col, damage);
+    }
+    
+    
+    //Create an explosion with range of velocity
+    function MakeExplosion(loc : Real3, velXLow : Real, velXHigh : Real, velYLow : Real, velYHigh : Real, decayLow : Real, decayHigh : Real, colLow : Real4, colHigh : Real4, numParticles : Integer, drag : Real, damage : Real)
+    {
+        var rng : Random = new Random();
+        //Loop through all the particles to generate
+        for(var i : Integer = 0;i < numParticles;i += 1)
+        {
+            var angle = rng.Range(0.0, Math.Pi * 2);
+            var particleVel = Real3(rng.Range(velXLow, velXHigh) + Math.Cos(angle) * (velXHigh - velXLow) * rng.Range(0.0, 1.0), 
+                                    rng.Range(velYLow, velYHigh) + Math.Sin(angle) * (velYHigh - velYLow) * rng.Range(0.0, 1.0), 0.0);
+            var particleDec = rng.Range(decayLow, decayHigh);
+            //Percentage of first color to use
+            var colPerc : Real = rng.Range(0.0, 1.0);
+            var particleCol = Real4(colLow.X * colPerc + colHigh.X * (1 - colPerc), colLow.Y * colPerc + colHigh.Y * (1 - colPerc), 
+                                    colLow.Z * colPerc + colHigh.Z * (1 - colPerc), colLow.W * colPerc + colHigh.W * (1 - colPerc));
+            //Create particle
+            this.MakeDot(loc, particleVel, drag, particleDec, particleCol, damage);
+        }
+    }
+    
+    
+    //Create an explosion with neutral velocity (all directions)
+    function MakeNeutralExplosion(loc : Real3, vel : Real, decayLow : Real, decayHigh : Real, colLow : Real4, colHigh : Real4, numParticles : Integer, drag : Real, damage : Real)
+    {
+        var rng : Random = new Random();
+        //Loop through all the particles to generate
+        for(var i : Integer = 0;i < numParticles;i += 1)
+        {
+            var particleVel = Real3(rng.Range(-vel, vel), rng.Range(-vel, vel), 0.0);
+            var particleDec = rng.Range(decayLow, decayHigh);
+            //Percentage of first color to use
+            var colPerc : Real = rng.Range(0.0, 1.0);
+            var particleCol = Real4(colLow.X * colPerc + colHigh.X * (1 - colPerc), colLow.Y * colPerc + colHigh.Y * (1 - colPerc), 
+                                    colLow.Z * colPerc + colHigh.Z * (1 - colPerc), colLow.W * colPerc + colHigh.W * (1 - colPerc));
+            //Create particle
+            this.MakeDot(loc, particleVel, drag, particleDec, particleCol, damage);
+        }
+    }
+    
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}
