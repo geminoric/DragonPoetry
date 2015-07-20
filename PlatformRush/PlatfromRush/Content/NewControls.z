@@ -158,10 +158,17 @@ class NewControls : ZilchComponent
         }
     }
     
+    function DashEffect()
+    {
+        //Particle effects
+        this.LevelSettings.ParticleExplosion.MakeExplosion(this.Owner.Transform.Translation, 0, -this.Velocity.X / 6, -0.4, 0.4, 0.01, 0.03, Real4(0.0, 0, 1.0, 0.8), Real4(0.0, 0, 0.4, 0.6), 125, 0.3, 0);
+    }
+    
     function DashAbility()
     {
         if(Zero.Keyboard.KeyIsDown(Keys.Shift) && this.DashCooldown <= 0)
         {
+            this.DashEffect();
             if(this.Owner.Sprite.FlipX)
             {
                 this.Velocity.X = -this.DashSpeed;

@@ -19,8 +19,7 @@ class Bullets : ZilchComponent
 
         var otherObject = collisionEvent.OtherObject;
         //replace with player controller
-        var player = otherObject.Controls; 
-        if(player != null )
+        if(otherObject.Name == "Player")
         {
             otherObject.Health.DealDamage(this.BulletDamage);
             Console.WriteLine(otherObject.Health.Hp);
