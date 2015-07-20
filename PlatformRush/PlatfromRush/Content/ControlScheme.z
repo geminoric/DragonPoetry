@@ -1,0 +1,17 @@
+class ControlScheme : ZilchComponent
+{
+    [Serialized]
+    var MoveUp : Keys = Keys.W;
+    [Serialized]
+    var MoveLeft : Keys = Keys.A;
+    [Serialized]
+    var MoveDown : Keys = Keys.S;
+    [Serialized]
+    var MoveRight : Keys = Keys.D;
+    [Serialized]
+    var Jump : Keys = Keys.Space;
+    [Serialized]
+    var Dash : Keys = Keys.Shift;
+    [Serialized]
+    var GroundPound : Keys = Keys.V;
+}

@@ -1,16 +1,34 @@
 class Portals : ZilchComponent
 {
-    [Property]
-    var Link : CogPath = null;
-    var CanPortal : Boolean = false;
+
+    var CanPortal : Boolean = true;
+    var Id : Real= 0.0;
+    var LinkPortal : Cog = null;
     
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+        //this.Id = this.Owner.Sprite.Color.X + this.Owner.Sprite.Color.Y + this.Owner.Sprite.Color.Z + this.Owner.Sprite.Color.W;
+        this.FindOtherPortal();
     }
 
+    function FindOtherPortal()
+    {
+        var listofObjects = this.Space.FindAllObjectsByName("Portal");
+        foreach(var portal in listofObjects)
+        {
+            portal.Portals.Id = portal.Sprite.Color.X + portal.Sprite.Color.Y + portal.Sprite.Color.Z + portal.Sprite.Color.W;
+            if(portal.Portals.Id == this.Id)
+            {
+                if(this.Owner != portal)
+                {
+                this.LinkPortal = portal;
+                }
+            }
+        }
+    }
 
     function SetCanPortal(boolean: Boolean)
     {
@@ -24,12 +42,12 @@ class Portals : ZilchComponent
         {
         //replace with player controller
         //var player = otherObject.PlayerController;
-        if(this.CanPortal == false)
+        if(this.CanPortal == true)
         {
             
                 
-                this.Link.Cog.Portals.SetCanPortal(true);
-                otherObject.Transform.Translation = this.Link.Cog.Transform.Translation;
+                this.LinkPortal.Portals.SetCanPortal(false);
+                otherObject.Transform.Translation = this.LinkPortal.Transform.Translation;
             
         }
         }
@@ -40,6 +58,6 @@ class Portals : ZilchComponent
     function OnCollisionEnded(event : CollisionEvent)
     {
         //when the player finishes its collision change back 
-       this.SetCanPortal(false);
+       this.SetCanPortal(true);
     }
 }

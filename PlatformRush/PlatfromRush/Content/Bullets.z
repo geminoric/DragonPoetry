@@ -1,0 +1,31 @@
+class Bullets : ZilchComponent
+{
+    var BulletDamage : Integer = 1;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionStarted);
+        this.BulletDamage = 1;
+    }
+    
+    function Init()
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        this.BulletDamage = 1;
+    }
+    
+    function OnCollisionStarted(collisionEvent : CollisionEvent)
+    {
+        
+
+        var otherObject = collisionEvent.OtherObject;
+        //replace with player controller
+        var player = otherObject.Controls; 
+        if(player != null )
+        {
+            otherObject.Health.DealDamage(this.BulletDamage);
+            Console.WriteLine(otherObject.Health.Hp);
+        }
+      
+   }
+   
+}

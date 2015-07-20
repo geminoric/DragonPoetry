@@ -1,22 +1,20 @@
 class Hazard : ZilchComponent
 {
-    [Property]
+
     var Damage : Integer = 1;
-    [Property]
     var StunOn : Boolean = false;
-    [Property]
     var Active : Boolean = true;
-    [Property]
-    var KnockBackSpeed : Real = 0;
+
+    var KnockBackSpeed : Real = 10;
     
     function Initialize(init : CogInitializer)
     {
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionStarted);
     }
     
     function Init()
     {
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionStarted);
     }
     
     
@@ -44,20 +42,16 @@ class Hazard : ZilchComponent
             {
                 //change the players state
                 player.Jumped = 1;
-                // get the players direction
-                var x : Real = -(player.Direction -0.5);
-                //set a vector to be at a 45 degrees upward
-                var direction: Real3 = Real3( x, Math.Abs(x), 0);
-                //normalize it
-                direction = Math.Normalize(direction);
+                var dist =  otherObject.RigidBody.Velocity;
+                //dist = Math.Normalize(dist);
                 //scale it by the knockbackspeed
-                direction.X *= this.KnockBackSpeed;
-                direction.Y *= this.KnockBackSpeed * 1.5;
-
-                otherObject.RigidBody.Velocity.X = direction.X;
-                otherObject.RigidBody.Velocity.Y = direction.Y;
+                dist.X = 5 * otherObject.Controls.Direction;
+                dist.Y = this.KnockBackSpeed;
+                Console.WriteLine(dist);
                 Console.WriteLine(otherObject.RigidBody.Velocity);
-                 Console.WriteLine(direction.Y);
+                otherObject.RigidBody.Velocity = dist;
+                Console.WriteLine(otherObject.RigidBody.Velocity);
+                 Console.WriteLine(dist.Y);
             }
             
             if(this.Damage > 0)
