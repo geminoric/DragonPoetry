@@ -5,12 +5,13 @@ class Portals : ZilchComponent
     var Id : Real= 0.0;
     var LinkPortal : Cog = null;
     
+    [Property]
+    var Idd : Integer = 0;
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
-        //this.Id = this.Owner.Sprite.Color.X + this.Owner.Sprite.Color.Y + this.Owner.Sprite.Color.Z + this.Owner.Sprite.Color.W;
         this.FindOtherPortal();
     }
 
@@ -19,13 +20,10 @@ class Portals : ZilchComponent
         var listofObjects = this.Space.FindAllObjectsByName("Portal");
         foreach(var portal in listofObjects)
         {
-            portal.Portals.Id = portal.Sprite.Color.X + portal.Sprite.Color.Y + portal.Sprite.Color.Z + portal.Sprite.Color.W;
-            if(portal.Portals.Id == this.Id)
+            if(portal.Portals.Idd == this.Idd && this.Owner != portal)
             {
-                if(this.Owner != portal)
-                {
                 this.LinkPortal = portal;
-                }
+                Console.WriteLine("Portals Linked: `this.Id`, `this.LinkPortal.Portals.Id`");
             }
         }
     }
@@ -38,6 +36,7 @@ class Portals : ZilchComponent
     function OnCollisionStarted(collisionEvent : CollisionEvent)
     {
         var otherObject = collisionEvent.OtherObject;
+        Console.WriteLine(otherObject.Name);
         if(otherObject.Name != "Ghost")
         {
         //replace with player controller
@@ -45,7 +44,7 @@ class Portals : ZilchComponent
         if(this.CanPortal == true)
         {
             
-                
+            
                 this.LinkPortal.Portals.SetCanPortal(false);
                 otherObject.Transform.Translation = this.LinkPortal.Transform.Translation;
             

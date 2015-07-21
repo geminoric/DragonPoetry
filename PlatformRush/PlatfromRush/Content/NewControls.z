@@ -23,6 +23,17 @@ class NewControls : ZilchComponent
     var DashMaxCooldown : Integer = 40;
     var DashSpeed : Real = 50.0;
     
+    var GroundPoundCooldown : Integer = 0;
+    var GroundPoundMaxCooldown : Integer = 40;
+    var DoubleTapTimer : Integer = 0;
+    var DoubleTapTimerMax : Integer = 20;
+    var GroundPoundPhase : Integer = 0;
+    var GroundPoundingTimer : Integer = 0;
+    var GroundPoundingTimerMax : Integer = 10;
+    var GroundPoundStartVelY : Real = 30.0;
+    var GroundPoundVelY : Real = 0.0;
+    var GroundPoundAccelY : Real = 5.0;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -186,6 +197,84 @@ class NewControls : ZilchComponent
         }
     }
     
+    function GroundPound()
+    {
+        // Check Input for Ground Pound
+        if ( Zero.Keyboard.KeyIsPressed(Keys.S) && this.GroundPoundCooldown <= 0 && this.GroundPoundPhase == 0 
+             && !(this.Owner.RigidBody.Velocity.Y < 0.001 && this.Owner.RigidBody.Velocity.Y > -0.001) )
+        {
+            if ( this.DoubleTapTimer > 0 )
+            {
+                this.GroundPoundPhase = 1;
+                this.GroundPoundingTimer = this.GroundPoundingTimerMax;
+                this.GroundPoundCooldown = this.GroundPoundMaxCooldown;
+                this.LevelSettings.ParticleExplosion.MakeExplosion(this.Owner.Transform.Translation - Real3(0,0.4,0), -0.125, 0.125, -0.25, -0.025, 0.01, 0.03, Real4(0, 0, 1.0, 0.8), Real4(0, 0, 0.6, 0.5), 25, 0.2, 0);
+                // Console.WriteLine("GP");
+            }
+            
+            this.DoubleTapTimer = this.DoubleTapTimerMax;
+        }
+        
+        // GroundPounding
+        if ( this.GroundPoundPhase > 0 )
+        {
+            if ( this.GroundPoundPhase == 1 )
+            {
+                this.Velocity.X = 0.0;
+                this.Velocity.Y = 0.0;
+            }
+            else if ( this.GroundPoundPhase == 2 )
+            {
+                this.Velocity.X = 0.0;
+                this.GroundPoundVelY = this.GroundPoundStartVelY;
+                this.Velocity.Y = this.GroundPoundVelY;
+                this.LevelSettings.ParticleExplosion.MakeExplosion(this.Owner.Transform.Translation, -0.01, 0.01, 0.025, 0.1, 0.01, 0.03, Real4(0, 0.4, 0, 0.8), Real4(0, 0.2, 0, 0.8), 75, 0.1, 0);
+                this.GroundPoundPhase = 3;
+            }
+            else if ( this.GroundPoundPhase == 3 )
+            {
+                this.LevelSettings.ParticleExplosion.MakeExplosion(this.Owner.Transform.Translation, -0.01, 0.01, 0.025, 0.1, 0.01, 0.03, Real4(0, 0.6, 0, 0.8), Real4(0, 0.4, 0, 0.8), 2, 0.1, 0);
+                this.GroundPoundVelY -= this.GroundPoundAccelY;
+                this.Velocity.Y = this.GroundPoundVelY;
+            }
+            else if ( this.GroundPoundPhase == 4 )
+            {
+                this.LevelSettings.ParticleExplosion.MakeExplosion(this.Owner.Transform.Translation, -0.01, 0.01, 0.025, 0.1, 0.01, 0.03, Real4(0, 0.6, 0, 0.8), Real4(0, 0.4, 0, 0.8), 2, 0.1, 0);
+                this.Velocity.Y = this.GroundPoundVelY;
+            }
+            
+            // Change GroundPounding Phases:
+            if ( this.GroundPoundingTimer > 0 )
+            {
+                --this.GroundPoundingTimer;
+            }
+            else if ( this.GroundPoundingTimer == 0 && this.GroundPoundPhase < 4 )
+            {
+                this.GroundPoundingTimer = this.GroundPoundingTimerMax;
+                ++this.GroundPoundPhase;
+            }
+        }
+        
+        // Check Collision With Ground to end GroundPounding
+        if ( this.GroundPoundPhase >= 4 && this.Owner.RigidBody.Velocity.Y < 3 && this.Owner.RigidBody.Velocity.Y > -1 )
+        {
+           // Console.WriteLine("GROUNDED");
+            this.GroundPoundPhase = 0;
+        }
+        
+        // Update Timers
+        if ( this.DoubleTapTimer > 0 )
+        {
+            --this.DoubleTapTimer;
+        }
+        if ( this.GroundPoundCooldown > 0 )
+        {
+            --this.GroundPoundCooldown;
+        }
+        
+        //Console.WriteLine(this.Owner.RigidBody.Velocity.Y);
+    }
+    
     function RunControls()
     {
         //Update velocity
@@ -196,7 +285,9 @@ class NewControls : ZilchComponent
         
         this.SideMoveControls();
         this.DashAbility();
+        this.GroundPound();
         
+        //Console.WriteLine(this.Velocity);
         //Update velocity
         this.Owner.RigidBody.Velocity = this.Velocity;
     }
