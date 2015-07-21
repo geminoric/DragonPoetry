@@ -15,7 +15,7 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 30,
+			float Strength = 10,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
@@ -62,29 +62,22 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
-		PauseControl = 
-		{
-		},
 		LevelData = 
 		{
-			float GoldTime = 5,
-			float SilverTime = 6,
-			float BronzeTime = 7,
+			float GoldTime = 0,
+			float SilverTime = 0,
+			float BronzeTime = 0,
 		},
 		HUD = 
 		{
 		},
-		PlayerVars = 
+		ParticleExplosion = 
 		{
 		},
 		LoseControl = 
 		{
 		},
-		QuitGameTest = 
-		{
-			bool AllowQuit = false,
-		},
-		ParticleExplosion = 
+		PauseControl = 
 		{
 		},
 	},
@@ -100,7 +93,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [3.99961, -3.16183, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -112,7 +105,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 44.5108,
+			float Size = 49.192,
 		},
 		EditorCameraController = 
 		{
@@ -120,7 +113,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [3.99961, -3.16183, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -174,83 +167,6 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Player",
-		},
-		Archetyped = 
-		{
-			string Name = "55026d5bce1438f4:Player",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-17.533, 0.372368, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "559e4a92e524f9e0:main_idle1resized",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = false,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		Health = 
-		{
-			int Hp = 6,
-		},
-		CheatCodes = 
-		{
-		},
-		GroundCollision = 
-		{
-		},
-		PlayerAnimations = 
-		{
-		},
-		NewControls = 
-		{
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Named = 
-		{
 			string Name = "TileMap",
 		},
 		Transform = 
@@ -272,10 +188,28 @@ Level =
 		},
 		TileMap = 
 		{
-			string SourceName = "551d666660be298c:Level2_TileMap00",
+			string SourceName = "55272fbb461ac5e8:LevelE1_TileMap00",
 			string PaletteName = "",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.2,
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026d5bce1438f4:Player",
+		LinkId = 
+		{
+			uint Id = 5,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-5.01364, -6.35423, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Player",
 		},
 	},
 	ArchetypeInstance = 
@@ -287,7 +221,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-11, 0.5, 0],
+			Vec3 Translation = [-5, -5.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -305,7 +239,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.5, 1.5, 0],
+			Vec3 Translation = [-5, -2.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -323,7 +257,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2, 2.5, 0],
+			Vec3 Translation = [-5, 1, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -341,7 +275,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [26, 6.5, 0],
+			Vec3 Translation = [-5, 4.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -350,22 +284,56 @@ Level =
 			string Name = "Platform",
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "550213475160f850:Platform",
 		LinkId = 
 		{
 			uint Id = 10,
 		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+		Archetyped = 
+		{
+			string Name = "550264677f6b5fc9:Spike",
+		},
 		Transform = 
 		{
-			Vec3 Translation = [8.5, 3.5, 0],
+			Vec3 Translation = [-3.49738, 5.24562, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "Platform",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "55153ce7ea4a48bc:spikes",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, -0.15, 0],
+			Vec3 Size = [0.325, 0.175, 0.5],
+		},
+		Hazard = 
+		{
 		},
 	},
 	ArchetypeInstance = 
@@ -377,7 +345,97 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [15, 4.5, 0],
+			Vec3 Translation = [15.427, -9.04498, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-2, 4.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3, 1.97079, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 14,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [18.0193, -6.4978, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-2, -1.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-2, -5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
