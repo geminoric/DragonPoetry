@@ -4,6 +4,7 @@ class Launcher : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+        this.Owner.AddComponentByName("SoundEmitter");
     }
     
     function Init()
@@ -16,11 +17,12 @@ class Launcher : ZilchComponent
         var otherObject = collisionEvent.OtherObject;
         if(otherObject != null)
         {
-            var player = otherObject.Controls;
+            var player = otherObject.NewControls;
             if(player != null)
             {
+                this.Owner.SoundEmitter.PlayCue(SoundCue.Find("SpringSound"));
                 var vel = otherObject.RigidBody.Velocity;
-                vel.Y += 6.9;
+                vel.Y += 20.0;
                 otherObject.RigidBody.Velocity = vel;
                 /*
                 if(player.GroundPoundingCurrently)
@@ -28,10 +30,10 @@ class Launcher : ZilchComponent
                   player.VelY = 1.5;
                   player.GroundPoundingCurrently = false;
                 }*/
-                if(otherObject.Controls.Ablity == 2)
+                /*if(otherObject.NewControls.G)
                 {
                     otherObject.RigidBody.Velocity.Y += 16;
-                }
+                }*/
              
             }
         }

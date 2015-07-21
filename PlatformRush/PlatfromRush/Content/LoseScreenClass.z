@@ -22,13 +22,16 @@ class LoseScreenClass : ZilchComponent
         this.Space.FindObjectByName("PlatformsLeft").SpriteText.Text = 
             "Platforms: `platformsActivated`/`platforms`";
 
+        var text = this.Space.FindObjectByName("WinLoseText");
         if ( lose )
         {
-            this.Space.FindObjectByName("WinLoseText").SpriteText.Text = "you lose";
+            text.SpriteText.Text = "you lose";
+            text.SoundEmitter.PlayCue(SoundCue.Find("FailureSound"));
         }
         else
         {
-            this.Space.FindObjectByName("WinLoseText").SpriteText.Text = "you win";
+            text.SpriteText.Text = "you win";
+            text.SoundEmitter.PlayCue(SoundCue.Find("SuccessSound"));
         }
     }
 

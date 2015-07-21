@@ -25,6 +25,7 @@ class Health : ZilchComponent
           this.Count =  15;
           this.Vulnurable = false;
           this.ChangeColor(Real4(1,0,0,1));
+          this.Owner.SoundEmitter.PlayCue(SoundCue.Find("HitSound"));
           if(this.Hp < 0 )
           {
             this.Hp = 0;

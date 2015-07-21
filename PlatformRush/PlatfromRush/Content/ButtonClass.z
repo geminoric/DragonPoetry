@@ -15,6 +15,8 @@ class ButtonClass : ZilchComponent
     var ColFadeRate : Real = 0.25;
     //When to round color and change it to targ
     var ColEpsilon : Real = 0.01;
+    // Hover State for sound playing
+    var HoverState : Boolean = false;
     
     //Call to initialize the button, also connects loop
     function Init(pos : Real3, scale : Real3, callback : delegate(), words : String, fontSize : Integer)
@@ -38,6 +40,8 @@ class ButtonClass : ZilchComponent
         
         this.Interior = this.Owner.FindChildByName("interior");
         this.Owner.FindChildByName("text").SpriteText.Text = words;
+        
+        this.Owner.AddComponentByName("SoundEmitter");
     }
     
     //Check if a button is pressed when the mouse is clicked
@@ -56,6 +60,7 @@ class ButtonClass : ZilchComponent
                 this.Selected = false;
                 if(this.Callback != null)
                 {
+                    this.Owner.SoundEmitter.PlayCue(SoundCue.Find("ButtonSelectSound"));
                     this.Callback();
                 }
             }
@@ -139,8 +144,22 @@ class ButtonClass : ZilchComponent
         }
     }
     
+    function HoverSound()
+    {
+        if ( this.HoverState == false && this.MouseInsideButton() )
+        {
+            this.HoverState = true;
+            this.Owner.SoundEmitter.PlayCue(SoundCue.Find("ButtonHoverSound"));
+        }
+        if ( this.HoverState == true && !this.MouseInsideButton() )
+        {
+            this.HoverState = false;
+        }
+    }
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateButtonCol();
+        this.HoverSound();
     }
 }

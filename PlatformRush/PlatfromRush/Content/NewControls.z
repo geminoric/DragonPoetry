@@ -54,6 +54,7 @@ class NewControls : ZilchComponent
         {
             this.FirstJumpUsed = false;
             this.DoubleJumpUsed = false;
+            this.Owner.SoundEmitter.PlayCue(SoundCue.Find("LandingSound"));
         }
         
         //Check if the player is starting a jump or continuing one
@@ -73,6 +74,7 @@ class NewControls : ZilchComponent
                 this.Velocity.Y = this.JumpMinVel;
                 this.FirstJumpUsed = true;
                 this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
+                this.Owner.SoundEmitter.PlayCue(SoundCue.Find("JumpSound"));
             }
             else
             //Check if continuing first jump
@@ -90,6 +92,7 @@ class NewControls : ZilchComponent
                 this.DoubleJumpUsed = true;
                 this.JumpFrameCounter = 1;
                 this.Owner.PlayerAnimations.ChangeState(AnimationState.Jumping);
+                this.Owner.SoundEmitter.PlayCue(SoundCue.Find("JumpSound"));
             }
             else
             //Check if continuing second jump

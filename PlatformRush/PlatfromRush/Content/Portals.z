@@ -13,6 +13,7 @@ class Portals : ZilchComponent
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
         this.FindOtherPortal();
+        this.Owner.AddComponentByName("SoundEmitter");
     }
 
     function FindOtherPortal()
@@ -37,14 +38,14 @@ class Portals : ZilchComponent
     {
         var otherObject = collisionEvent.OtherObject;
         Console.WriteLine(otherObject.Name);
-        if(otherObject.Name != "Ghost")
+        if(otherObject.Name != "Ghost" && otherObject.Name != "particle")
         {
         //replace with player controller
         //var player = otherObject.PlayerController;
         if(this.CanPortal == true)
         {
             
-            
+                this.Owner.SoundEmitter.PlayCue(SoundCue.Find("TeleportSound"));
                 this.LinkPortal.Portals.SetCanPortal(false);
                 otherObject.Transform.Translation = this.LinkPortal.Transform.Translation;
             

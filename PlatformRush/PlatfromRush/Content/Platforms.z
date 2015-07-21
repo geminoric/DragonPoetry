@@ -7,6 +7,7 @@ class Platforms : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        this.Owner.AddComponentByName("SoundEmitter");
     }
     
     function Init()
@@ -30,6 +31,7 @@ class Platforms : ZilchComponent
                 {
                 if(this.OtherSprite != null)
                 {
+                    this.Owner.SoundEmitter.PlayCue(SoundCue.Find("PlatformActivateSound"));
                     this.Owner.Sprite.SpriteSource = this.OtherSprite;
                     this.Owner.Space.LevelSettings.LevelData.ActivatePlatforms(1);
                     this.Active = true;

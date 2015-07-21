@@ -27,6 +27,7 @@ class GhostBehavior : ZilchComponent
         var otherObject = event.OtherObject;
         if(otherObject.ArchetypeName == "Player")
         {
+            otherObject.Health.DealDamage(6);
            this.Owner.Destroy();
         }
     }
