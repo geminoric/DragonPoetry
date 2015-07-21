@@ -25,9 +25,7 @@ class Hazard : ZilchComponent
       if(this.Active == true)
       {
         var otherObject = collisionEvent.OtherObject;
-        //replace with player controller
-        var player = otherObject.Controls; 
-        if(player != null )
+        if(otherObject.Name == "Player" )
         {
             if(otherObject.Health.Vulnurable)
             {
@@ -41,17 +39,22 @@ class Hazard : ZilchComponent
             if(this.KnockBackSpeed > 0)
             {
                 //change the players state
-                player.Jumped = 1;
+                otherObject.NewControls.FirstJumpUsed = true;
                 var dist =  otherObject.RigidBody.Velocity;
                 //dist = Math.Normalize(dist);
-                //scale it by the knockbackspeed
-                dist.X = 5 * otherObject.Controls.Direction;
+                if(otherObject.Sprite.FlipX)
+                {
+                    //scale it by the knockbackspeed
+                    dist.X = 5 * -1;
+                }
+                else
+                {
+                    //scale it by the knockbackspeed
+                    dist.X = 5 * 1;
+                }
+                
                 dist.Y = this.KnockBackSpeed;
-                Console.WriteLine(dist);
-                Console.WriteLine(otherObject.RigidBody.Velocity);
                 otherObject.RigidBody.Velocity = dist;
-                Console.WriteLine(otherObject.RigidBody.Velocity);
-                 Console.WriteLine(dist.Y);
             }
             
             if(this.Damage > 0)

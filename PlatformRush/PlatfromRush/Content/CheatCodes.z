@@ -9,14 +9,6 @@ class CheatCodes : ZilchComponent
 
     function OnKeyDown(event : KeyboardEvent)
     {
-        if(event.Key == Keys.I)
-        {
-            this.Owner.Health.Vulnurable = false;
-        }
-        if(event.Key == Keys.J)
-        {
-            this.Owner.Controls.Jumped = 0;
-        }
     
     }
     
