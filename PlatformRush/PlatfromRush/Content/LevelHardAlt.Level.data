@@ -109,7 +109,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 20,
+			float Size = 36.4424,
 		},
 		EditorCameraController = 
 		{
@@ -224,7 +224,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal1",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -242,7 +242,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.269542, 0.13865, 0.59, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -256,7 +256,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal1a",
+			int Idd = 4,
 		},
 		BoxCollider = 
 		{
@@ -277,7 +277,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal2",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -295,7 +295,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.375, 1, 0.7, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -309,7 +309,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal2a",
+			int Idd = 6,
 		},
 		BoxCollider = 
 		{
@@ -330,7 +330,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal3",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -348,7 +348,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.23, 0.23, 0.23, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -362,7 +362,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal3a",
+			int Idd = 5,
 		},
 		BoxCollider = 
 		{
@@ -383,7 +383,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal4",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -401,7 +401,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.9645, 1, 0.29, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -415,7 +415,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal4a",
+			int Idd = 7,
 		},
 		BoxCollider = 
 		{
@@ -436,7 +436,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal5",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -454,7 +454,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.137255, 0.494118, 0.231373, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -468,7 +468,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal5a",
+			int Idd = 8,
 		},
 		BoxCollider = 
 		{
@@ -489,7 +489,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal6",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -521,7 +521,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal6a",
+			int Idd = 2,
 		},
 		BoxCollider = 
 		{
@@ -542,7 +542,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal7",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -560,7 +560,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [1, 0, 0, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -574,7 +574,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal7a",
+			int Idd = 9,
 		},
 		BoxCollider = 
 		{
@@ -595,7 +595,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal8",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -613,7 +613,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0, 1, 0.760785, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -627,7 +627,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal8a",
+			int Idd = 3,
 		},
 		BoxCollider = 
 		{
@@ -702,7 +702,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal8a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -720,7 +720,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0, 1, 0.760785, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -734,7 +734,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal8",
+			int Idd = 3,
 		},
 		BoxCollider = 
 		{
@@ -791,7 +791,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal6a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -823,7 +823,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal6",
+			int Idd = 2,
 		},
 		BoxCollider = 
 		{
@@ -1060,7 +1060,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal1a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -1078,7 +1078,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.270588, 0.137255, 0.588235, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -1092,7 +1092,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal1",
+			int Idd = 4,
 		},
 		BoxCollider = 
 		{
@@ -1185,7 +1185,7 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = true,
 			bool LocalSpaceDirection = false,
-			float Strength = 30,
+			float Strength = 50,
 			Vec3 Direction = [0, 1, 0],
 		},
 		DragEffect = 
@@ -1196,10 +1196,6 @@ Level =
 		},
 		Hazard = 
 		{
-			int Damage = 6,
-			bool StunOn = false,
-			bool Active = false,
-			float KnockBackSpeed = 0,
 		},
 	},
 	Cog = 
@@ -1210,7 +1206,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal3a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -1228,7 +1224,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.231373, 0.231373, 0.231373, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -1242,7 +1238,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal3",
+			int Idd = 5,
 		},
 		BoxCollider = 
 		{
@@ -1255,12 +1251,19 @@ Level =
 			Vec3 Size = [0.25, 0.4, 0.5],
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "5517a0849adc21a1:DashPlat",
 		LinkId = 
 		{
 			uint Id = 36,
+		},
+		Named = 
+		{
+			string Name = "DashPlat",
+		},
+		Archetyped = 
+		{
+			string Name = "5517a0849adc21a1:DashPlat",
 		},
 		Transform = 
 		{
@@ -1268,9 +1271,40 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "DashPlat",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5517a750ffbaad37:DashPlayinAct",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.2, 0.5, 0.5],
+		},
+		Platforms = 
+		{
+			string OtherSprite = "5517a729f1f2c1df:DashPlayAct",
+		},
+		DashPlatform = 
+		{
 		},
 	},
 	ArchetypeInstance = 
@@ -1299,7 +1333,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal7a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -1317,7 +1351,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [1, 0, 0, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -1331,7 +1365,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal7",
+			int Idd = 9,
 		},
 		BoxCollider = 
 		{
@@ -1532,7 +1566,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal5a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -1550,7 +1584,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.138889, 0.494118, 0.230159, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -1564,7 +1598,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal5",
+			int Idd = 8,
 		},
 		BoxCollider = 
 		{
@@ -1585,7 +1619,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal2a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -1603,7 +1637,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.376471, 1, 0.701961, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -1617,7 +1651,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal2",
+			int Idd = 6,
 		},
 		BoxCollider = 
 		{
@@ -1638,7 +1672,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Portal4a",
+			string Name = "Portal",
 		},
 		Archetyped = 
 		{
@@ -1656,7 +1690,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
+			Vec4 Color = [0.964706, 1, 0.290196, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -1670,7 +1704,7 @@ Level =
 		},
 		Portals = 
 		{
-			CogPath Link = ":/Portal4",
+			int Idd = 7,
 		},
 		BoxCollider = 
 		{
