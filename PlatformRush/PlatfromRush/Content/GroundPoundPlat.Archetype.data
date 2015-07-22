@@ -6,12 +6,16 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "GP",
+		string Name = "Platform",
+	},
+	Archetyped = 
+	{
+		string Name = "5517a0c6ae9206fd:GroundPoundPlat",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-0.832934, 2.66766, 40],
-		Vec3 Scale = [1, 1, 1],
+		Vec3 Translation = [-4.71051, 16.8654, 0],
+		Vec3 Scale = [1.8, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -44,7 +48,7 @@ Cog =
 	},
 	Platforms = 
 	{
-		string OtherSprite = "",
+		string OtherSprite = "5517a75ffc7da8c4:GroundPoundactive",
 	},
 	GPplat = 
 	{

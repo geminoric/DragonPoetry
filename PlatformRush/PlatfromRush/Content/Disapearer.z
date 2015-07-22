@@ -1,8 +1,7 @@
 class Disapearer : ZilchComponent
 {
     
-    [Property]
-    var ActiveTime : Integer = 0;
+    var ActiveTime : Integer = 2;
     [Property]
     var StartUp : Integer = 0;
     var Count: Integer = 0;

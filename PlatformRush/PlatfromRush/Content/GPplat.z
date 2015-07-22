@@ -14,11 +14,11 @@ class GPplat : ZilchComponent
              var player = otherObj.ArchetypeName;
              if(player == "Player")
              {
-                /*if(otherObj.NewControls.Ablity == 2)
+                if ( otherObj.NewControls.GroundPoundPhase > 0 )
                 {
                     this.Owner.Platforms.Active = false;
                     this.Owner.RemoveComponentByName("GPplat");
-                }*/
+                }
              }
           }
     }

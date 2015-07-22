@@ -23,17 +23,18 @@ class Launcher : ZilchComponent
                 this.Owner.SoundEmitter.PlayCue(SoundCue.Find("SpringSound"));
                 var vel = otherObject.RigidBody.Velocity;
                 vel.Y += 20.0;
-                otherObject.RigidBody.Velocity = vel;
+
                 /*
                 if(player.GroundPoundingCurrently)
                 {
                   player.VelY = 1.5;
                   player.GroundPoundingCurrently = false;
                 }*/
-                /*if(otherObject.NewControls.G)
+                if(otherObject.NewControls.GroundPoundPhase > 0 )
                 {
-                    otherObject.RigidBody.Velocity.Y += 16;
-                }*/
+                    vel.Y += 16;
+                }
+                otherObject.RigidBody.Velocity = vel;
              
             }
         }

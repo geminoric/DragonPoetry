@@ -15,7 +15,7 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 30,
+			float Strength = 10,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
@@ -65,15 +65,8 @@ Level =
 		HUD = 
 		{
 		},
-		LevelData = 
+		ParticleExplosion = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
-		},
-		QuitGameTest = 
-		{
-			bool AllowQuit = false,
 		},
 		LoseControl = 
 		{
@@ -81,8 +74,11 @@ Level =
 		PauseControl = 
 		{
 		},
-		ParticleExplosion = 
+		LevelData = 
 		{
+			float GoldTime = 0,
+			float SilverTime = 0,
+			float BronzeTime = 0,
 		},
 	},
 	Cog = 
@@ -97,7 +93,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [29.8296, 8.5013, 90],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -109,7 +105,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.1711,
+			float Size = 44.5108,
 		},
 		EditorCameraController = 
 		{
@@ -117,7 +113,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [29.8296, 8.5013, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -172,7 +168,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-10.0531, 0.764819, 0],
+			Vec3 Translation = [31.2206, 1.41297, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -210,7 +206,7 @@ Level =
 		},
 		TileMap = 
 		{
-			string SourceName = "55179020ba86c6ed:MEGAMOOON_TileMap00",
+			string SourceName = "552773d7d00f9f68:LevelE5_TileMap00",
 			string PaletteName = "",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.2,
@@ -224,21 +220,21 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Platform",
+			string Name = "Sprite",
 		},
 		Archetyped = 
 		{
-			string Name = "551790dddcad3152:DisapearPlatform",
+			string Name = "55156bf8152736ae:Dropper",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-6.99378, 1.94086, 0],
+			Vec3 Translation = [-2.00777, 4.94737, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
 		{
-			bool Visible = false,
+			bool Visible = true,
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
@@ -246,7 +242,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55153eea49445516:Blue_plat",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -254,26 +250,11 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		Dropper = 
 		{
-			bool Ghost = true,
-			bool SendsMessages = false,
-			bool Seamless = true,
-			string MaterialName = "55e2698a2e96d782:Heavy",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.15, 0.5],
-		},
-		Platforms = 
-		{
-			string OtherSprite = "551539245d4d6884:Red_plat",
-		},
-		DropThrough = 
-		{
-		},
-		Disapearer = 
-		{
-			int StartUp = 1,
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [0, 0, 0],
+			int Delay = 65,
 		},
 	},
 	Cog = 
@@ -284,21 +265,21 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Platform",
+			string Name = "Sprite",
 		},
 		Archetyped = 
 		{
-			string Name = "551790dddcad3152:DisapearPlatform",
+			string Name = "55156bf8152736ae:Dropper",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.11596, 4.04903, 0],
+			Vec3 Translation = [3.57118, 4.94737, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
 		{
-			bool Visible = false,
+			bool Visible = true,
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
@@ -306,7 +287,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55153eea49445516:Blue_plat",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -314,26 +295,11 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		Dropper = 
 		{
-			bool Ghost = true,
-			bool SendsMessages = false,
-			bool Seamless = true,
-			string MaterialName = "55e2698a2e96d782:Heavy",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.15, 0.5],
-		},
-		Platforms = 
-		{
-			string OtherSprite = "551539245d4d6884:Red_plat",
-		},
-		DropThrough = 
-		{
-		},
-		Disapearer = 
-		{
-			int StartUp = 34,
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [0, 0, 0],
+			int Delay = 65,
 		},
 	},
 	Cog = 
@@ -344,21 +310,21 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Platform",
+			string Name = "Sprite",
 		},
 		Archetyped = 
 		{
-			string Name = "551790dddcad3152:DisapearPlatform",
+			string Name = "55156bf8152736ae:Dropper",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.00778, 7.09417, 0],
+			Vec3 Translation = [7.99223, 4.94737, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
 		{
-			bool Visible = false,
+			bool Visible = true,
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
@@ -366,7 +332,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55153eea49445516:Blue_plat",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -374,26 +340,11 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		Dropper = 
 		{
-			bool Ghost = true,
-			bool SendsMessages = false,
-			bool Seamless = true,
-			string MaterialName = "55e2698a2e96d782:Heavy",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.15, 0.5],
-		},
-		Platforms = 
-		{
-			string OtherSprite = "551539245d4d6884:Red_plat",
-		},
-		DropThrough = 
-		{
-		},
-		Disapearer = 
-		{
-			int StartUp = 296,
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [0, 0, 0],
+			int Delay = 65,
 		},
 	},
 	Cog = 
@@ -404,21 +355,21 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Platform",
+			string Name = "Sprite",
 		},
 		Archetyped = 
 		{
-			string Name = "551790dddcad3152:DisapearPlatform",
+			string Name = "55156bf8152736ae:Dropper",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-8.97129, 8.94101, 0],
+			Vec3 Translation = [13.1291, 4.94737, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
 		{
-			bool Visible = false,
+			bool Visible = true,
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
@@ -426,7 +377,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55153eea49445516:Blue_plat",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -434,26 +385,11 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		Dropper = 
 		{
-			bool Ghost = true,
-			bool SendsMessages = false,
-			bool Seamless = true,
-			string MaterialName = "55e2698a2e96d782:Heavy",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.15, 0.5],
-		},
-		Platforms = 
-		{
-			string OtherSprite = "551539245d4d6884:Red_plat",
-		},
-		DropThrough = 
-		{
-		},
-		Disapearer = 
-		{
-			int StartUp = 0,
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [0, 0, 0],
+			int Delay = 65,
 		},
 	},
 	Cog = 
@@ -464,21 +400,21 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Platform",
+			string Name = "Sprite",
 		},
 		Archetyped = 
 		{
-			string Name = "551790dddcad3152:DisapearPlatform",
+			string Name = "55156bf8152736ae:Dropper",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-6.10464, 6.2353, 0],
+			Vec3 Translation = [16.0133, 7.72632, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
 		{
-			bool Visible = false,
+			bool Visible = true,
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
@@ -486,7 +422,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55153eea49445516:Blue_plat",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -494,69 +430,36 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		Dropper = 
 		{
-			bool Ghost = true,
-			bool SendsMessages = false,
-			bool Seamless = true,
-			string MaterialName = "55e2698a2e96d782:Heavy",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.15, 0.5],
-		},
-		Platforms = 
-		{
-			string OtherSprite = "551539245d4d6884:Red_plat",
-		},
-		DropThrough = 
-		{
-		},
-		Disapearer = 
-		{
-			int StartUp = 0,
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [0, 0, 0],
+			int Delay = 65,
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "551d447e2229a0d6:Ground",
 		LinkId = 
 		{
 			uint Id = 11,
 		},
-		Transform = 
-		{
-			Vec3 Translation = [-7.39534, -6.22413, 40],
-			Vec3 Scale = [614.176, 2.76291, 2.76291],
-			Quat Rotation = [0, 0, 0, 1],
-		},
 		Named = 
 		{
-			string Name = "Ground",
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 12,
-		},
-		Named = 
-		{
-			string Name = "Platform",
+			string Name = "Sprite",
 		},
 		Archetyped = 
 		{
-			string Name = "551790dddcad3152:DisapearPlatform",
+			string Name = "55156bf8152736ae:Dropper",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2.9679, 11.0245, 0],
+			Vec3 Translation = [19.0659, 7.70526, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
 		{
-			bool Visible = false,
+			bool Visible = true,
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
@@ -564,7 +467,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55153eea49445516:Blue_plat",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -572,104 +475,335 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		Dropper = 
 		{
-			bool Ghost = true,
-			bool SendsMessages = false,
-			bool Seamless = true,
-			string MaterialName = "55e2698a2e96d782:Heavy",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.15, 0.5],
-		},
-		Platforms = 
-		{
-			string OtherSprite = "551539245d4d6884:Red_plat",
-		},
-		DropThrough = 
-		{
-		},
-		Disapearer = 
-		{
-			int StartUp = 57,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 13,
-		},
-		Named = 
-		{
-			string Name = "Platform",
-		},
-		Archetyped = 
-		{
-			string Name = "551790dddcad3152:DisapearPlatform",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [7.9955, 13.0721, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = false,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "55153eea49445516:Blue_plat",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = true,
-			bool SendsMessages = false,
-			bool Seamless = true,
-			string MaterialName = "55e2698a2e96d782:Heavy",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.15, 0.5],
-		},
-		Platforms = 
-		{
-			string OtherSprite = "551539245d4d6884:Red_plat",
-		},
-		DropThrough = 
-		{
-		},
-		Disapearer = 
-		{
-			int StartUp = 0,
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [0, 0, 0],
+			int Delay = 65,
 		},
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5517a0849adc21a1:DashPlat",
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [1, -1.5, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [6, -1.5, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
 		LinkId = 
 		{
 			uint Id = 14,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [13.9099, 14.5758, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [-0, 0, 1, -4.37114e-008],
+			Vec3 Translation = [10, 0.5, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
-			string Name = "DashPlat",
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [22, 0.5, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [38.798, 2.82979, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 17,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [33.535, 5.29857, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 18,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [28.267, 2.83027, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 19,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [28.4075, 7.12582, 0],
+			Vec3 Scale = [2, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 20,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Archetyped = 
+		{
+			string Name = "55156bf8152736ae:Dropper",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [27.4201, 5.5696, -1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0.707107, 0.707107],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		Dropper = 
+		{
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [10, 3, 0],
+			int Delay = 65,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 21,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Archetyped = 
+		{
+			string Name = "55156bf8152736ae:Dropper",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [27.4201, 9.41394, -1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0.707107, 0.707107],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		Dropper = 
+		{
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [10, 3, 0],
+			int Delay = 65,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 22,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Archetyped = 
+		{
+			string Name = "55156bf8152736ae:Dropper",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [39.4424, 9.41394, -1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, -0.707107, 0.707107],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		Dropper = 
+		{
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [-10, 3, 0],
+			int Delay = 65,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 23,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Archetyped = 
+		{
+			string Name = "55156bf8152736ae:Dropper",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [39.4424, 5.5696, -1],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, -0.707107, 0.707107],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5515d1d7cacd19bf:dopper",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		Dropper = 
+		{
+			string SpawnObject = "5515d694893ced13:Bullet",
+			Vec3 Velocity = [-10, 3, 0],
+			int Delay = 65,
 		},
 	},
 },
