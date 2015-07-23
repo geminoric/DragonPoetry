@@ -1,0 +1,24 @@
+Name: Alexander TOrres
+Role: Lead Designer
+Main Contributions: Level design, Implemenented a lot of the mechanics, Art, Assembled the Archtype objects for the game
+Files:
+All the levels.
+Controls.z
+Disapearer.z
+Droptrhough.z
+GPplat.z
+GhostBehavior.z
+GhostGone.z
+Hazard.z
+Health.z
+Hpdisplay.z
+Hud.z
+HomingonPlayer.z
+Launcher.z
+Lowertime.z
+Platformsleftbehavoir.z
+platforms.z
+portals.z
+leveldata.z
+Timer.z
+
