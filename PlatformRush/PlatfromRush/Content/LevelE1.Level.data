@@ -64,9 +64,9 @@ Level =
 		},
 		LevelData = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
+			float GoldTime = 12,
+			float SilverTime = 16,
+			float BronzeTime = 20,
 		},
 		HUD = 
 		{
@@ -442,6 +442,24 @@ Level =
 		Named = 
 		{
 			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "551d447e2229a0d6:Ground",
+		LinkId = 
+		{
+			uint Id = 17,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3.79745, -14.2132, 0],
+			Vec3 Scale = [614.176, 2.76291, 2.76291],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Ground",
 		},
 	},
 },

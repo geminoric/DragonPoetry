@@ -67,9 +67,9 @@ Level =
 		},
 		LevelData = 
 		{
-			float GoldTime = 5,
-			float SilverTime = 6,
-			float BronzeTime = 7,
+			float GoldTime = 6,
+			float SilverTime = 8,
+			float BronzeTime = 10,
 		},
 		HUD = 
 		{
@@ -175,7 +175,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-17.533, 0.372368, 0],
+			Vec3 Translation = [-16.2526, -0.054448, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -229,7 +229,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-11, 0.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
@@ -247,7 +247,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-4.5, 1.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
@@ -265,7 +265,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [2, 2.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
@@ -283,7 +283,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [26, 6.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
@@ -301,7 +301,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [8.5, 3.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
@@ -319,12 +319,30 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [15, 4.5, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
 			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "551d447e2229a0d6:Ground",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-1.34142, -8.71924, 0],
+			Vec3 Scale = [614.176, 2.76291, 2.76291],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Ground",
 		},
 	},
 },

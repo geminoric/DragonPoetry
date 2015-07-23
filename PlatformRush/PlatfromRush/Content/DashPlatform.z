@@ -15,8 +15,10 @@ class DashPlatform : ZilchComponent
              var player = otherObj.ArchetypeName;
              if(player == "Player")
              {
-                if(otherObj.Controls.Ablity == 1)
+                if(otherObj.NewControls.DashCooldown > 0)
                 {
+                    
+                    /* change this so that it works with new controls plz */
                     this.Owner.Platforms.Active = false;
                     this.Owner.RemoveComponentByName("DashPlatform");
                 }

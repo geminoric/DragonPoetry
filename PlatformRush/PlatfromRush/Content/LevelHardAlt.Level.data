@@ -64,9 +64,9 @@ Level =
 		},
 		LevelData = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
+			float GoldTime = 30,
+			float SilverTime = 45,
+			float BronzeTime = 60,
 		},
 		HUD = 
 		{
@@ -97,7 +97,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [1.16959, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -109,7 +109,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 36.4424,
+			float Size = 40.2751,
 		},
 		EditorCameraController = 
 		{
@@ -117,7 +117,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [1.16959, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -172,7 +172,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.54794, 0.0273973, 0],
+			Vec3 Translation = [-6.09549, -7.95998, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -667,7 +667,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [4.96162, -6.88418, 0],
+			Vec3 Translation = [4.96162, -6.74211, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1441,7 +1441,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [7.0516, -4.10078, 0],
+			Vec3 Translation = [7.13279, -3.81663, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1477,7 +1477,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [6.94065, 4.14631, 0],
+			Vec3 Translation = [6.92035, 4.04483, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -1715,6 +1715,78 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.25, 0.4, 0.5],
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 52,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-0.0304904, -4.83741, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 53,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [4.99893, -0.0246922, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 54,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-4.0741, -0.0449891, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 55,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0.0693517, 2.0517, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
 		},
 	},
 },

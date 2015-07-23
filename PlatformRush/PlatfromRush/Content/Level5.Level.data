@@ -64,9 +64,9 @@ Level =
 		},
 		LevelData = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
+			float GoldTime = 8,
+			float SilverTime = 12,
+			float BronzeTime = 16,
 		},
 		HUD = 
 		{
@@ -351,7 +351,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [6.1532, 3.0766, 0],
+			Vec3 Translation = [5.15945, 1.99251, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -369,13 +369,31 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.538406, 5.46097, 0],
+			Vec3 Translation = [0.0867019, 4.51239, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
 			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "551d447e2229a0d6:Ground",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-1.9875, -12.2864, 0],
+			Vec3 Scale = [614.176, 2.76291, 2.76291],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Ground",
 		},
 	},
 },

@@ -67,9 +67,9 @@ Level =
 		},
 		LevelData = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
+			float GoldTime = 16,
+			float SilverTime = 20,
+			float BronzeTime = 35,
 		},
 		QuitGameTest = 
 		{
@@ -109,7 +109,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.1711,
+			float Size = 44.3959,
 		},
 		EditorCameraController = 
 		{
@@ -232,8 +232,8 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-6.99378, 1.94086, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Translation = [-6.99378, 1.01693, 0],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -293,7 +293,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-4.11596, 4.04903, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -333,7 +333,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int StartUp = 34,
+			int StartUp = 3,
 		},
 	},
 	Cog = 
@@ -353,7 +353,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-2.00778, 7.09417, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -393,7 +393,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int StartUp = 296,
+			int StartUp = 6,
 		},
 	},
 	Cog = 
@@ -413,7 +413,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-8.97129, 8.94101, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -453,7 +453,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int StartUp = 0,
+			int StartUp = 8,
 		},
 	},
 	Cog = 
@@ -473,7 +473,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-6.10464, 6.2353, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -513,7 +513,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int StartUp = 0,
+			int StartUp = 5,
 		},
 	},
 	ArchetypeInstance = 
@@ -551,7 +551,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [2.9679, 11.0245, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -591,7 +591,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int StartUp = 57,
+			int StartUp = 2,
 		},
 	},
 	Cog = 
@@ -611,7 +611,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [7.9955, 13.0721, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -651,7 +651,7 @@ Level =
 		},
 		Disapearer = 
 		{
-			int StartUp = 0,
+			int StartUp = 4,
 		},
 	},
 	ArchetypeInstance = 
@@ -669,7 +669,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "DashPlat",
+			string Name = "Platform",
 		},
 	},
 },

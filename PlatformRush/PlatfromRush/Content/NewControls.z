@@ -290,7 +290,7 @@ class NewControls : ZilchComponent
         this.DashAbility();
         this.GroundPound();
         
-        Console.WriteLine(this.Velocity);
+        //Console.WriteLine(this.Velocity);
         //Update velocity
         this.Owner.RigidBody.Velocity = this.Velocity;
     }

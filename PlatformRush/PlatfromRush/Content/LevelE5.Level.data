@@ -76,9 +76,9 @@ Level =
 		},
 		LevelData = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
+			float GoldTime = 12,
+			float SilverTime = 18,
+			float BronzeTime = 24,
 		},
 	},
 	Cog = 
@@ -105,7 +105,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 44.5108,
+			float Size = 73.3859,
 		},
 		EditorCameraController = 
 		{
@@ -168,7 +168,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [31.2206, 1.41297, 0],
+			Vec3 Translation = [-5.47235, 0.206626, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -527,7 +527,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [10, 0.5, 0],
+			Vec3 Translation = [10, -0.0026412, 0],
 			Vec3 Scale = [2, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -804,6 +804,24 @@ Level =
 			string SpawnObject = "5515d694893ced13:Bullet",
 			Vec3 Velocity = [-10, 3, 0],
 			int Delay = 65,
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "551d447e2229a0d6:Ground",
+		LinkId = 
+		{
+			uint Id = 24,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [14.9514, -8.48804, 40],
+			Vec3 Scale = [614.176, 2.76291, 2.76291],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Ground",
 		},
 	},
 },

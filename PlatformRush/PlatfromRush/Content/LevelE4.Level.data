@@ -64,9 +64,9 @@ Level =
 		},
 		LevelData = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
+			float GoldTime = 15,
+			float SilverTime = 24,
+			float BronzeTime = 28,
 		},
 		ParticleExplosion = 
 		{

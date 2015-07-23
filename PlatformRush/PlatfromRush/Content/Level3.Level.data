@@ -12,7 +12,7 @@ Level =
 		},
 		GravityEffect = 
 		{
-			bool Active = false,
+			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
 			float Strength = 10,
@@ -33,7 +33,7 @@ Level =
 			bool Active = true,
 			bool Blocking = true,
 			uint Renderer = 1,
-			uint Camera = 4294967293,
+			uint Camera = 2,
 			ViewportScaling Scaling = Fill,
 			Vec2 Resolution = [1280, 720],
 			Vec4 MarginColor = [0, 0, 0, 1],
@@ -62,14 +62,11 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
-		HUD = 
-		{
-		},
 		LevelData = 
 		{
-			float GoldTime = 0,
-			float SilverTime = 0,
-			float BronzeTime = 0,
+			float GoldTime = 16,
+			float SilverTime = 20,
+			float BronzeTime = 25,
 		},
 		LoseControl = 
 		{
@@ -77,12 +74,18 @@ Level =
 		PauseControl = 
 		{
 		},
+		ParticleExplosion = 
+		{
+		},
+		HUD = 
+		{
+		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 2,
+			uint Id = 3,
 		},
 		Named = 
 		{
@@ -90,7 +93,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-11.8311, 2.8327, 50],
+			Vec3 Translation = [-16.7565, 8.02269, 90],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -102,7 +105,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 59.9287,
+			float Size = 44.933,
 		},
 		EditorCameraController = 
 		{
@@ -110,7 +113,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-11.8311, 2.8327, 0],
+			Vec3 LookTarget = [-16.7565, 8.02269, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -126,7 +129,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 3,
+			uint Id = 2,
 		},
 		Named = 
 		{
@@ -172,7 +175,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [13.1723, 11.419, 0],
+			Vec3 Translation = [8.12622, 9.97726, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -186,23 +189,13 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5502c88e6e940b8f:main_idle1000",
+			string SpriteSource = "559e4a92e524f9e0:main_idle1resized",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, -0.05, 0],
-			Vec3 Size = [0.4, 0.45, 0.5],
 		},
 		RigidBody = 
 		{
@@ -226,14 +219,30 @@ Level =
 		GroundCollision = 
 		{
 		},
-		MaintainVel = 
+		PlayerAnimations = 
 		{
-			float MaxDownSpeed = 0,
-			float MaxUpSpeed = 0,
-			float MaxRunSpeed = 0,
 		},
 		NewControls = 
 		{
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0.1, -0.05, 0],
+			Vec3 Size = [0.35, 0.5, 0.5],
+		},
+		SoundEmitter = 
+		{
+			bool StartPlaying = false,
+			int ExtraPriority = 0,
+			string CueName = "4e1bd44008b4dc2a:DefaultCue",
+			float Volume = 1,
+			float Pitch = 1,
+			bool Positional = true,
 		},
 	},
 	Cog = 
@@ -273,14 +282,50 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5515d694893ced13:Bullet",
+		string Name = "550213475160f850:Platform",
 		LinkId = 
 		{
 			uint Id = 6,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [13.6415, 14.408, 0],
+			Vec3 Translation = [3, 6.5, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55156bf8152736ae:Dropper",
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-16.0521, 7.61541, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55156bf8152736ae:Dropper",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-12.9884, 7.61541, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -294,17 +339,629 @@ Level =
 		string Name = "550213475160f850:Platform",
 		LinkId = 
 		{
-			uint Id = 7,
+			uint Id = 9,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2.85771, 6.56714, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Translation = [-3, 4.5, 0],
+			Vec3 Scale = [1.8, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
 			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-9, 2.5, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-18.4973, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-19.4981, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-20.4992, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 14,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-21.5, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-22.501, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-24.5029, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 17,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-23.5018, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 18,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-25.5037, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 19,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-27.5155, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 20,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-28.5166, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 21,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-29.5174, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 22,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-26.5147, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 23,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-31.4843, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 24,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-30.4835, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 25,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-32.4854, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 26,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-33.4862, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 27,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-35.4781, 1.3393, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 28,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-34.4773, 1.33766, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 29,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-19.0471, 2.9956, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 30,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-35.9875, 2.95054, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 31,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-10.4821, 3.22216, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 32,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-7.48418, 3.27949, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 33,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-1.47959, 5.31475, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 34,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-4.47751, 5.25742, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 35,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [4.51376, 7.32753, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550264677f6b5fc9:Spike",
+		LinkId = 
+		{
+			uint Id = 36,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [1.51584, 7.2702, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Spike",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55026c5dfdaa70ad:Launcher",
+		LinkId = 
+		{
+			uint Id = 37,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-39.9812, 5.62782, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Launcher",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 38,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-39.9975, 13.7553, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 39,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-34.4837, 14.8135, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 40,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-28.5244, 16.9856, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 41,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-20.8943, 19.3248, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "550213475160f850:Platform",
+		LinkId = 
+		{
+			uint Id = 42,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-11.2034, 21.7196, 0],
+			Vec3 Scale = [1.8, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Platform",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "551d447e2229a0d6:Ground",
+		LinkId = 
+		{
+			uint Id = 43,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-18.9286, -3.72887, 0],
+			Vec3 Scale = [614.176, 2.76291, 2.76291],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Ground",
 		},
 	},
 },

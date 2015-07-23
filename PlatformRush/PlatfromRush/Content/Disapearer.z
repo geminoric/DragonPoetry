@@ -1,7 +1,7 @@
 class Disapearer : ZilchComponent
 {
     
-    var ActiveTime : Integer = 2;
+    var ActiveTime : Integer = 3;
     [Property]
     var StartUp : Integer = 0;
     var Count: Integer = 0;
@@ -17,7 +17,7 @@ class Disapearer : ZilchComponent
             this.Owner.BoxCollider.Ghost = true;
             this.Owner.BoxCollider.SendsEvents = true;
         }
-        this.LoopTime =20;
+        this.LoopTime =10;
     }
     
     function Init(delay : Integer, start : Integer, hasBoxCollider : Boolean, isFlashing : Boolean)
@@ -28,7 +28,7 @@ class Disapearer : ZilchComponent
         this.IsFlashing = isFlashing;
         this.HasBoxCollider = hasBoxCollider;
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        this.LoopTime = 20;
+        this.LoopTime = 10;
     }
 
     function ToggleGhost()
@@ -70,7 +70,7 @@ class Disapearer : ZilchComponent
         ++this.Count;
         if(this.Count == this.StartUp * 60)
         {
-
+            Console.WriteLine("disaper");
             if(this.HasBoxCollider)
             {
                 this.SetSendEvents(true);

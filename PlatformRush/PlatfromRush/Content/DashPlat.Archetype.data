@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "DashPlat",
+		string Name = "Platform",
 	},
 	Archetyped = 
 	{
@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [14.3222, -10.8755, 0],
+		Vec3 Translation = [13.9099, 14.5758, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [-0, 0, 1, -4.37114e-008],
 	},

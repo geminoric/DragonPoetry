@@ -7,7 +7,7 @@ class PlatformsLeftBehavior : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        var mainLevel = this.GameSession.FindSpaceByName("MainNew");
+        var mainLevel = this.GameSession.FindSpaceByName("Main");
         
         if(mainLevel != null)
         {
