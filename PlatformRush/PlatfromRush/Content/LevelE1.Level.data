@@ -80,6 +80,10 @@ Level =
 		PauseControl = 
 		{
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{

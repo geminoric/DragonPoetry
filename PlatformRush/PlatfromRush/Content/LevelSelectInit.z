@@ -4,26 +4,61 @@ class LevelSelectInit : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
-        var but0 = this.Space.Create(Archetype.Find("Button"));
-        but0.ButtonClass.Init(Real3(-10,0,0), Real3(5,5,1), this.Easy , "1", 20);
+        var easy1 = this.Space.Create(Archetype.Find("Button"));
+        easy1.ButtonClass.Init(Real3(-10,4,0), Real3(2,2,1), this.Easy1 , "    1", 30);
         
-        var but1 = this.Space.Create(Archetype.Find("Button"));
-        but1.ButtonClass.Init(Real3(0,0,0), Real3(5,5,1), this.Medium , "2", 20);
+        var easy2 = this.Space.Create(Archetype.Find("Button"));
+        easy2.ButtonClass.Init(Real3(-6,4,0), Real3(2,2,1), this.Easy2 , "    2", 30);
         
-        var but2 = this.Space.Create(Archetype.Find("Button"));
-        but2.ButtonClass.Init(Real3(10,0,0), Real3(5,5,1), this.Hard , "3", 20);
+        var easy3 = this.Space.Create(Archetype.Find("Button"));
+        easy3.ButtonClass.Init(Real3(-2,4,0), Real3(2,2,1), this.Easy3 , "    3", 30);
         
-        var but3 = this.Space.Create(Archetype.Find("Button"));
-        but3.ButtonClass.Init(Real3(-10,-4,0), Real3(5,5,1), this.Four , "4", 20);
+        var easy4 = this.Space.Create(Archetype.Find("Button"));
+        easy4.ButtonClass.Init(Real3(2,4,0), Real3(2,2,1), this.Easy4 , "    4", 30);
         
-        var but4 = this.Space.Create(Archetype.Find("Button"));
-        but4.ButtonClass.Init(Real3(0,-4,0), Real3(5,5,1), this.Five , "5", 20);
+        var easy5 = this.Space.Create(Archetype.Find("Button"));
+        easy5.ButtonClass.Init(Real3(6,4,0), Real3(2,2,1), this.Easy5 , "    5", 30);
         
-        var but5 = this.Space.Create(Archetype.Find("Button"));
-        but5.ButtonClass.Init(Real3(10,-4,0), Real3(5,5,1), this.Six , "6", 20);
+        var medium1 = this.Space.Create(Archetype.Find("Button"));
+        medium1.ButtonClass.Init(Real3(-8,1,0), Real3(2,2,1), this.Medium1 , "    1", 30);
+        
+        var medium2 = this.Space.Create(Archetype.Find("Button"));
+        medium2.ButtonClass.Init(Real3(-4,1,0), Real3(2,2,1), this.Medium2 , "    2", 30);
+        
+        var medium3 = this.Space.Create(Archetype.Find("Button"));
+        medium3.ButtonClass.Init(Real3(0,1,0), Real3(2,2,1), this.Medium3 , "    3", 30);
+        
+        var medium4 = this.Space.Create(Archetype.Find("Button"));
+        medium4.ButtonClass.Init(Real3(4,1,0), Real3(2,2,1), this.Medium4 , "    4", 30);
+        
+        var medium5 = this.Space.Create(Archetype.Find("Button"));
+        medium5.ButtonClass.Init(Real3(8,1,0), Real3(2,2,1), this.Medium5 , "    5", 30);
+        
+        var hard1 = this.Space.Create(Archetype.Find("Button"));
+        hard1.ButtonClass.Init(Real3(-10,-2,0), Real3(2,2,1), this.Hard1 , "    1", 30);
+        
+        var hard2 = this.Space.Create(Archetype.Find("Button"));
+        hard2.ButtonClass.Init(Real3(-6,-2,0), Real3(2,2,1), this.Hard2 , "    2", 30);
+        
+        var hard3 = this.Space.Create(Archetype.Find("Button"));
+        hard3.ButtonClass.Init(Real3(-2,-2,0), Real3(2,2,1), this.Hard3 , "    3", 30);
+        
+        var hard4 = this.Space.Create(Archetype.Find("Button"));
+        hard4.ButtonClass.Init(Real3(2,-2,0), Real3(2,2,1), this.Hard4 , "    4", 30);
+        
+        var hard5 = this.Space.Create(Archetype.Find("Button"));
+        hard5.ButtonClass.Init(Real3(6,-2,0), Real3(2,2,1), this.Hard5 , "    5", 30);
     }
     
-    function Easy()
+    function Easy1()
+    {
+        var level = Level.Find("Level");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Easy2()
     {
         var level = Level.Find("Level2");
         var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
@@ -31,7 +66,31 @@ class LevelSelectInit : ZilchComponent
         this.Space.Destroy();
     }
     
-    function Medium()
+    function Easy3()
+    {
+        var level = Level.Find("LevelE1");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Easy4()
+    {
+        var level = Level.Find("LevelE2");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Easy5()
+    {
+        var level = Level.Find("LevelE3");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Medium1()
     {
         var level = Level.Find("LevelMed");
         var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
@@ -39,23 +98,7 @@ class LevelSelectInit : ZilchComponent
         this.Space.Destroy();
     }
     
-    function Hard()
-    {
-        var level = Level.Find("LevelHardAlt");
-        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
-        newSpace.LoadLevel(level);
-        this.Space.Destroy();
-    }
-    
-    function Four()
-    {
-        var level = Level.Find("Level4");
-        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
-        newSpace.LoadLevel(level);
-        this.Space.Destroy();
-    }
-    
-    function Five()
+    function Medium2()
     {
         var level = Level.Find("Level5");
         var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
@@ -63,9 +106,65 @@ class LevelSelectInit : ZilchComponent
         this.Space.Destroy();
     }
     
-    function Six()
+    function Medium3()
+    {
+        var level = Level.Find("LevelM2");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Medium4()
+    {
+        var level = Level.Find("LevelM3");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Medium5()
+    {
+        var level = Level.Find("LevelE4");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Hard1()
+    {
+        var level = Level.Find("Level3");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Hard2()
+    {
+        var level = Level.Find("Level4");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Hard3()
+    {
+        var level = Level.Find("LevelE5");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Hard4()
     {
         var level = Level.Find("MEGAMOOON");
+        var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
+        newSpace.LoadLevel(level);
+        this.Space.Destroy();
+    }
+    
+    function Hard5()
+    {
+        var level = Level.Find("LevelHardAlt");
         var newSpace = this.GameSession.CreateNamedSpace("MainNew", Archetype.Find("Space"));
         newSpace.LoadLevel(level);
         this.Space.Destroy();

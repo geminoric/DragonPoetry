@@ -227,9 +227,9 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-15.6626, 4.59795, 1],
+			Vec3 Translation = [-14.802, 4.42583, 1],
 			Vec3 Scale = [5.15899, 6.24653, 1],
-			Quat Rotation = [0, 0, 0.120318, 0.992735],
+			Quat Rotation = [0, 0, 0.0642473, 0.997934],
 		},
 		SpriteText = 
 		{
@@ -237,7 +237,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [0.72, 0.1944, 0, 1],
+			Vec4 Color = [0.204875, 0.745, 0.680185, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -252,7 +252,7 @@ Level =
 		{
 			Vec3 StartSize = [5.15899, 6.24653, 1],
 			float RateOfChange = 0.25,
-			float MaxSize = 6.6,
+			float MaxSize = 6,
 		},
 	},
 	Cog = 

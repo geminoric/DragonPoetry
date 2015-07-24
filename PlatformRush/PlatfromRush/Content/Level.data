@@ -83,6 +83,10 @@ Level =
 		ParticleExplosion = 
 		{
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{

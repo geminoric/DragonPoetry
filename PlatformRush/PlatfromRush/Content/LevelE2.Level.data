@@ -77,6 +77,13 @@ Level =
 		LoseControl = 
 		{
 		},
+		PauseControl = 
+		{
+		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{

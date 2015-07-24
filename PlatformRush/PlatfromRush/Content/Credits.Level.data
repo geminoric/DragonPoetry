@@ -293,7 +293,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-17.86, -2.79891, 0],
+			Vec3 Translation = [-20.1342, -2.87227, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -309,7 +309,7 @@ Level =
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 			string FontName = "4e7bac697bec55c5:Verdana",
 			uint FontSize = 60,
-			string Text = "Christian Ayson - Product Manager",
+			string Text = "Christian Ayson - Product Manager / Sound FX",
 			TextAlign Align = Left,
 			float PixelsPerUnit = 64,
 			bool Smoothing = true,
@@ -327,7 +327,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-17.86, 1.16848, 0],
+			Vec3 Translation = [-19.9875, 0.985075, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -361,7 +361,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-17.86, -0.842392, 0],
+			Vec3 Translation = [-20.1342, -0.915754, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -395,7 +395,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-17.86, -4.75543, 0],
+			Vec3 Translation = [-20.1342, -4.82879, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -497,7 +497,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [8.94144, -0.311913, 0],
+			Vec3 Translation = [6.66722, -0.385275, 0],
 			Vec3 Scale = [116.264, 69.7543, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -512,6 +512,41 @@ Level =
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-20.2479, -9.96824, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "55c6727cc071c9d9:Lambda Alpaca",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,

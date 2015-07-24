@@ -80,6 +80,10 @@ Level =
 		HUD = 
 		{
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{

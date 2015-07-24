@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "TeamScreenLogic",
+		uint64 ResourceId = 55c67215f17ba5e1,
+	},
+},

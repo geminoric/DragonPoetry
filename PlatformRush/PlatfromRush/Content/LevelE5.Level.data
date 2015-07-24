@@ -80,6 +80,10 @@ Level =
 			float SilverTime = 18,
 			float BronzeTime = 24,
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{

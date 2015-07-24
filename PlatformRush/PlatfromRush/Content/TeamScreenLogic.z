@@ -1,0 +1,19 @@
+class TeamScreenLogic : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var start = Level.Find("MainMenu");
+        
+        Console.WriteLine(event.RealTimePassed);
+        
+        if(event.RealTimePassed > 6)
+        {
+            this.Space.LoadLevel(start);
+        }
+    }
+}

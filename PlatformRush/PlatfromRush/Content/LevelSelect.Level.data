@@ -91,7 +91,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [0, 3.35092, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -111,7 +111,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [0, 3.35092, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -201,7 +201,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-9.94053, 10.1808, 0],
+			Vec3 Translation = [-10.0907, 11.1718, 0],
 			Vec3 Scale = [7.63466, 10.794, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -286,6 +286,108 @@ Level =
 			string FontName = "55b8afdd5ab8830f:Sansation-Regular",
 			uint FontSize = 42,
 			string Text = "TestTextPleaseIgnore",
+			TextAlign Align = Left,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Named = 
+		{
+			string Name = "Easy",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-18, 6, 0],
+			Vec3 Scale = [7.63466, 10.794, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "55ac6763ecfc7746:data-unifon",
+			uint FontSize = 20,
+			string Text = "easy:",
+			TextAlign Align = Left,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Named = 
+		{
+			string Name = "medium",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-18, 3, 0],
+			Vec3 Scale = [7.63466, 10.794, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "55ac6763ecfc7746:data-unifon",
+			uint FontSize = 20,
+			string Text = "medium:",
+			TextAlign Align = Left,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Named = 
+		{
+			string Name = "hard",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-18, 0, 0],
+			Vec3 Scale = [7.63466, 10.794, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "55ac6763ecfc7746:data-unifon",
+			uint FontSize = 20,
+			string Text = "hard:",
 			TextAlign Align = Left,
 			float PixelsPerUnit = 64,
 			bool Smoothing = true,

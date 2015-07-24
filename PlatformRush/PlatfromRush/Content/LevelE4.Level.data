@@ -80,6 +80,10 @@ Level =
 		LoseControl = 
 		{
 		},
+		QuitGameTest = 
+		{
+			bool AllowQuit = false,
+		},
 	},
 	Cog = 
 	{
