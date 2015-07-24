@@ -522,12 +522,19 @@ Level =
 			string Name = "Platform",
 		},
 	},
+<<<<<<< HEAD
 	Cog = 
 	{
+=======
+	ArchetypeInstance = 
+	{
+		string Name = "55978ef22d104f6f:soundmain",
+>>>>>>> origin/master
 		LinkId = 
 		{
 			uint Id = 23,
 		},
+<<<<<<< HEAD
 		Named = 
 		{
 			string Name = "Background",
@@ -555,6 +562,17 @@ Level =
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
+=======
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Sound",
+>>>>>>> origin/master
 		},
 	},
 },
