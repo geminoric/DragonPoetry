@@ -1,0 +1,24 @@
+Name: James Hammond
+
+Role: Tech Director
+
+Main contributions: Editor, player controller, particle effects, level loading, buttons
+
+List files in which you worked:
+ButtonClass.z
+EditorDisplay.z
+EditorGridClass.z
+EditorObjectClass.z
+EditorSprite.z
+EditorTileSelect.z
+LevelEditorClass.z
+LevelSaveClass.z
+LoadLevelClass.z
+NewControls.z
+RenameClass.z
+SelectTileClass.z
+
+
+(Copied following 2 particle files from old project, Cosmic Expanse, and slightly modified them.)
+ParticleClass.z
+ParticleExplosion.z
