@@ -112,7 +112,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.1035,
+			float Size = 54.3658,
 		},
 		EditorCameraController = 
 		{
@@ -407,6 +407,24 @@ Level =
 		Named = 
 		{
 			string Name = "Ground",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55978ef22d104f6f:soundmain",
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Sound",
 		},
 	},
 },
