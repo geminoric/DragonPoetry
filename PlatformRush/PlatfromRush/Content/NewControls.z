@@ -18,6 +18,8 @@ class NewControls : ZilchComponent
     var FirstJumpUsed : Boolean = false;
     //Has double jump been used
     var DoubleJumpUsed : Boolean = false;
+    //Max downward velocity
+    var MaxDVel : Real = -15;
     
     var DashCooldown : Integer = 0;
     var DashMaxCooldown : Integer = 40;
@@ -290,9 +292,19 @@ class NewControls : ZilchComponent
         this.DashAbility();
         this.GroundPound();
         
+        this.LimitDownwardVelocity();
+        
         //Console.WriteLine(this.Velocity);
         //Update velocity
         this.Owner.RigidBody.Velocity = this.Velocity;
+    }
+    
+    function LimitDownwardVelocity()
+    {
+        if(this.Velocity.Y < this.MaxDVel)
+        {
+            this.Velocity.Y = this.MaxDVel;
+        }
     }
     
     function OnLogicUpdate(event : UpdateEvent)
