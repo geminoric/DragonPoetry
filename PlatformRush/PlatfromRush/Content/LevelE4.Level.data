@@ -773,4 +773,22 @@ Level =
 >>>>>>> origin/master
 		},
 	},
+	ArchetypeInstance = 
+	{
+		string Name = "5597f191914cd80b:bg",
+		LinkId = 
+		{
+			uint Id = 35,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, -1],
+			Vec3 Scale = [10, 10, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+	},
 },
