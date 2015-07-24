@@ -1,0 +1,37 @@
+class OptionsScreenStuffs : ZilchComponent
+{
+    //Are particles on or off
+    var Particles : Boolean = true;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        var but0 = this.Space.Create(Archetype.Find("Button"));
+        but0.ButtonClass.Init(Real3(-6,5,0), Real3(3,1.5,1), this.ParticlesThing, "Particles", 25);
+        
+        var rand : Random = new Random();
+        var text = this.Space.FindObjectByName("onText");
+        text.SpriteText.Color = Real4(rand.Range(0, 1), rand.Range(0, 1), rand.Range(0, 1), 1.0);
+        this.GameSession.GameVars.ParticlesOn = this.Particles;
+    }
+    
+    function ParticlesThing()
+    {
+        this.Particles = !this.Particles;
+        var text = this.Space.FindObjectByName("onText");
+        if(this.Particles)
+        {
+            text.SpriteText.Text = "ON";
+        }
+        else
+        {
+            text.SpriteText.Text = "OFF";
+        }
+        var rand : Random = new Random();
+        text.SpriteText.Color = Real4(rand.Range(0, 1), rand.Range(0, 1), rand.Range(0, 1), 1.0);
+        this.GameSession.GameVars.ParticlesOn = this.Particles;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

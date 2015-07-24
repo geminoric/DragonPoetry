@@ -20,6 +20,12 @@ class ParticleClass : ZilchComponent
     //With no experience
     function Init(vx : Real, vy : Real, drag : Real, light : Real, ldecay : Real, col : Real4, damage : Real)
     {
+        //Destroy particle if not enabled
+        if(!this.GameSession.GameVars.ParticlesOn)
+        {
+            this.Owner.Destroy();
+        }
+        
         this.Damage = damage;
         this.VelX = vx;
         this.VelY = vy;
