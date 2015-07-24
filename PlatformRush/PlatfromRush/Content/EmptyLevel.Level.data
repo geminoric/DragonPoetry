@@ -165,6 +165,9 @@ Level =
 		{
 			bool Active = true,
 		},
+		CameraFollow = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -234,6 +237,15 @@ Level =
 		},
 		NewControls = 
 		{
+		},
+		SoundEmitter = 
+		{
+			bool StartPlaying = true,
+			int ExtraPriority = 0,
+			string CueName = "4e1bd44008b4dc2a:DefaultCue",
+			float Volume = 1,
+			float Pitch = 1,
+			bool Positional = true,
 		},
 	},
 },
