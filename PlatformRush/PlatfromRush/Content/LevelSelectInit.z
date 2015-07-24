@@ -5,49 +5,49 @@ class LevelSelectInit : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
         var easy1 = this.Space.Create(Archetype.Find("Button"));
-        easy1.ButtonClass.Init(Real3(-10,4,0), Real3(2,2,1), this.Easy1 , "    1", 30);
+        easy1.ButtonClass.Init(Real3(-7,4,0), Real3(2,2,1), this.Easy1 , "    1", 30);
         
         var easy2 = this.Space.Create(Archetype.Find("Button"));
-        easy2.ButtonClass.Init(Real3(-6,4,0), Real3(2,2,1), this.Easy2 , "    2", 30);
+        easy2.ButtonClass.Init(Real3(-3,4,0), Real3(2,2,1), this.Easy2 , "    2", 30);
         
         var easy3 = this.Space.Create(Archetype.Find("Button"));
-        easy3.ButtonClass.Init(Real3(-2,4,0), Real3(2,2,1), this.Easy3 , "    3", 30);
+        easy3.ButtonClass.Init(Real3(1,4,0), Real3(2,2,1), this.Easy3 , "    3", 30);
         
         var easy4 = this.Space.Create(Archetype.Find("Button"));
-        easy4.ButtonClass.Init(Real3(2,4,0), Real3(2,2,1), this.Easy4 , "    4", 30);
+        easy4.ButtonClass.Init(Real3(5,4,0), Real3(2,2,1), this.Easy4 , "    4", 30);
         
         var easy5 = this.Space.Create(Archetype.Find("Button"));
-        easy5.ButtonClass.Init(Real3(6,4,0), Real3(2,2,1), this.Easy5 , "    5", 30);
+        easy5.ButtonClass.Init(Real3(9,4,0), Real3(2,2,1), this.Easy5 , "    5", 30);
         
         var medium1 = this.Space.Create(Archetype.Find("Button"));
-        medium1.ButtonClass.Init(Real3(-8,1,0), Real3(2,2,1), this.Medium1 , "    1", 30);
+        medium1.ButtonClass.Init(Real3(-5,1,0), Real3(2,2,1), this.Medium1 , "    1", 30);
         
         var medium2 = this.Space.Create(Archetype.Find("Button"));
-        medium2.ButtonClass.Init(Real3(-4,1,0), Real3(2,2,1), this.Medium2 , "    2", 30);
+        medium2.ButtonClass.Init(Real3(-1,1,0), Real3(2,2,1), this.Medium2 , "    2", 30);
         
         var medium3 = this.Space.Create(Archetype.Find("Button"));
-        medium3.ButtonClass.Init(Real3(0,1,0), Real3(2,2,1), this.Medium3 , "    3", 30);
+        medium3.ButtonClass.Init(Real3(3,1,0), Real3(2,2,1), this.Medium3 , "    3", 30);
         
         var medium4 = this.Space.Create(Archetype.Find("Button"));
-        medium4.ButtonClass.Init(Real3(4,1,0), Real3(2,2,1), this.Medium4 , "    4", 30);
+        medium4.ButtonClass.Init(Real3(7,1,0), Real3(2,2,1), this.Medium4 , "    4", 30);
         
         var medium5 = this.Space.Create(Archetype.Find("Button"));
-        medium5.ButtonClass.Init(Real3(8,1,0), Real3(2,2,1), this.Medium5 , "    5", 30);
+        medium5.ButtonClass.Init(Real3(11,1,0), Real3(2,2,1), this.Medium5 , "    5", 30);
         
         var hard1 = this.Space.Create(Archetype.Find("Button"));
-        hard1.ButtonClass.Init(Real3(-10,-2,0), Real3(2,2,1), this.Hard1 , "    1", 30);
+        hard1.ButtonClass.Init(Real3(-7,-2,0), Real3(2,2,1), this.Hard1 , "    1", 30);
         
         var hard2 = this.Space.Create(Archetype.Find("Button"));
-        hard2.ButtonClass.Init(Real3(-6,-2,0), Real3(2,2,1), this.Hard2 , "    2", 30);
+        hard2.ButtonClass.Init(Real3(-3,-2,0), Real3(2,2,1), this.Hard2 , "    2", 30);
         
         var hard3 = this.Space.Create(Archetype.Find("Button"));
-        hard3.ButtonClass.Init(Real3(-2,-2,0), Real3(2,2,1), this.Hard3 , "    3", 30);
+        hard3.ButtonClass.Init(Real3(1,-2,0), Real3(2,2,1), this.Hard3 , "    3", 30);
         
         var hard4 = this.Space.Create(Archetype.Find("Button"));
-        hard4.ButtonClass.Init(Real3(2,-2,0), Real3(2,2,1), this.Hard4 , "    4", 30);
+        hard4.ButtonClass.Init(Real3(5,-2,0), Real3(2,2,1), this.Hard4 , "    4", 30);
         
         var hard5 = this.Space.Create(Archetype.Find("Button"));
-        hard5.ButtonClass.Init(Real3(6,-2,0), Real3(2,2,1), this.Hard5 , "    5", 30);
+        hard5.ButtonClass.Init(Real3(9,-2,0), Real3(2,2,1), this.Hard5 , "    5", 30);
     }
     
     function Easy1()
